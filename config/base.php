@@ -53,12 +53,6 @@ return [
                 'fill' => false
             ],
         ],
-        'images_types' => [
-            'og-image',
-            'cover',
-            'main',
-            'other',
-        ],
     ],
     'pagination' => [10, 20, 30, 40, 80, 100],
     'search' => [

@@ -12,10 +12,8 @@ Ejecuta el comando
 composer require --prefer-dist sdkconsultoria/base "*"
 ```
 
-o añade la linea
+Ejecuta el comando para instalar la libreria
 
 ```
-"sdkconsultoria/base": "*"
+php artisan sdk:install
 ```
-
-En la sección require de tu archivo `composer.json`.

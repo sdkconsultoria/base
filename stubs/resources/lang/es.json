@@ -39,5 +39,6 @@
     "The :attribute must be at least :length characters and contain at least one uppercase character and one special character.": "El :attribute debe tener al menos :length caracteres y contener al menos un carácter en mayúscula y un carácter especial.",
     "The :attribute must be at least :length characters and contain at least one uppercase character, one number, and one special character.": "El :attribute debe tener al menos :length caracteres y contener al menos un carácter en mayúscula, un número y un carácter especial.",
     "The :attribute must be at least :length characters and contain at least one special character and one number.": "El :attribute debe tener al menos :length caracteres y contener al menos un carácter especial y un número.",
-    "The :attribute must be at least :length characters.": "El :attribute debe tener al menos :length caracteres."
+    "The :attribute must be at least :length characters.": "El :attribute debe tener al menos :length caracteres.",
+    "The provided two factor authentication code was invalid.": "El código de autenticación de dos factores proporcionado no es válido."
 }

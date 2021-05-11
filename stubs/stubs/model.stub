@@ -1,0 +1,10 @@
+<?php
+
+namespace {{ namespace }};
+
+use Sdkconsultoria\Base\Models\Model as BaseModel;
+
+class {{ class }} extends BaseModel
+{
+
+}

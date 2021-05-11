@@ -1,0 +1,1 @@
+import '@base/js/app';

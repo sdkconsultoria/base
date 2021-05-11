@@ -1,0 +1,30 @@
+@layer components {
+    .form-control {
+        @apply block w-full shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 !important;
+        @apply -mt-0;
+    }
+
+    .form-control-l {
+        @apply rounded-l-md !important;
+    }
+
+    .form-control-r {
+        @apply rounded-r-md !important;
+    }
+
+    .form-group {
+        @apply flex flex-col mt-1 mb-1 md:mt-4 md:mb-4;
+    }
+
+    .input-prepend {
+        @apply flex flex-row justify-center content-center p-1.5 border-gray-300 border-l border-t border-b rounded-l-md bg-gray-100;
+    }
+
+    .input-append {
+        @apply flex flex-row justify-center content-center p-1.5 border-gray-300 border-r border-t border-b rounded-r-md bg-gray-100;
+    }
+
+    .invalid-feedback {
+        @apply w-full;
+    }
+}

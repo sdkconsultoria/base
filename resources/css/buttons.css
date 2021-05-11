@@ -1,0 +1,41 @@
+.btn {
+    @apply py-2 px-4 font-semibold rounded-lg shadow-md;
+}
+.btn-green, .btn-success {
+    @apply text-white bg-green-500 hover:bg-green-700;
+}
+.btn-blue, .btn-primary {
+    @apply text-white bg-blue-500 hover:bg-blue-700;
+}
+.btn-yellow, .btn-warning {
+    @apply text-white bg-yellow-500 hover:bg-yellow-700;
+}
+.btn-red, .btn-danger {
+    @apply text-white bg-red-500 hover:bg-red-700;
+}
+
+
+.btn-outline-primary{
+    @apply focus:outline-none text-blue-600 text-sm py-2.5 px-5 rounded-md border border-blue-600 hover:bg-blue-50;
+}
+
+.btn-outline-default{
+    @apply focus:outline-none text-gray-600 text-sm py-2.5 px-5 rounded-md border border-gray-600 hover:bg-gray-50;
+}
+
+.btn-outline-success{
+    @apply focus:outline-none text-green-600 text-sm py-2.5 px-5 rounded-md border border-green-600 hover:bg-green-50;
+}
+
+.btn-outline-danger{
+    @apply focus:outline-none text-red-600 text-sm py-2.5 px-5 rounded-md border border-red-600 hover:bg-red-50;
+}
+
+.btn-outline-warning{
+    @apply focus:outline-none text-yellow-600 text-sm py-2.5 px-5 rounded-md border border-yellow-600 hover:bg-yellow-50;
+}
+
+.btn-outline-xx{
+    @apply focus:outline-none text-gray-800 text-sm py-2.5 px-5 rounded-md border border-gray-800 hover:bg-gray-200;
+}
+

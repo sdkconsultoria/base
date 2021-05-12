@@ -17,3 +17,9 @@ Ejecuta el comando para instalar la libreria
 ```
 php artisan sdk:install
 ```
+
+Para subir archivos es necesario ejecutar
+
+```
+php artisan storage:link
+```

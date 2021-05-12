@@ -9,7 +9,7 @@ EL mejor modo de instalar esta extencion es por medio de composer.
 Ejecuta el comando
 
 ```
-composer require --prefer-dist sdkconsultoria/base "*"
+composer require sdkconsultoria/base:dev-develop
 ```
 
 Ejecuta el comando para instalar la libreria

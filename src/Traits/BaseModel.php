@@ -40,8 +40,8 @@ trait BaseModel
         if ($package) {
             $package .= '::';
         } else {
-            if (self::$package) {
-                $package = self::$package . '::';
+            if (get_called_class()::$package) {
+                $package = get_called_class()::$package . '::';
             }
         }
 

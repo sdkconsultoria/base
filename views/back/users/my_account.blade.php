@@ -63,5 +63,10 @@
             @endif
         </form>
     </div>
+    <div class="p-4 bg-white mb-5 shadow rounded-lg mt-3">
+        <h3 class="text-90 uppercase tracking-wide font-bold text-sm py-4">@lang('auth.social_link')</h3>
+        <a class="tracking-wider text-white bg-blue-500 px-5 py-2 text-sm rounded leading-loose mx-2 font-semibold" href="{{route('social-auth', 'facebook')}}"> Facebook</a>
+        <a class="tracking-wider text-white bg-red-500 px-5 py-2 text-sm rounded leading-loose mx-2 font-semibold"  href="{{route('social-auth', 'google')}}"> Google </a>
+    </div>
 
 @endsection

@@ -52,4 +52,7 @@ return [
     'auth_token' => 'Código de autenticación:',
     'enter_recovery' => 'Ingrese su código de recuperación para iniciar sesión.',
     'two_factor_recovery_code' => 'Códigos de recuperación de autenticación',
+    'social_login' => 'Entrar con redes sociales',
+    'social_register' => 'registrarse con redes sociales',
+    'social_link' => 'Vincula tus redes sociales',
 ];

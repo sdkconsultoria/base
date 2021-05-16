@@ -10,6 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Sdkconsultoria\Base\Traits\BaseModel as TBaseModel;
 use Sdkconsultoria\Base\Traits\ImageTrait;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Sdkconsultoria\Base\Models\Auth\UserSocial;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -120,6 +121,14 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Obtiene los logins con redes.
+     */
+    public function social()
+    {
+        return $this->hasMany(UserSocial::class);
+    }
 
     /**
      * Guarda un modelo pero antes encrypta la contraseña si es necesario.

@@ -6,11 +6,13 @@ use Sdkconsultoria\Base\Models\Model as BaseModel;
 use Sdkconsultoria\Base\Traits\TranslateModel;
 use Sdkconsultoria\Base\Traits\TagTrait;
 use Illuminate\Validation\Rule;
+use Sdkconsultoria\Base\Traits\RelatedModelTrait;
 
 class BlogPost extends BaseModel
 {
     use TranslateModel;
     use TagTrait;
+    use RelatedModelTrait;
 
     private $translateClass = BlogPostTranslate::class;
 

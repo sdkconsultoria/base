@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBlogRelatedTable extends Migration
+class CreateRelatedModelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class CreateBlogRelatedTable extends Migration
      */
     public function up()
     {
-        Schema::create('blog_related', function (Blueprint $table) {
+        Schema::create('related_models', function (Blueprint $table) {
             $table->commonFields();
+            $table->string('relatable_id');
+            $table->string('relatable_type');
+            $table->string('modeleable_id');
+            $table->string('modeleable_type');
         });
     }
 
@@ -25,6 +29,6 @@ class CreateBlogRelatedTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blog_related');
+        Schema::dropIfExists('related_models');
     }
 }

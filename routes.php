@@ -36,6 +36,9 @@ Route::namespace('\Sdkconsultoria\Base\Http\Controllers\Admin')
 
             Route::resource('key-groups', 'KeyGroupController');
             Route::resource('keys', 'KeyController');
+
+            Route::post('related/{id}/{model}/{id_2}/{model_2}', 'RelatedController@create')->name('related.create');
+            Route::delete('related/{id}/{model}/{id_2}/{model_2}', 'RelatedController@delete')->name('related.delete');
         });
     });
 });

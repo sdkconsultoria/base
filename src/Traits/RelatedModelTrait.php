@@ -48,7 +48,7 @@ trait RelatedModelTrait
     }
 
     /**
-     * [findReladed description]
+     * Encuentra o crea un modelo
      * @return RelatedModel
      */
     protected function findReladed()

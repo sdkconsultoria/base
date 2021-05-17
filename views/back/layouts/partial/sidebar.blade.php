@@ -64,6 +64,24 @@
                         ],
                     ],
                 ],
+                [
+                    'name' => __('base::models.key.plural'),
+                    'icon' => Base::icon('puzzle', ['class' => 'h-6 w-6']),
+                    'items' => [
+                        [
+                            'name' => __('base::models.key.plural'),
+                            'icon' => Base::icon('code', ['class' => 'h-6 w-6']),
+                            'url' => 'keys.index',
+                            'crud' => 'keys',
+                        ],
+                        [
+                            'name' => __('base::models.key-group.plural'),
+                            'icon' => Base::icon('puzzle', ['class' => 'h-6 w-6']),
+                            'url' => 'key-groups.index',
+                            'crud' => 'key-groups',
+                        ],
+                    ],
+                ],
             ];
 
             echo Base::menu($items);

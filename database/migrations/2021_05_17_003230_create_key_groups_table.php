@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKeyValuesTable extends Migration
+class CreateKeyGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateKeyValuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('key_values', function (Blueprint $table) {
+        Schema::create('key_groups', function (Blueprint $table) {
             $table->commonFields();
-            $table->string('keyable_id');
-            $table->string('keyable_type');
-            $table->string('value')->nullable();
-            $table->string('seo_value')->nullable();
-            $table->foreignId('key_id')->constrained();
+            $table->string('identifier')->nullable();
         });
     }
 
@@ -30,6 +26,6 @@ class CreateKeyValuesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('key_values');
+        Schema::dropIfExists('key_groups');
     }
 }

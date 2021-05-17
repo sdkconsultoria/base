@@ -15,6 +15,9 @@ class CreateKeyTranslatesTable extends Migration
     {
         Schema::create('key_translates', function (Blueprint $table) {
             $table->commonFields();
+            $table->string('name')->nullable();
+            $table->string('language')->nullable();
+            $table->foreignId('key_id')->constrained();
         });
     }
 

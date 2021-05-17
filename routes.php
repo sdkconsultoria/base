@@ -32,7 +32,10 @@ Route::namespace('\Sdkconsultoria\Base\Http\Controllers\Admin')
 
             Route::post('subscription', 'SubscriptionController@addEmail')->name('subscription.new');
             Route::get('subscription/csv', 'SubscriptionController@csv')->name('subscription.csv');
-            Route::get('subscription/{id}/{key}', 'SubscriptionController@removeEmail')->name('subscription.remove');;
+            Route::get('subscription/{id}/{key}', 'SubscriptionController@removeEmail')->name('subscription.remove');
+
+            Route::resource('key-groups', 'KeyGroupController');
+            Route::resource('keys', 'KeyController');
         });
     });
 });

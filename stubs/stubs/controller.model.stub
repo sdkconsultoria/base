@@ -6,6 +6,6 @@ use Sdkconsultoria\Base\Http\Controllers\ResourceController;
 
 class {{ class }} extends ResourceController
 {
-    protected $model = {{ namespacedModel }}::class;
+    protected $model = \{{ namespacedModel }}::class;
     protected $view = '';
 }

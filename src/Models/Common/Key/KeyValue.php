@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Sdkconsultoria\Base\Models\Common\Key;
 
 use Sdkconsultoria\Base\Models\Model as BaseModel;
 

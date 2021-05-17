@@ -15,8 +15,7 @@ class CreateKeysTable extends Migration
     {
         Schema::create('keys', function (Blueprint $table) {
             $table->commonFields();
-            $table->string('keyable_id');
-            $table->string('keyable_type');
+            $table->string('identifier')->nullable();
         });
     }
 

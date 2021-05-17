@@ -90,4 +90,12 @@ return [
         'description' => 'Descripción',
         'short_description' => 'Descripción corta',
     ],
+    'key' => [
+        'singular' => 'Key',
+        'plural' => 'Keys',
+    ],
+    'key-group' => [
+        'singular' => 'Grupo de Keys',
+        'plural' => 'Grupos de Keys',
+    ]
 ];

@@ -5,9 +5,9 @@ namespace Sdkconsultoria\Base\Models\Common\Key;
 use Sdkconsultoria\Base\Models\Model as BaseModel;
 use Sdkconsultoria\Base\Traits\TranslateModel;
 
-class Key extends BaseModel
+class KeyGroup extends BaseModel
 {
     use TranslateModel;
 
-    private $translateClass = KeyTranslate::class;
+    private $translateClass = KeyGroupTranslate::class;
 }

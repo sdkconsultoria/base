@@ -4,7 +4,7 @@
 
     <div class="flex items-center justify-center mt-8">
         <div class="flex items-center">
-            <span class="text-white text-2xl mx-2 font-semibold">{{config('app.name')}}</span>
+            <a class="text-white text-2xl mx-2 font-semibold" href="{{route('dashboard')}}">{{config('app.name')}}</a>
         </div>
     </div>
 

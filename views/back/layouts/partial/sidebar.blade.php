@@ -62,23 +62,41 @@
                             'url' => 'image-types.index',
                             'crud' => 'image-types',
                         ],
+                        [
+                            'name' => __('base::models.image-size.plural'),
+                            'icon' => Base::icon('template', ['class' => 'h-6 w-6']),
+                            'url' => 'image-sizes.index',
+                            'crud' => 'image-sizes',
+                        ],
                     ],
                 ],
                 [
-                    'name' => __('base::models.key.plural'),
-                    'icon' => Base::icon('puzzle', ['class' => 'h-6 w-6']),
+                    'name' => __('base::models.mail.plural'),
+                    'icon' => Base::icon('mail', ['class' => 'h-6 w-6']),
+                    'url' => 'mails.index',
+                    'crud' => 'mails',
+                ],
+                [
+                    'name' => __('base::app.config.plural'),
+                    'icon' => Base::icon('cog', ['class' => 'h-6 w-6']),
                     'items' => [
                         [
                             'name' => __('base::models.key.plural'),
-                            'icon' => Base::icon('code', ['class' => 'h-6 w-6']),
-                            'url' => 'keys.index',
-                            'crud' => 'keys',
-                        ],
-                        [
-                            'name' => __('base::models.key-group.plural'),
                             'icon' => Base::icon('puzzle', ['class' => 'h-6 w-6']),
-                            'url' => 'key-groups.index',
-                            'crud' => 'key-groups',
+                            'items' => [
+                                [
+                                    'name' => __('base::models.key.plural'),
+                                    'icon' => Base::icon('code', ['class' => 'h-6 w-6']),
+                                    'url' => 'keys.index',
+                                    'crud' => 'keys',
+                                ],
+                                [
+                                    'name' => __('base::models.key-group.plural'),
+                                    'icon' => Base::icon('puzzle', ['class' => 'h-6 w-6']),
+                                    'url' => 'key-groups.index',
+                                    'crud' => 'key-groups',
+                                ],
+                            ],
                         ],
                     ],
                 ],

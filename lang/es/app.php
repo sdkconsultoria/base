@@ -34,4 +34,8 @@ return [
         'not_found' => 'Página no encontrada',
         'update' => 'Actualizar',
     ],
+    'config' => [
+        'plural' => 'Configuraciones',
+        'singular' => 'Configuración',
+    ],
 ];

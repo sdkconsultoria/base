@@ -59,6 +59,11 @@
        ?>
        <button class="w-full text-center mt-2 btn btn-success" type="submit">@lang('auth.create')</button>
        <a class="w-full text-center mt-2 btn btn-primary" type="button" href="{{route('login')}}">@lang('auth.log_in')</a>
+
+       <div class="mt-3 flex justify-center">
+            <a class="tracking-wider text-white bg-blue-500 px-5 py-2 text-sm rounded leading-loose mx-2 font-semibold" href="{{route('social-auth', 'facebook')}}"> Facebook</a>
+            <a class="tracking-wider text-white bg-red-500 px-5 py-2 text-sm rounded leading-loose mx-2 font-semibold"  href="{{route('social-auth', 'google')}}"> Google </a>
+        </div>
     </form>
     @include('base::auth.sso')
 @endsection

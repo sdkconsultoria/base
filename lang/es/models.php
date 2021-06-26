@@ -16,6 +16,7 @@ return [
         'updated_by' => 'Actualizado por',
         'deleted_by' => 'Eliminado por',
         'name' => 'Nombre',
+        'email' => 'Correo electrónico',
         'slug' => 'Slug',
         'create' => 'Crear :model',
         'edit' => 'Editar :model',
@@ -49,6 +50,10 @@ return [
     'image-group' => [
         'singular' => 'Grupo de imagen',
         'plural' => 'Grupos de imagenes',
+    ],
+    'image-size' => [
+        'singular' => 'Tamaño de imagen',
+        'plural' => 'Tamaños de imagenes',
     ],
     'user' => [
         'email' => 'Correo electrónico',
@@ -97,5 +102,9 @@ return [
     'key-group' => [
         'singular' => 'Grupo de Keys',
         'plural' => 'Grupos de Keys',
-    ]
+    ],
+    'mail' => [
+        'singular' => 'Correo',
+        'plural' => 'Correos',
+    ],
 ];

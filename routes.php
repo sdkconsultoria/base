@@ -19,6 +19,8 @@ Route::namespace('\Sdkconsultoria\Base\Http\Controllers\Admin')
             Route::resource('blog-posts', 'BlogPostController');
             Route::resource('tags', 'TagController');
 
+            Route::resource('mails', 'MailController');
+            Route::resource('image-sizes', 'ImageSizeController');
             Route::resource('image-types', 'ImageTypeController');
             Route::resource('image-groups', 'ImageGroupController');
             Route::post('images/type/{id}', 'ImageController@setType')->name('image.set-type');

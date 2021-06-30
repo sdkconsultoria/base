@@ -5,7 +5,8 @@ namespace Sdkconsultoria\Base;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
@@ -27,6 +28,18 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->publishes([
             __DIR__.'/../views' => resource_path('views/vendor/base'),
         ]);
+
+        Factory::guessFactoryNamesUsing(function (string $model_name) {
+            $sdk = Str::startsWith($model_name, 'Sdkconsultoria');
+
+            if ($sdk) {
+                return Str::of($model_name)->replace('Models', 'Factories') . 'Factory';
+            }
+
+            $namespace = 'Database\\Factories\\';
+
+            return $namespace . $model_name . 'Factory';
+        });
     }
 
     /**

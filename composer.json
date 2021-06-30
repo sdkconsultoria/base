@@ -27,7 +27,8 @@
 
         ],
         "psr-4": {
-            "Sdkconsultoria\\Base\\": "src/"
+            "Sdkconsultoria\\Base\\": "src/",
+            "Sdkconsultoria\\Base\\Tests\\": "tests/"
         }
     },
     "extra": {

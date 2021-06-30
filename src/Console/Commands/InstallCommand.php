@@ -80,6 +80,7 @@ class InstallCommand extends Command
         copy(__DIR__.'/../../../stubs/app/Http/Kernel.php', base_path('app/Http/Kernel.php'));
         copy(__DIR__.'/../../../stubs/.gitignore', base_path('.gitignore'));
         copy(__DIR__.'/../../../stubs/.env.example', base_path('.env.example'));
+        copy(__DIR__.'/../../../stubs/phpunit.xml', base_path('phpunit.xml'));
 
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/stubs', base_path('stubs'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/views', base_path('resources/views'));

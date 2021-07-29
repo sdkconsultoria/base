@@ -16,6 +16,7 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->commonFields();
             $table->string('identifier')->unique()->nullable();
+            $table->foreignId('category_id')->constrained()->nullable();
         });
     }
 

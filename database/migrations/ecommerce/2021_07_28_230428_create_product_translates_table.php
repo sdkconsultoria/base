@@ -15,6 +15,7 @@ class CreateProductTranslatesTable extends Migration
     {
         Schema::create('product_translates', function (Blueprint $table) {
             $table->commonFields();
+            $table->string('language')->nullable();
             $table->foreignId('product_id')->constrained();
             $table->string('name');
             $table->string('seoname');

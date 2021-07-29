@@ -15,6 +15,7 @@ class CreateCategoryTranslatesTable extends Migration
     {
         Schema::create('category_translates', function (Blueprint $table) {
             $table->commonFields();
+            $table->string('language')->nullable();
             $table->foreignId('category_id')->constrained();
             $table->string('name');
             $table->string('seoname');

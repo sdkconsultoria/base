@@ -15,6 +15,7 @@ class CreateCompanyTranslatesTable extends Migration
     {
         Schema::create('company_translates', function (Blueprint $table) {
             $table->commonFields();
+            $table->string('language')->nullable();
             $table->foreignId('company_id')->constrained();
             $table->string('name');
             $table->string('seoname');

@@ -20,7 +20,9 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
         $this->registerCommands();
         $this->registerMigrationsShortcut();
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations/common');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations/blogs');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations/ecommerce');
         $this->loadViewsFrom(__DIR__.'/../views', 'base');
         $this->loadTranslationsFrom(__DIR__.'/../lang', 'base');
         $this->loadRoutesFrom(__DIR__.'/../routes.php');

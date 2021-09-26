@@ -15,6 +15,7 @@ class BlogPost extends BaseModel
     use RelatedModelTrait;
 
     private $translateClass = BlogPostTranslate::class;
+    protected static $package = 'base';
 
     /**
      * Validaciones para crear el modelo.

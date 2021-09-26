@@ -11,6 +11,7 @@ use Request;
 class Image extends BaseModel
 {
     use ImageTypeTrait;
+    protected static $package = 'base';
 
     public function convertImage()
     {

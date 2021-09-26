@@ -6,6 +6,8 @@ use Sdkconsultoria\Base\Models\Model as BaseModel;
 
 class BlogTranslate extends BaseModel
 {
+    protected static $package = 'base';
+
     /**
      * Validaciones para crear el modelo.
      *

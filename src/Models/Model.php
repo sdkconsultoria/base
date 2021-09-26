@@ -17,6 +17,6 @@ abstract class Model extends BaseModel
     public const STATUS_CREATION = 20;
     public const STATUS_ACTIVE = 30;
 
-    protected static $package = 'base';
+    protected static $package = '';
     public static $keyId = 'id';
 }

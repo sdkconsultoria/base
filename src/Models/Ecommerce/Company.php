@@ -10,4 +10,5 @@ class Company extends BaseModel
     use TranslateModel;
 
     private $translateClass = CompanyTranslate::class;
+    protected static $package = 'base';
 }

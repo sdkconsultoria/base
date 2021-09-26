@@ -10,4 +10,5 @@ class Product extends BaseModel
     use TranslateModel;
 
     private $translateClass = ProductTranslate::class;
+    protected static $package = 'base';
 }

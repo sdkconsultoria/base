@@ -10,4 +10,5 @@ class Category extends BaseModel
     use TranslateModel;
 
     private $translateClass = CategoryTranslate::class;
+    protected static $package = 'base';
 }

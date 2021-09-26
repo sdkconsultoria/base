@@ -8,6 +8,8 @@ use Sdkconsultoria\Base\Jobs\ProcessMail;
 
 class Mail extends BaseModel
 {
+    protected static $package = 'base';
+
     /**
      * Validaciones para crear el modelo.
      *

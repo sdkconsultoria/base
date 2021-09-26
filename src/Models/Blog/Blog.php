@@ -11,6 +11,7 @@ class Blog extends BaseModel
     use TranslateModel;
 
     private $translateClass = BlogTranslate::class;
+    protected static $package = 'base';
 
     /**
      * Validaciones para crear el modelo.

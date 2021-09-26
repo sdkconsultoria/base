@@ -8,4 +8,6 @@ use Sdkconsultoria\Base\Traits\ImageTrait;
 class ImageGroupTranslate extends BaseModel
 {
     use ImageTrait;
+
+    protected static $package = 'base';
 }

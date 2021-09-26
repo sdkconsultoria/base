@@ -8,4 +8,6 @@ use Sdkconsultoria\Base\Traits\ImageTrait;
 class BlogPostTranslate extends BaseModel
 {
     use ImageTrait;
+
+    protected static $package = 'base';
 }

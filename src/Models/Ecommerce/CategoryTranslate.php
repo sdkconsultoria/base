@@ -6,5 +6,5 @@ use Sdkconsultoria\Base\Models\Model as BaseModel;
 
 class CategoryTranslate extends BaseModel
 {
-
+    protected static $package = 'base';
 }

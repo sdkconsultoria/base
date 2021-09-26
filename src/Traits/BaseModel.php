@@ -54,6 +54,7 @@ trait BaseModel
         if (trans()->has($trans)) {
             return __($trans);
         }
+
         return __($package . 'models.common.' . $attribute);
     }
 

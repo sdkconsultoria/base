@@ -69,6 +69,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 \Sdkconsultoria\Base\Console\Commands\InstallCommand::class,
+                \Sdkconsultoria\Base\Console\Commands\MakeCrud::class,
             ]);
         }
     }

@@ -6,5 +6,5 @@ use Sdkconsultoria\Base\Models\Model as BaseModel;
 
 class TagTranslate extends BaseModel
 {
-
+    protected static $package = 'base';
 }

@@ -38,7 +38,7 @@ class Menu extends BaseHtml implements iHtml
      * Si es un sub item agrega padding izquierdo
      * @return string las clases que se deben agregar al elemento
      */
-    protected function isActive(int $level = 0, $urls, $last_active = false){
+    protected function isActive(int $level = 0, $urls = [], $last_active = false){
         $class = $this->item_class;
         $is_active = false;
 

@@ -51,9 +51,9 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(
-            __DIR__.'/../config/base.php', 'base'
-        );
+        $this->publishes([
+            __DIR__ . '/../config/base.php' => 'base'
+        ]);
 
         $this->app->bind('base',function(){
             return new Base();

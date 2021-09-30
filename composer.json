@@ -14,9 +14,9 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "spatie/laravel-permission": "^3.18",
-        "intervention/image": "^2.5",
-        "laravel/fortify": "^1.7",
+        "spatie/laravel-permission": "^5.1",
+        "intervention/image": "^2.6",
+        "laravel/fortify": "^1.8",
         "hybridauth/hybridauth": "^3.7"
     },
     "require-dev": {

@@ -46,6 +46,7 @@ class MakeCrud extends Command
         $this->copyViews($model);
         $this->generateRoute($model);
         $this->writteViewController($model);
+        $this->fixController($model);
         $this->writeTranslations($model);
 
         $this->info("Se creó correctamente el CRUD {$model}.");
@@ -74,7 +75,7 @@ class MakeCrud extends Command
     private function writeTranslations(string $model)
     {
         $stub = file_get_contents(__DIR__.'/../../../stubs/c_stubs/lang/models.php');
-        $stub = str_replace('$model', strtolower($model), $stub);
+        $stub = str_replace('$model', Str::kebab($model), $stub);
 
         $this->replaceInFile(
             '];', $stub, resource_path('lang/es/models.php'));
@@ -88,7 +89,22 @@ class MakeCrud extends Command
     {
         (new Filesystem)->copyDirectory(
             __DIR__.'/../../../stubs/views/',
-            resource_path('views/' . strtolower($model)));
+            resource_path('views/admin/' . Str::kebab($model)));
+    }
+
+    /**
+     * Corrigue el namespace del controllador
+     * @param  string $model
+     * @return void
+     */
+    private function fixController(string $model)
+    {
+        $controller_path = app_path('Http/Controllers/' . $model . 'Controller.php');
+        $this->replaceInFile('App\Http\Controllers', 'App\Http\Controllers\Admin', $controller_path);
+
+        rename(
+            $controller_path,
+            app_path('Http/Controllers/Admin/' . $model . 'Controller.php'));
     }
 
     /**
@@ -100,7 +116,7 @@ class MakeCrud extends Command
     {
         $this->replaceInFile(
             '$view = \'\'',
-            '$view = \'' . strtolower($model). '.\'',
+            '$view = \'admin.' . Str::kebab($model) . '.\'',
             app_path('Http/Controllers/' . $model . 'Controller.php'));
     }
 
@@ -111,39 +127,11 @@ class MakeCrud extends Command
      */
     private function generateRoute(string $model)
     {
-        $plural = Str::plural(strtolower($model));
-        $route = 'Route::resource(\'/admin/' . $plural .'\' , \App\Http\Controllers\\' . $model . 'Controller::class);';
-        file_put_contents(base_path('routes/web.php'), $route, FILE_APPEND);
-    }
-
-    /**
-     * Update the "package.json" file.
-     *
-     * @param  callable  $callback
-     * @param  bool  $dev
-     * @return void
-     */
-    protected static function updateNodePackages(callable $callback, $dev = true)
-    {
-        if (! file_exists(base_path('package.json'))) {
-            return;
-        }
-
-        $configurationKey = $dev ? 'devDependencies' : 'dependencies';
-
-        $packages = json_decode(file_get_contents(base_path('package.json')), true);
-
-        $packages[$configurationKey] = $callback(
-            array_key_exists($configurationKey, $packages) ? $packages[$configurationKey] : [],
-            $configurationKey
-        );
-
-        ksort($packages[$configurationKey]);
-
-        file_put_contents(
-            base_path('package.json'),
-            json_encode($packages, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT).PHP_EOL
-        );
+        $plural = Str::plural(Str::kebab($model) );
+        $route = '    Route::resource(\'' . $plural .'\', ' . $model . 'Controller::class);';
+        $this->replaceInFile(
+            "->prefix('admin')->group(function () {",
+            "->prefix('admin')->group(function () { \n" . $route, base_path('routes/web.php'));
     }
 
     /**

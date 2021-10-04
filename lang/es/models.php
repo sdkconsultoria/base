@@ -107,4 +107,16 @@ return [
         'singular' => 'Correo',
         'plural' => 'Correos',
     ],
+    'shopping-cart' => [
+        'singular' => 'Carrito de compra',
+        'short' => 'Carrito',
+        'add' => 'Agregar al carrito',
+    ],
+    'sale' => [
+        'singular' => 'Ventas',
+        'plural' => 'Ventas',
+        'buy' => 'Comprar',
+        'pay' => 'Pagar',
+        'proceed_to_payment' => 'proceder al pago'
+    ],
 ];

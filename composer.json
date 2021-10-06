@@ -17,6 +17,7 @@
         "spatie/laravel-permission": "^5.1",
         "intervention/image": "^2.6",
         "laravel/fortify": "^1.8",
+        "openpay/sdk": "^2.2",
         "hybridauth/hybridauth": "^3.7"
     },
     "require-dev": {

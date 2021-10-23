@@ -15,7 +15,7 @@ class Mail extends BaseModel
      *
      * @return array
      */
-    public static function rules()
+    public static function rules($request)
     {
         return [
             'mails_name' => ['required'],

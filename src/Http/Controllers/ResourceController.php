@@ -119,7 +119,7 @@ class ResourceController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, $this->model::rules());
+        $this->validate($request, $this->model::rules($request));
 
         $model = $this->createOrFind();
         $model->status = $this->model::STATUS_ACTIVE;
@@ -142,7 +142,7 @@ class ResourceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, $this->model::updateRules());
+        $this->validate($request, $this->model::updateRules($request));
 
         $model = $this->findModel($id);
         $this->loadData($model, $request);

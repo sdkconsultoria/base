@@ -13,7 +13,7 @@ class BlogTranslate extends BaseModel
      *
      * @return array
      */
-    public static function rules()
+    public static function rules($request)
     {
         return [
             'blog_translates_title' => 'required',

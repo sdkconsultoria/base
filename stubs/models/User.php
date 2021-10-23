@@ -54,7 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return array
      */
-    public static function rules()
+    public static function rules($request)
     {
         return [
             'users_name' => 'required',
@@ -70,9 +70,9 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return array
      */
-    public static function updateRules()
+    public static function updateRules($request)
     {
-        $rules = self::rules();
+        $rules = self::rules($request);
         $rules['users_password'] = 'nullable|min:6|confirmed';
         $rules['users_password_confirmation'] = 'exclude_if:users_password,null|min:6';
         return $rules;
@@ -84,9 +84,9 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return array
      */
-    public static function accountRules()
+    public static function accountRules($request)
     {
-        $rules = self::updateRules();
+        $rules = self::updateRules($request);
         unset($rules['users_email']);
         return $rules;
     }

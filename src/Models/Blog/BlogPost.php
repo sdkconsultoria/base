@@ -22,12 +22,12 @@ class BlogPost extends BaseModel
      *
      * @return array
      */
-    public static function rules()
+    public static function rules($request)
     {
         return [
             'blog_posts_identifier' => [
                 'required',
-                Rule::unique('blog_posts', 'identifier')
+                Rule::unique('blog_posts', 'identifier')->ignoreModel($request->model)
             ],
             'blog_posts_blog_id' => 'required',
         ];

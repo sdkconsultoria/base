@@ -254,12 +254,12 @@ trait BaseModel
         return $this->{$this::$keyId};
     }
 
-    public static function updateRules()
+    public static function updateRules($request)
     {
-        return get_called_class()::rules();
+        return get_called_class()::rules($request);
     }
 
-    public static function rules()
+    public static function rules($request)
     {
         return [];
     }

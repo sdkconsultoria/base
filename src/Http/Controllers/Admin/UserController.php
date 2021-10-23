@@ -34,7 +34,7 @@ class UserController extends ResourceController
     {
         $model = auth()->user();
 
-        $this->validate($request, $this->model::accountRules());
+        $this->validate($request, $this->model::accountRules($request));
         $this->loadData($model, $request);
 
         if ($request->password) {

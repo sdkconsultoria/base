@@ -63,8 +63,9 @@ trait TranslateController
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, array_merge($this->model::updateRules(), $this->translate::updateRules()));
         $model = $this->findModel($id);
+        $request->model = $model;
+        $this->validate($request, array_merge($this->model::updateRules($request), $this->translate::updateRules($request)));
         $translate = $model->translate;
 
         $this->loadData($model, $request);

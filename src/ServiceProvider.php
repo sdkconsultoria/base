@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
@@ -51,9 +52,9 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register()
     {
-        $this->publishes([
-            __DIR__ . '/../config/base.php' => 'base'
-        ]);
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/base.php', 'base'
+        );
 
         $this->app->bind('base',function(){
             return new Base();

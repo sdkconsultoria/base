@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Sdkconsultoria\Base\Traits\BaseModel as TBaseModel;
 use Sdkconsultoria\Base\Traits\ImageTrait;
@@ -14,7 +15,7 @@ use Sdkconsultoria\Base\Models\Auth\UserSocial;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable, HasRoles, TBaseModel, ImageTrait;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, TBaseModel, ImageTrait;
     use TwoFactorAuthenticatable;
 
     public const STATUS_DELETED = 0;
@@ -93,7 +94,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var string[]
      */
     protected $fillable = [
         'name',
@@ -104,7 +105,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * The attributes that should be hidden for serialization.
      *
      * @var array
      */
@@ -114,7 +115,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
-     * The attributes that should be cast to native types.
+     * The attributes that should be cast.
      *
      * @var array
      */

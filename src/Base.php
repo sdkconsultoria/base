@@ -78,7 +78,5 @@ class Base
         }
 
         return $model->translate->images->all();
-
-
     }
 }

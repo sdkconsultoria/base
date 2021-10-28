@@ -64,7 +64,7 @@ class MakeCrud extends Command
      */
     private function createModel(string $model)
     {
-        Artisan::call("make:model {$model} -crmf");
+        Artisan::call("make:model {$model} -crmf --test");
     }
 
     /**

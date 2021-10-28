@@ -2,6 +2,7 @@
 namespace Sdkconsultoria\Base\Helpers;
 
 use Image;
+use Sdkconsultoria\Base\Models\Common\Image\ImageSize;
 
 class Images
 {

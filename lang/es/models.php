@@ -54,6 +54,12 @@ return [
     'image-size' => [
         'singular' => 'Tamaño de imagen',
         'plural' => 'Tamaños de imagenes',
+        'height' => 'Altura',
+        'width' => 'Ancho',
+        'quality' => 'Calidad',
+        'aspect' => 'Aspecto',
+        'fill' => 'Color',
+        'transparency' => 'Transparencia',
     ],
     'user' => [
         'email' => 'Correo electrónico',

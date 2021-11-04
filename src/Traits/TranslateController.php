@@ -36,7 +36,7 @@ trait TranslateController
      */
     public function store(Request $request)
     {
-        $this->validate($request, array_merge($this->model::rules(), $this->translate::rules()));
+        $this->validate($request, array_merge($this->model::rules($request), $this->translate::rules($request)));
 
         $model = $this->createOrFind();
         $model->status = $this->model::STATUS_ACTIVE;

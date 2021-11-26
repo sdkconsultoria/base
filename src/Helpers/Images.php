@@ -9,7 +9,7 @@ class Images
     public static function convertImage(string $folder, string $file, string $extension, array $config = []) : void
     {
         if (!$config) {
-            $config = $value = config('base.images.sizes');
+            $config = $value = ImageSize::whereNull('model')->get()->toArray();;
         }
 
         foreach ($config as $row) {

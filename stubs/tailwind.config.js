@@ -13,7 +13,7 @@ module.exports = {
             current: 'currentColor',
             black: colors.black,
             white: colors.white,
-            gray: colors.coolGray,
+            gray: colors.gray,
             indigo: colors.indigo,
             red: colors.red,
             pink: colors.pink,
@@ -21,7 +21,7 @@ module.exports = {
             yellow: colors.amber,
             purple: colors.violet,
             blue: colors.blue,
-            'light-blue': colors.lightBlue,
+            'light-blue': colors.sky,
             cyan: colors.cyan,
         },
         fontFamily: {
@@ -38,7 +38,7 @@ module.exports = {
             }
         }
     },
-    purge: [
+    content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './vendor/sdkconsultoria/base/views/*.blade.php',
         './vendor/sdkconsultoria/base/src/Helpers/Html/*.php',
@@ -48,11 +48,10 @@ module.exports = {
         './resources/**/*.js',
         './resources/**/*.vue',
     ],
-    darkMode: false, // or 'media' or 'class'
-    variants: {
-        extend: {},
-    },
     plugins: [
+        require('postcss-import'),
+        require('tailwindcss'),
         require('@tailwindcss/forms'),
+        require('autoprefixer'),
     ],
 }

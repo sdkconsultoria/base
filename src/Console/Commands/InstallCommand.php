@@ -44,15 +44,15 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                'autoprefixer' =>  '^10.2.4',
-                'postcss' =>  '^8.2.6',
-                'tailwindcss' =>  '^2.0.3',
+                'autoprefixer' =>  '^10.4.0',
+                'postcss' =>  '^8.4.5',
+                'tailwindcss' =>  '^3.0.7',
                 'postcss-import' => '^12.0.1',
-                '@tailwindcss/forms' => '^0.2.1',
-                'alpinejs' => '^2.8.1',
-                'sweetalert2' => '^10.15.5',
-                'jodit' => '^3.6.6',
-                'cropperjs' => '^1.5.11',
+                '@tailwindcss/forms' => '^0.4.0',
+                'alpinejs' => '^3.7.1',
+                'sweetalert2' => '^11.3.0',
+                'jodit' => '^3.11.3',
+                'cropperjs' => '^1.5.12',
                 'photoswipe' => '^4.1.3',
             ] + $packages;
         });

@@ -9,6 +9,8 @@
         $model->getTranslate('edit')
         ]) ?>
 
+    <?= Base::settings($model); ?>
+
     <form action="{{$model->getRoute('update', $model->getKeyId())}}" method="post">
         @csrf
         @method('PUT')

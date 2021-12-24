@@ -12,6 +12,11 @@ class Base
         return new \Sdkconsultoria\Base\Helpers\Html\Icon($icon, $optionsHtml, $type);
     }
 
+    public function settings($model)
+    {
+        return new \Sdkconsultoria\Base\Helpers\Html\Setting($model);
+    }
+
     public function img(string $rute, array $optionsHtml = [])
     {
         return new \Sdkconsultoria\Base\Helpers\Html\Img($rute, $optionsHtml);

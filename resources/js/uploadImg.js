@@ -7,28 +7,34 @@ var // where files are dropped + file selector is opened
 
 // open file selector when clicked on the drop region
 var fakeInput = document.createElement("input");
-fakeInput.type = "file";
-fakeInput.accept = "image/*";
-fakeInput.multiple = true;
-dropRegion.addEventListener('click', function() {
-	fakeInput.click();
-});
 
-fakeInput.addEventListener("change", function() {
-	var files = fakeInput.files;
-	handleFiles(files);
-});
+if (dropRegion) {
+    fakeInput.type = "file";
+    fakeInput.accept = "image/*";
+    fakeInput.multiple = true;
+    dropRegion.addEventListener('click', function() {
+        fakeInput.click();
+    });
+
+    fakeInput.addEventListener("change", function() {
+        var files = fakeInput.files;
+        handleFiles(files);
+    });
 
 
-function preventDefault(e) {
-	e.preventDefault();
-  	e.stopPropagation();
+    function preventDefault(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    dropRegion.addEventListener('dragenter', preventDefault, false)
+    dropRegion.addEventListener('dragleave', preventDefault, false)
+    dropRegion.addEventListener('dragover', preventDefault, false)
+    dropRegion.addEventListener('drop', preventDefault, false)
+
+    dropRegion.addEventListener('drop', handleDrop, false);
+
 }
-
-dropRegion.addEventListener('dragenter', preventDefault, false)
-dropRegion.addEventListener('dragleave', preventDefault, false)
-dropRegion.addEventListener('dragover', preventDefault, false)
-dropRegion.addEventListener('drop', preventDefault, false)
 
 
 function handleDrop(e) {
@@ -38,7 +44,6 @@ function handleDrop(e) {
 	handleFiles(files)
 }
 
-dropRegion.addEventListener('drop', handleDrop, false);
 
 
 

@@ -1,5 +1,6 @@
 const mix = require('laravel-mix');
 const path = require('path');
+const tailwindcss = require('tailwindcss');
 
 /*
  |--------------------------------------------------------------------------
@@ -23,7 +24,7 @@ mix.webpackConfig({
 
 mix.js('resources/front/js/app.js', 'public/front.js');
 mix.postCss("resources/front/css/app.css", "public/front.css", [
-     require("tailwindcss"),
+     tailwindcss('tailwind.config.js'),
     ]);
 mix.js('resources/back/js/app.js', 'public/back.js');
 mix.postCss("resources/back/css/app.css", "public/back.css", [

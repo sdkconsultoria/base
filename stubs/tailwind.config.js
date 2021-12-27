@@ -41,6 +41,7 @@ module.exports = {
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './vendor/sdkconsultoria/base/views/*.blade.php',
+        './vendor/sdkconsultoria/base/views/**/*.blade.php',
         './vendor/sdkconsultoria/base/src/Helpers/Html/*.php',
         './vendor/sdkconsultoria/base/src/Helpers/Html/**/*.php',
         './storage/framework/views/*.php',

@@ -4,11 +4,13 @@ namespace Sdkconsultoria\Base\Models\Blog;
 
 use Sdkconsultoria\Base\Models\Model as BaseModel;
 use Sdkconsultoria\Base\Traits\TranslateModel;
+use Sdkconsultoria\Base\Traits\ImageTypeTrait;
 use Illuminate\Validation\Rule;
 
 class Blog extends BaseModel
 {
     use TranslateModel;
+    use ImageTypeTrait;
 
     private $translateClass = BlogTranslate::class;
     protected static $package = 'base';

@@ -57,7 +57,7 @@ class Handler extends ExceptionHandler
 
         if ($e instanceof AuthenticationException && $request->is('api/*')) {
             return response()->json([
-                'message' => __('responses.401'),
+                'message' => __('base::responses.401'),
                 'code' => 401,
             ], 401);
         }

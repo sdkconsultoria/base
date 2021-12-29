@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 use Sdkconsultoria\Base\Exceptions\APIException;
+use Illuminate\Auth\AuthenticationException;
 
 class Handler extends ExceptionHandler
 {
@@ -14,7 +15,7 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        //
+        APIException::class,
     ];
 
     /**
@@ -53,6 +54,17 @@ class Handler extends ExceptionHandler
         if ($e instanceof APIException) {
             return response()->json(json_decode($e->getMessage()), $e->getCode());
         }
+
+        if ($e instanceof AuthenticationException && $request->is('api/*')) {
+            return response()->json([
+                'message' => __('responses.401'),
+                'code' => 401,
+            ], 401);
+        }
+
+        if ($request->is('api/*') || $request->ajax() || $request->wantsJson()) {
+            return response()->json(json_decode($e->getMessage()), 500);
+       }
 
         return parent::render($request, $e);
     }

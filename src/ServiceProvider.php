@@ -20,6 +20,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         Route::mixin(new AuthRouteMethods);
 
         $this->registerCommands();
+        $this->registerRoutesMacro();
         $this->registerMigrationsShortcut();
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations/common');
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations/blogs');
@@ -106,6 +107,17 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
         Blueprint::macro('statusField', function () {
             $this->smallInteger('status')->default('15');
+        });
+    }
+
+    private function registerRoutesMacro()
+    {
+        Route::macro('SdkApiResource', function ($uri, $controller) {
+            Route::get("{$uri}", "{$controller}@apiIndex")->name("api.{$uri}.index");
+            Route::get("{$uri}/{id}", "{$controller}@apiGet")->name("api.{$uri}.show");
+            Route::post("{$uri}", "{$controller}@apiCreate")->name("api.{$uri}.create");
+            Route::put("{$uri}/{id}", "{$controller}@apiUpdate")->name("api.{$uri}.update");
+            Route::delete("{$uri}", "{$controller}@apiDelete")->name("api.{$uri}.delete");
         });
     }
 }

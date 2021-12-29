@@ -3,27 +3,30 @@
 namespace Sdkconsultoria\Base\Traits;
 
 use Sdkconsultoria\Base\Exceptions\APIException;
+use Illuminate\Http\Request;
 
 /**
  * Permite crear REST API rapidamente
  */
 trait ApiControllerTrait
 {
-    public function apiIndex()
+    public function apiIndex(Request $request)
     {
-        return $this->model::all();
+        $model = new $this->model();
+
+        return $this->filterResources($request, $model);
     }
     public function apiGet(string $id)
     {
-        return $this->findApiModel($id);
+        return $this->findModelApi($id);
     }
 
-    public function apiCreate()
+    public function apiCreate(Request $request)
     {
 
     }
 
-    public function apiUpdate(string $id)
+    public function apiUpdate(Request $request, string $id)
     {
 
     }
@@ -33,9 +36,9 @@ trait ApiControllerTrait
 
     }
 
-    protected function findApiModel(string $id)
+    protected function findModelApi(string $id)
     {
-        $model = $this->model::find($id);
+        $model = $this->getModel($id);
 
         if (!$model) {
             throw new APIException(['message' => __('base::responses.404')], 404);

@@ -6,6 +6,8 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 use Sdkconsultoria\Base\Exceptions\APIException;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -51,6 +53,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e)
     {
+        if (($e instanceof NotFoundHttpException or $e instanceof ModelNotFoundException) and ($request->is('api/*') or $request->ajax() or $request->wantsJson())) {
+            return response([
+                'message' => __('base::responses.404'),
+                'details' => $e->getMessage(),
+            ], 404);
+        }
+
         if ($e instanceof APIException) {
             return response()->json(json_decode($e->getMessage()), $e->getCode());
         }

@@ -38,8 +38,8 @@ return [
         'add-element' => 'Añadir :item',
     ],
     'token' => [
-        'singular' => 'Imagen',
-        'plural' => 'Imagenes',
+        'singular' => 'Token',
+        'plural' => 'Tokens de acceso personal',
         'created' => 'Token creado correctamente :token',
     ],
     'image' => [

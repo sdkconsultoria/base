@@ -79,8 +79,8 @@
         @endphp
 
         <div class="">
-            <h3 class="text-90 uppercase tracking-wide font-bold text-sm py-4">Tokens de acceso personal</h3>
-            <button @click="tokenModal = true" class="btn btn-primary mb-3" type="button" name="button">Crear Token:</button>
+            <h3 class="text-90 uppercase tracking-wide font-bold text-sm py-4">@lang('base::models.token.plural')</h3>
+            <button @click="tokenModal = true" class="btn btn-primary mb-3" type="button" name="button">@lang('base::models.common.create', ['model' => 'Token'])</button>
         </div>
 
         <div x-show="tokenModal" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">

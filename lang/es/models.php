@@ -37,6 +37,11 @@ return [
         'tags' => 'Tags',
         'add-element' => 'Añadir :item',
     ],
+    'token' => [
+        'singular' => 'Imagen',
+        'plural' => 'Imagenes',
+        'created' => 'Token creado correctamente :token',
+    ],
     'image' => [
         'singular' => 'Imagen',
         'plural' => 'Imagenes',

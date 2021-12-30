@@ -18,6 +18,8 @@ Route::namespace('\Sdkconsultoria\Base\Http\Controllers\Admin')
         Route::middleware(['role:admin'])->group(function () {
             Route::resource('users', 'UserController');
             Route::post('save-account', 'UserController@saveAccount')->name('save.my_account');
+            Route::post('new-token', 'UserController@createToken')->name('user.new-token');
+            Route::delete('delete-token/{id}', 'UserController@deleteToken')->name('user.delete-token');
 
             Route::resource('blogs', 'BlogController');
             Route::resource('blog-posts', 'BlogPostController');

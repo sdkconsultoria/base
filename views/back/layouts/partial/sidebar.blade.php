@@ -71,12 +71,6 @@
                     ],
                 ],
                 [
-                    'name' => __('base::models.mail.plural'),
-                    'icon' => Base::icon('mail', ['class' => 'h-6 w-6']),
-                    'url' => 'mails.index',
-                    'crud' => 'mails',
-                ],
-                [
                     'name' => __('base::app.config.plural'),
                     'icon' => Base::icon('cog', ['class' => 'h-6 w-6']),
                     'items' => [

@@ -114,10 +114,6 @@ return [
         'singular' => 'Grupo de Keys',
         'plural' => 'Grupos de Keys',
     ],
-    'mail' => [
-        'singular' => 'Correo',
-        'plural' => 'Correos',
-    ],
     'shopping-cart' => [
         'singular' => 'Carrito de compra',
         'short' => 'Carrito',

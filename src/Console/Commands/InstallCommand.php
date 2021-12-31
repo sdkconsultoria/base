@@ -54,6 +54,8 @@ class InstallCommand extends Command
                 'jodit' => '^3.11.3',
                 'cropperjs' => '^1.5.12',
                 'photoswipe' => '^4.1.3',
+                'vue' => '^3.2.26',
+                'vue-loader' => '^17.0.0',
             ] + $packages;
         });
 

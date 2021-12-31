@@ -60,6 +60,13 @@ class InstallCommand extends Command
             ] + $packages;
         });
 
+        // NPM scripts
+        $this->updateNodeScripts(function ($scripts) {
+            return [
+                'sdk' => 'cd vendor/sdkconsultoria/base && npm install',
+            ] + $scripts;
+        });
+
         $this->info('SDK Base se instalo correctamente.');
         $this->comment('Ejecuta el comando "npm install && npm run sdk && npm run dev" para generar tus assets.');
     }

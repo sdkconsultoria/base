@@ -56,11 +56,12 @@ class InstallCommand extends Command
                 'photoswipe' => '^4.1.3',
                 'vue' => '^3.2.26',
                 'vue-loader' => '^17.0.0',
+                '@sdkconsultoria/base' => 'file:vendor/sdkconsultoria/base',
             ] + $packages;
         });
 
         $this->info('SDK Base se instalo correctamente.');
-        $this->comment('Ejecuta el comando "npm install && npm run dev" para generar tus assets.');
+        $this->comment('Ejecuta el comando "npm install && npm run sdk && npm run dev" para generar tus assets.');
     }
 
     /**

@@ -1,0 +1,26 @@
+{
+  "name": "@sdkconsultoria/base",
+  "version": "1.0.0",
+  "description": "SDK Consultoría Base ====",
+  "main": "resources/js/app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdkconsultoria/base.git"
+  },
+  "author": "Camilo Antonio Rodriguez Cruz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sdkconsultoria/base/issues"
+  },
+  "homepage": "https://github.com/sdkconsultoria/base#readme",
+  "dependencies": {
+      "vue": "^3.2.26",
+      "vue-loader": "^17.0.0"
+  }
+}

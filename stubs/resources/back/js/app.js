@@ -1,1 +1,1 @@
-import '@base/js/app';
+import '@sdkconsultoria/base';

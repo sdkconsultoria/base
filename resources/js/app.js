@@ -6,6 +6,7 @@ import './uploadImg'
 import './imageable'
 import './taggable'
 import './deleteElements'
+import './components.js'
 
 window.Alpine = Alpine;
 

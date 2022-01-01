@@ -80,7 +80,7 @@
 
         <div class="">
             <h3 class="text-90 uppercase tracking-wide font-bold text-sm py-4">@lang('base::models.token.plural')</h3>
-            <button @click="tokenModal = true" class="btn btn-primary mb-3" type="button" name="button">@lang('base::models.common.create', ['model' => 'Token'])</button>
+            <button x-on:click="tokenModal = true" class="btn btn-primary mb-3" type="button" name="button">@lang('base::models.common.create', ['model' => 'Token'])</button>
         </div>
 
         <div x-show="tokenModal" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
@@ -110,7 +110,7 @@
                             <button type="submit" class="btn btn-success">
                                 @lang('base::app.common.save')
                             </button>
-                            <button @click="tokenModal = false" type="button" class="btn btn-danger mr-2">
+                            <button x-on:click="tokenModal = false" type="button" class="btn btn-danger mr-2">
                                 @lang('base::app.common.cancel')
                             </button>
                         </div>

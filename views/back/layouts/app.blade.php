@@ -10,7 +10,7 @@
     <link href="{{ mix('/back.css') }}" rel="stylesheet">
 </head>
 <body class="h-screen">
-    <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
+    <div id="app" x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
         @include('base::back.layouts.partial.sidebar')
 
         <div class="flex-1 flex flex-col overflow-hidden">

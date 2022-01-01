@@ -7,7 +7,7 @@
  import { createApp } from 'vue';
  //
  //
- // import App from "./components/FormComponent.vue";
+ import FormComponent from "./components/FormComponent.vue";
  const app = createApp({}).mount("#app");
 
  // createApp(App).mount("#app");
@@ -20,8 +20,10 @@
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-const files = require.context('./', true, /\.vue$/i);
-files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+ //import * from './componets'
+
+//const files = require.context('./', true, /\.vue$/i);
+//files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 // Vue.component('images-component', require('./components/ImagesComponent.vue').default);
 

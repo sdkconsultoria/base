@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/sdkconsultoria/base#readme",
   "dependencies": {
-      "vue": "^3.2.26",
-      "vue-loader": "^17.0.0"
+    "vue": "^3.2.26",
+    "vue-loader": "^17.0.0"
   }
 }

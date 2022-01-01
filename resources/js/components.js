@@ -8,7 +8,7 @@
  //
  //
  import FormComponent from "./components/FormComponent.vue";
- const app = createApp({}).mount("#app");
+ const app = createApp(FormComponent).mount("#form-component");
 
  // createApp(App).mount("#app");
 

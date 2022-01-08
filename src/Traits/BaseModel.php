@@ -273,4 +273,21 @@ trait BaseModel
     {
         return $query->where('status', self::STATUS_ACTIVE);
     }
+
+    public static function createEmpty()
+    {
+        $class = get_called_class();
+        $user_id = auth()->user()->id;
+        $model = $class::where('created_by', $user_id)->where('status', $class::STATUS_CREATION)->first();
+
+        if ($model) {
+            return $model;
+        }
+
+        $model = new $class;
+        $model->created_by = $user_id;
+        $model->save();
+
+        return $model;
+    }
 }

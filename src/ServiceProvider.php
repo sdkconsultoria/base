@@ -106,7 +106,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         });
 
         Blueprint::macro('statusField', function () {
-            $this->smallInteger('status')->default('15');
+            $this->smallInteger('status')->default('20');
         });
     }
 

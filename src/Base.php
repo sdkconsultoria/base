@@ -7,6 +7,16 @@ namespace Sdkconsultoria\Base;
  */
 class Base
 {
+    public function popUp(array $options = [])
+    {
+        return \Sdkconsultoria\Base\Helpers\Html\PopUp::make($options);
+    }
+
+    public function popUpFinish(array $options = [])
+    {
+        return \Sdkconsultoria\Base\Helpers\Html\PopUp::finish();
+    }
+
     public function icon(string $icon, array $optionsHtml = [], string $type = 'outline')
     {
         return new \Sdkconsultoria\Base\Helpers\Html\Icon($icon, $optionsHtml, $type);

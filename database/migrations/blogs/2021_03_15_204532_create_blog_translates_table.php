@@ -15,7 +15,7 @@ class CreateBlogTranslatesTable extends Migration
     {
         Schema::create('blog_translates', function (Blueprint $table) {
             $table->commonFields();
-            $table->foreignId('blog_id')->constrained();
+            $table->translatable();
             $table->string('language')->nullable();
             $table->string('title')->nullable();
             $table->string('subtitle')->nullable();

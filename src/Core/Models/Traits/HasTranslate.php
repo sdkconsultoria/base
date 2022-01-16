@@ -11,7 +11,7 @@ trait HasTranslate
         $translation_class = $this->getTranslatableClassOrFail();
         $language = $this->getLanguageIfNotSet($language);
 
-        $translation = $translation_class::where('id', $this->id)
+        $translation = $translation_class::where('translatable_id', $this->id)
             ->where('language', $language)
             ->first();
 

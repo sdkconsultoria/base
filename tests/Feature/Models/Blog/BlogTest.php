@@ -18,7 +18,7 @@ class BlogTest extends TestCase
     {
         $model = $this->model::factory()->create();
         $translation = $model->getTranslatableModel()::factory([
-            'blog_id' => $model->id
+            'translatable_id' => $model->id
             ])->create();
 
         $this->assertDatabaseHas($model->getTable(), [

@@ -17,21 +17,20 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function boot()
     {
-        Route::mixin(new AuthRouteMethods);
+        $this->registerMigrations();
+        $this->registerMigrationsMacro();
+        // Route::mixin(new AuthRouteMethods);
 
-        $this->registerCommands();
-        $this->registerRoutesMacro();
-        $this->registerMigrationsShortcut();
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations/common');
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations/blogs');
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations/ecommerce');
-        $this->loadViewsFrom(__DIR__.'/../views', 'base');
-        $this->loadTranslationsFrom(__DIR__.'/../lang', 'base');
-        $this->loadRoutesFrom(__DIR__.'/../routes.php');
+        // $this->registerCommands();
+        // $this->registerRoutesMacro();
 
-        $this->publishes([
-            __DIR__.'/../views' => resource_path('views/vendor/base'),
-        ]);
+        // $this->loadViewsFrom(__DIR__.'/../views', 'base');
+        // $this->loadTranslationsFrom(__DIR__.'/../lang', 'base');
+        // $this->loadRoutesFrom(__DIR__.'/../routes.php');
+
+        // $this->publishes([
+        //     __DIR__.'/../views' => resource_path('views/vendor/base'),
+        // ]);
 
         Factory::guessFactoryNamesUsing(function (string $model_name) {
             $sdk = Str::startsWith($model_name, 'Sdkconsultoria');
@@ -53,20 +52,20 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(
-            __DIR__ . '/../config/base.php', 'base'
-        );
-
-        $this->app->bind('base',function(){
-            return new Base();
-        });
+        // $this->mergeConfigFrom(
+        //     __DIR__ . '/../config/base.php', 'base'
+        // );
+        //
+        // $this->app->bind('base',function(){
+        //     return new Base();
+        // });
     }
 
     /**
      * Registra los comandos e SDK Base
      * @return void
      */
-    private function registerCommands()
+    private function registerCommands() : void
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -81,7 +80,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      * Registra los atajos para las migraciones
      * @return void
      */
-    private function registerMigrationsShortcut()
+    private function registerMigrationsMacro()
     {
         Blueprint::macro('commonFields', function () {
             $this->id();
@@ -108,6 +107,13 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         Blueprint::macro('statusField', function () {
             $this->smallInteger('status')->default('20');
         });
+
+        Blueprint::macro('translatable', function () {
+            $table = str_replace('_translates', '', $this->table);
+            $table = Str::plural($table);
+            $this->unsignedBigInteger('translatable_id');
+            $this->foreign('translatable_id')->references('id')->on($table);
+        });
     }
 
     private function registerRoutesMacro()
@@ -119,5 +125,12 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             Route::put("{$uri}/{id}", "{$controller}@apiUpdate")->name("api.{$uri}.update");
             Route::delete("{$uri}", "{$controller}@apiDelete")->name("api.{$uri}.delete");
         });
+    }
+
+    private function registerMigrations()
+    {
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations/common');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations/blogs');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations/ecommerce');
     }
 }

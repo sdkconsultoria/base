@@ -2,8 +2,8 @@
 
 namespace Sdkconsultoria\Base\Factories\Blog;
 
-use \Sdkconsultoria\Base\Models\Blog\BlogTranslate;
-use \Sdkconsultoria\Base\Models\Blog\Blog;
+use Sdkconsultoria\Base\Models\Blog\BlogTranslate;
+use Sdkconsultoria\Base\Models\Blog\Blog;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BlogTranslateFactory extends Factory
@@ -23,8 +23,11 @@ class BlogTranslateFactory extends Factory
     public function definition()
     {
         return [
-            'blog_id' => Blog::factory(),
-            // 'identifier' => $this->faker->unique()->word,
+            'translatable_id' => Blog::factory(),
+            'title' => $this->faker->sentence,
+            'subtitle' => $this->faker->sentence,
+            'description' => $this->faker->text,
+            'language' => 'es',
             'status' => $this->model::STATUS_ACTIVE,
         ];
     }

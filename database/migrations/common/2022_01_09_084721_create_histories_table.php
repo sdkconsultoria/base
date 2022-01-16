@@ -13,15 +13,15 @@ class CreateHistoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('histories', function (Blueprint $table) {
-            $table->commonFields();
-            $table->id();
-            $table->timestamps();
-            $table->foreignId('user_id')->constrained();
-            $table->string('model_id')->index();
-            $table->string('model_table')->index();
-            $table->string('type')->index();
-        });
+        // Schema::create('histories', function (Blueprint $table) {
+        //     $table->commonFields();
+        //     $table->id();
+        //     $table->timestamps();
+        //     $table->foreignId('user_id')->constrained();
+        //     $table->string('model_id')->index();
+        //     $table->string('model_table')->index();
+        //     $table->string('type')->index();
+        // });
     }
 
     /**
@@ -31,6 +31,6 @@ class CreateHistoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('histories');
+        // Schema::dropIfExists('histories');
     }
 }

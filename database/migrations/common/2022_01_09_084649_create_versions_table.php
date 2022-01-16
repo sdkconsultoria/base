@@ -13,17 +13,17 @@ class CreateVersionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('versions', function (Blueprint $table) {
-            $table->commonFields();
-            $table->id();
-            $table->enum('type', ['local', 'children'])->default('local');
-            $table->string('versionable_type');
-            $table->string('versionable_id');
-            $table->foreignId('user_id')->constrained();
-            $table->integer('version');
-            $table->json('model_data');
-            $table->timestamps();
-        });
+        // Schema::create('versions', function (Blueprint $table) {
+        //     $table->commonFields();
+        //     $table->id();
+        //     $table->enum('type', ['local', 'children'])->default('local');
+        //     $table->string('versionable_type');
+        //     $table->string('versionable_id');
+        //     $table->foreignId('user_id')->constrained();
+        //     $table->integer('version');
+        //     $table->json('model_data');
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -33,6 +33,6 @@ class CreateVersionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('versions');
+        // Schema::dropIfExists('versions');
     }
 }

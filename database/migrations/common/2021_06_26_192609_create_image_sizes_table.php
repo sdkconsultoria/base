@@ -47,16 +47,16 @@ class CreateImageSizesTable extends Migration
         ];
 
         foreach ($sizes as $index => $size) {
-            Db::table('image_sizes')->insert([
-                'name' => $size['name'],
-                'height' => $index + 1 * 100,
-                'width' => $index + 1 * 100,
-                'quality' => '90',
-                'aspect' => $size['aspect'],
-                'fill' => false,
-                'transparency' => '0',
-                'status' => ImageSize::STATUS_ACTIVE,
-            ]);
+            // Db::table('image_sizes')->insert([
+            //     'name' => $size['name'],
+            //     'height' => $index + 1 * 100,
+            //     'width' => $index + 1 * 100,
+            //     'quality' => '90',
+            //     'aspect' => $size['aspect'],
+            //     'fill' => false,
+            //     'transparency' => '0',
+            //     'status' => ImageSize::STATUS_ACTIVE,
+            // ]);
         }
     }
 

@@ -2,7 +2,7 @@
 
 namespace Sdkconsultoria\Base\Factories\Blog;
 
-use \Sdkconsultoria\Base\Models\Blog\Blog;
+use Sdkconsultoria\Base\Models\Blog\Blog;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BlogFactory extends Factory
@@ -23,7 +23,6 @@ class BlogFactory extends Factory
     {
         return [
             'identifier' => $this->faker->unique()->word,
-            'status' => $this->model::STATUS_ACTIVE,
         ];
     }
 }

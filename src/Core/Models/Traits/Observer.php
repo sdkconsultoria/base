@@ -6,9 +6,9 @@ use App\Models\History;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-trait GenericObserver
+trait Observer
 {
-    public static function bootGenericObserver()
+    public static function bootObserver()
     {
         static::created(function ($model) {
             static::createHistory($model, 'create');

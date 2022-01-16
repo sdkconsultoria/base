@@ -1,12 +1,12 @@
 <?php
 
-namespace Sdkconsultoria\Base\Traits;
+namespace Sdkconsultoria\Base\Core\Models\Traits;
 
 use Sdkconsultoria\Helpers\Helpers;
 use Illuminate\Support\Str;
 use Base;
 
-trait BaseModel
+trait Model
 {
     /**
      * Obtiene los atributos por los cuales que se puede buscar

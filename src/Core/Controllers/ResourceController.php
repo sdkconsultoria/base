@@ -1,6 +1,6 @@
 <?php
 
-namespace Sdkconsultoria\Base\Http\Controllers;
+namespace Sdkconsultoria\Base\Core\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

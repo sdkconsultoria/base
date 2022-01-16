@@ -2,13 +2,8 @@
 
 namespace Sdkconsultoria\Base\Tests\Traits;
 
-trait UnitVersions
+trait Versionable
 {
-    /**
-     * Check the history of an object.
-     *
-     * @return void
-     */
     public function testVersions()
     {
         $model = $this->model::factory()->create();

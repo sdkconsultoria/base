@@ -10,5 +10,5 @@ class ResourceApiController extends Controller
 {
     use ApiControllerTrait;
 
-    protected $mode = '';
+    protected $model = '';
 }

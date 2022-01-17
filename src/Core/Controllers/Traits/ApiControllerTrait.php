@@ -13,7 +13,19 @@ trait ApiControllerTrait
 {
     public function store(Request $request)
     {
+        $model = $this->model::findModelOrCreate();
+        $model->loadDataFromCreateRequest($request);
+        $model->status = $model::STATUS_ACTIVE;
+        $model->save();
 
+        if ($model->isTranstlatableModel()) {
+            $translate_model = $model->getTranslatableModel();
+            $translate_model->status = $translate_model::STATUS_ACTIVE;
+            $translate_model->save();
+        }
+
+        return response()
+            ->json(['model' => $model->getFullAttributes()]);
     }
 
     // public function apiIndex(Request $request)

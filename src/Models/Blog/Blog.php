@@ -12,7 +12,7 @@ class Blog extends BaseModel
 {
     use HasTranslate;
 
-    public function getValidationRules($request = '')
+    public function getValidationRules($request = '') : array
     {
         return [
             'identifier' => 'required',

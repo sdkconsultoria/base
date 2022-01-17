@@ -6,12 +6,35 @@ use Sdkconsultoria\Helpers\Helpers;
 use Illuminate\Support\Str;
 use Base;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
+use Illuminate\Http\Request;
 
 trait Model
 {
+    public $canCreateEmpty = true;
+
+    public function save(array $options = [])
+    {
+        parent::save($options);
+    }
+
+    public function getFullAttributes()
+    {
+        if ($this->isTranstlatableModel()) {
+
+            $translate_model =  $this->getTranslatableModel()->getAttributes();
+
+            return array_merge(
+                $translate_model,
+                ['identifier' => $this->identifier]
+            );
+        }
+
+        return $this->getAttributes();
+    }
+
     public function getModelAttributes(string $rules = 'getValidationRules', $request = '') : array
     {
-        $full_attributes = $this->$rules($request);
+        $full_attributes = $this->getModelAttributesFromRules($rules, $request);
 
         if ($this->isTranstlatableModel()) {
             return $this->getModelAttributesTranslatable($full_attributes);
@@ -20,7 +43,24 @@ trait Model
         return $this->convertModelAttributesToArray($full_attributes, $this);
     }
 
-    private function isTranstlatableModel()
+    public function getModelAttributesFromCreateRules()
+    {
+        return $this->getModelAttributesFromRules();
+    }
+
+    public function getModelAttributesFromRules(string $rules = 'getValidationRules', $request = '') : array
+    {
+        $rules_array = $this->$rules($request);
+        $attributes = [];
+
+        foreach ($rules_array as $attribute => $rule) {
+            array_push($attributes, $attribute);
+        }
+
+        return $attributes;
+    }
+
+    public function isTranstlatableModel()
     {
         return method_exists($this, 'getTranslatableClassOrFail');
     }
@@ -35,21 +75,100 @@ trait Model
         return $full_attributes;
     }
 
-    private function convertModelAttributesToArray(array $attributes, EloquentModel $model) : array
+    public function convertModelAttributesToArray(array $attributes, EloquentModel $model) : array
     {
         $attributes_array = [];
 
-        foreach ($attributes as $key => $value) {
-            $attributes_array[$key] = $model->$key;
+        foreach ($attributes as $attribute) {
+            $attributes_array[$attribute] = $model->$attribute;
         }
 
         return $attributes_array;
     }
 
-    public function getValidationRules($request = '')
+    public function getValidationRules($request = '') : array
     {
         return [];
     }
+
+    public static function findModelOrCreate() : EloquentModel
+    {
+        $model = get_called_class()::where('created_by', auth()->user()->id)
+        ->where('status', get_called_class()::STATUS_CREATION)
+        ->first();
+
+        if ($model) {
+            return $model;
+        }
+
+        return get_called_class()::createEmptyModel();
+    }
+
+    protected static function createEmptyModel()
+    {
+        $called_class= get_called_class();
+        $model = new $called_class;
+        $model->created_by = auth()->user()->id;
+        $model->status = $model::STATUS_CREATION;
+
+        if ($model->canCreateEmpty) {
+            $model->save();
+        }
+
+        if ($model->isTranstlatableModel()) {
+            $translate_model = $model->getTranslatableModel();
+            $translate_model->translatable_id = $model->id;
+            $translate_model->created_by = auth()->user()->id;
+            $translate_model->language = config('app.locale');
+            $translate_model->status = $translate_model::STATUS_CREATION;
+            $translate_model->save();
+        }
+
+        return $model;
+    }
+
+    public function loadDataFromCreateRequest(Request $request) : void
+    {
+        $create_attributes = $this->getModelAttributesFromCreateRules();
+        $valid_attributes = $this->loadValidFieldsFromRequest($request, $create_attributes);
+
+        $this->loadDataFromRequest($request, $valid_attributes);
+    }
+
+    public function loadDataFromRequest(Request $request, array $atributes) : void
+    {
+        if ($this->isTranstlatableModel()) {
+            $translatable_model =  $this->getTranslatableModel();
+            $this->assignValuesToModel(['identifier' => $request->input('identifier')], $this);
+            unset($atributes['identifier']);
+            $translatable_model = $this->assignValuesToModel($atributes, $translatable_model);
+            $translatable_model->save();
+        }
+    }
+
+    private function loadValidFieldsFromRequest(Request $request, array $attributes) : array
+    {
+        $valid_values = [];
+
+        foreach ($request->all() as $attribute => $value) {
+            if (in_array($attribute, $attributes)) {
+                $valid_values[$attribute] = $value;
+            }
+        }
+
+        return $valid_values;
+    }
+
+    private function assignValuesToModel(array $values, EloquentModel &$model ) : EloquentModel
+    {
+        foreach ($values as $attribute => $value) {
+            $model->$attribute = $value;
+        }
+
+        return $model;
+    }
+
+    // private function findModel
 
     /**
      * Obtiene los atributos por los cuales que se puede buscar

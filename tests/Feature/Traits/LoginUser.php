@@ -5,15 +5,15 @@ namespace Sdkconsultoria\Base\Tests\Feature\Traits;
 use App\Models\User;
 use Laravel\Sanctum\Sanctum;
 
-trait GetUser
+trait LoginUser
 {
-    protected function getAdminUser()
+    protected function loginAdminUser()
     {
         $user = $this->findOrCreateUser('admin@sdkconsultoria.com');
         $this->actingAs($user);
     }
 
-    protected function getUser()
+    protected function loginUser()
     {
         $user = $this->findOrCreateUser('user@sdkconsultoria.com');
         $this->actingAs($user);

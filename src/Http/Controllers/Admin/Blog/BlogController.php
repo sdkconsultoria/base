@@ -1,16 +1,10 @@
 <?php
 
-namespace Sdkconsultoria\Base\Http\Controllers\Admin;
+namespace Sdkconsultoria\Base\Http\Controllers\Admin\Blog;
 
-use Sdkconsultoria\Base\Http\Controllers\ResourceController;
-use Sdkconsultoria\Base\Traits\TranslateController;
+use Sdkconsultoria\Base\Core\Controllers\ResourceApiController;
 
-class BlogController extends ResourceController
+class BlogController extends ResourceApiController
 {
-    use TranslateController;
-
     protected $model = \Sdkconsultoria\Base\Models\Blog\Blog::class;
-    protected $translate = \Sdkconsultoria\Base\Models\Blog\BlogTranslate::class;
-    protected $view = 'base::back.blogs.';
-    protected $create_empty = true;
 }

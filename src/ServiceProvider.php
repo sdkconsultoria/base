@@ -17,32 +17,21 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function boot()
     {
-        $this->registerMigrations();
         $this->registerMigrationsMacro();
+        $this->registerMigrations();
+        $this->registerCustomFactory();
+        $this->registerRoutesMacro();
+        $this->registerRoutes();
         // Route::mixin(new AuthRouteMethods);
 
         // $this->registerCommands();
-        // $this->registerRoutesMacro();
 
         // $this->loadViewsFrom(__DIR__.'/../views', 'base');
         // $this->loadTranslationsFrom(__DIR__.'/../lang', 'base');
-        // $this->loadRoutesFrom(__DIR__.'/../routes.php');
 
         // $this->publishes([
         //     __DIR__.'/../views' => resource_path('views/vendor/base'),
         // ]);
-
-        Factory::guessFactoryNamesUsing(function (string $model_name) {
-            $sdk = Str::startsWith($model_name, 'Sdkconsultoria');
-
-            if ($sdk) {
-                return Str::of($model_name)->replace('Models', 'Factories') . 'Factory';
-            }
-
-            $namespace = 'Database\\Factories\\';
-
-            return $namespace . $model_name . 'Factory';
-        });
     }
 
     /**
@@ -61,25 +50,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         // });
     }
 
-    /**
-     * Registra los comandos e SDK Base
-     * @return void
-     */
-    private function registerCommands() : void
-    {
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                \Sdkconsultoria\Base\Console\Commands\InstallCommand::class,
-                \Sdkconsultoria\Base\Console\Commands\MakeCrud::class,
-                \Sdkconsultoria\Base\Console\Commands\Permissions::class,
-            ]);
-        }
-    }
-
-    /**
-     * Registra los atajos para las migraciones
-     * @return void
-     */
     private function registerMigrationsMacro()
     {
         Blueprint::macro('commonFields', function () {
@@ -116,21 +86,55 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         });
     }
 
-    private function registerRoutesMacro()
-    {
-        Route::macro('SdkApiResource', function ($uri, $controller) {
-            Route::get("{$uri}", "{$controller}@apiIndex")->name("api.{$uri}.index");
-            Route::get("{$uri}/{id}", "{$controller}@apiGet")->name("api.{$uri}.show");
-            Route::post("{$uri}", "{$controller}@apiCreate")->name("api.{$uri}.create");
-            Route::put("{$uri}/{id}", "{$controller}@apiUpdate")->name("api.{$uri}.update");
-            Route::delete("{$uri}", "{$controller}@apiDelete")->name("api.{$uri}.delete");
-        });
-    }
-
     private function registerMigrations()
     {
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations/common');
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations/blogs');
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations/ecommerce');
+    }
+
+    private function registerCustomFactory()
+    {
+        Factory::guessFactoryNamesUsing(function (string $model_name) {
+            $sdk = Str::startsWith($model_name, 'Sdkconsultoria');
+
+            if ($sdk) {
+                return Str::of($model_name)->replace('Models', 'Factories') . 'Factory';
+            }
+
+            $namespace = 'Database\\Factories\\';
+
+            $model_name = str_replace('App\\Models\\', '', $model_name);
+
+            return $namespace . $model_name . 'Factory';
+        });
+    }
+
+    private function registerRoutesMacro()
+    {
+        Route::macro('ApiResource', function ($uri, $controller) {
+            Route::get("{$uri}", "{$controller}@index")->name("api.{$uri}.index");
+            Route::get("{$uri}/{id}", "{$controller}@show")->name("api.{$uri}.show");
+            Route::post("{$uri}", "{$controller}@storage")->name("api.{$uri}.create");
+            Route::put("{$uri}/{id}", "{$controller}@update")->name("api.{$uri}.update");
+            Route::delete("{$uri}", "{$controller}@delete")->name("api.{$uri}.delete");
+        });
+    }
+
+    private function registerRoutes()
+    {
+        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+    }
+
+    private function registerCommands() : void
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \Sdkconsultoria\Base\Console\Commands\InstallCommand::class,
+                \Sdkconsultoria\Base\Console\Commands\MakeCrud::class,
+                \Sdkconsultoria\Base\Console\Commands\Permissions::class,
+            ]);
+        }
     }
 }

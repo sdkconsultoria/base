@@ -5,28 +5,13 @@ namespace Sdkconsultoria\Base\Tests\Feature\Models;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use Sdkconsultoria\Base\Tests\Traits\Crud;
+use Sdkconsultoria\Base\Tests\Feature\Traits\CrudTranslateApi;
+use Sdkconsultoria\Base\Tests\Feature\Traits\GetUser;
 
 class BlogTest extends TestCase
 {
-    // use Crud;
+    use CrudTranslateApi;
+    use GetUser;
 
     private $model = \Sdkconsultoria\Base\Models\Blog\Blog::class;
-
-
-    public function testCreate()
-    {
-        $model = $this->model::factory()->create();
-        $translation = $model->getTranslatableModel()::factory([
-            'translatable_id' => $model->id
-            ])->create();
-
-        $this->assertDatabaseHas($model->getTable(), [
-            'id' => $model->id,
-        ]);
-
-        $this->assertDatabaseHas($translation->getTable(), [
-            'id' => $translation->id,
-        ]);
-    }
 }

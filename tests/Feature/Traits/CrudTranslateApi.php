@@ -18,12 +18,8 @@ trait CrudTranslateApi
 
         $full_data = array_merge($translation_values, ['identifier' => $model->identifier]);
 
-        $response = $this->post('/api/v1/blog', $full_data);
-
+        $response = $this->post('/api/v1/' . $model->getApiEndpoint(), $full_data);
         $response->assertStatus(200);
-
-        $attributes = $model->getModelAttributes();
-
         $response->assertJsonFragment($full_data);
 
         $this->assertDatabaseHas($model->getTable(), [

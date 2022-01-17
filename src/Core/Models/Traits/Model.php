@@ -168,6 +168,11 @@ trait Model
         return $model;
     }
 
+    public function getApiEndpoint()
+    {
+        return strtolower(class_basename($this));
+    }
+
     // private function findModel
 
     /**

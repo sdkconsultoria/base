@@ -7,16 +7,22 @@ use Laravel\Sanctum\Sanctum;
 
 trait LoginUser
 {
-    protected function loginAdminUser()
+    protected function loginSuperAdmin()
     {
         $user = $this->findOrCreateUser('admin@sdkconsultoria.com');
+        $user->assignRole('super_admin');
+
         $this->actingAs($user);
+
+        return $user;
     }
 
     protected function loginUser()
     {
         $user = $this->findOrCreateUser('user@sdkconsultoria.com');
         $this->actingAs($user);
+
+        return $user;
     }
 
     protected function findOrCreateUser(string $email) : User

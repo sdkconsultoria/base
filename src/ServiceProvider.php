@@ -22,9 +22,9 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->registerCustomFactory();
         $this->registerRoutesMacro();
         $this->registerRoutes();
+        $this->registerCommands();
         // Route::mixin(new AuthRouteMethods);
 
-        // $this->registerCommands();
 
         // $this->loadViewsFrom(__DIR__.'/../views', 'base');
         // $this->loadTranslationsFrom(__DIR__.'/../lang', 'base');

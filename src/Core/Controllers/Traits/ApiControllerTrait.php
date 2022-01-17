@@ -2,9 +2,9 @@
 
 namespace Sdkconsultoria\Base\Core\Controllers\Traits;
 
-use Sdkconsultoria\Base\Exceptions\APIException;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Validation\Factory;
+use Illuminate\Support\Str;
 
 /**
  * Permite crear REST API rapidamente
@@ -17,6 +17,8 @@ trait ApiControllerTrait
         $model->loadDataFromCreateRequest($request);
         $model->status = $model::STATUS_ACTIVE;
         $model->save();
+        $model->isAuthorize('create');
+
 
         if ($model->isTranstlatableModel()) {
             $translate_model = $model->getTranslatableModel();

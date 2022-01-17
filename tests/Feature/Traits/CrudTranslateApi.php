@@ -7,6 +7,7 @@ trait CrudTranslateApi
     public function testCreate()
     {
         $this->loginUser();
+
         $model = $this->model::factory()->make();
         $translation = $model->getTranslatableModel()::factory([
             'translatable_id' => $model->id
@@ -25,13 +26,14 @@ trait CrudTranslateApi
 
         $response->assertJsonFragment($full_data);
 
-        //
-        // $this->assertDatabaseHas($model->getTable(), [
-        //     'identifier' => $model->identifier,
-        // ]);
+        $this->assertDatabaseHas($model->getTable(), [
+            'identifier' => $model->identifier,
+        ]);
 
-        // $this->assertDatabaseHas($translation->getTable(), [
-        //     'id' => $translation->id,
-        // ]);
+        $this->assertDatabaseHas($translation->getTable(), [
+            'title' => $translation->title,
+            'subtitle' => $translation->subtitle,
+            'description' => $translation->description,
+        ]);
     }
 }

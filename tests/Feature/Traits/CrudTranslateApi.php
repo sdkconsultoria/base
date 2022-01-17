@@ -10,16 +10,24 @@ trait CrudTranslateApi
         $translation = $model->getTranslatableModel()::factory([
             'translatable_id' => $model->id
             ])->make();
-
+        $model->translation = $translation;
         $user = $this->getUser();
 
         $response = $this->post('/api/v1/blog');
         $response->assertStatus(200);
 
-        // $this->assertDatabaseHas($model->getTable(), [
-        //     'id' => $model->id,
-        // ]);
+        $attributes = $model->getModelAttributes();
+
+        $response->assertJsonFragment([
+            'model' => [
+                'identifier' => $model->identifier,
+            ]
+        ]);
         //
+        // $this->assertDatabaseHas($model->getTable(), [
+        //     'identifier' => $model->identifier,
+        // ]);
+
         // $this->assertDatabaseHas($translation->getTable(), [
         //     'id' => $translation->id,
         // ]);

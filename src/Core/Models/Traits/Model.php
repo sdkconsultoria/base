@@ -5,9 +5,52 @@ namespace Sdkconsultoria\Base\Core\Models\Traits;
 use Sdkconsultoria\Helpers\Helpers;
 use Illuminate\Support\Str;
 use Base;
+use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 trait Model
 {
+    public function getModelAttributes(string $rules = 'getValidationRules', $request = '') : array
+    {
+        $full_attributes = $this->$rules($request);
+
+        if ($this->isTranstlatableModel()) {
+            return $this->getModelAttributesTranslatable($full_attributes);
+        }
+
+        return $this->convertModelAttributesToArray($full_attributes, $this);
+    }
+
+    private function isTranstlatableModel()
+    {
+        return method_exists($this, 'getTranslatableClassOrFail');
+    }
+
+    public function getModelAttributesTranslatable(array $full_attributes) : array
+    {
+        unset($full_attributes['identifier']);
+        $full_attributes = $this->convertModelAttributesToArray($full_attributes, $this->getTranslatableModel());
+
+        $full_attributes['identifier'] = $this->identifier;
+
+        return $full_attributes;
+    }
+
+    private function convertModelAttributesToArray(array $attributes, EloquentModel $model) : array
+    {
+        $attributes_array = [];
+
+        foreach ($attributes as $key => $value) {
+            $attributes_array[$key] = $model->$key;
+        }
+
+        return $attributes_array;
+    }
+
+    public function getValidationRules($request = '')
+    {
+        return [];
+    }
+
     /**
      * Obtiene los atributos por los cuales que se puede buscar
      * @return array

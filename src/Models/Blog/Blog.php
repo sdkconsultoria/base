@@ -11,6 +11,18 @@ use Sdkconsultoria\Base\Core\Models\Traits\HasTranslate;
 class Blog extends BaseModel
 {
     use HasTranslate;
+
+    public function getValidationRules($request = '')
+    {
+        return [
+            'identifier' => 'required',
+            'language' => 'required',
+            'title' => 'required',
+            'subtitle' => 'required',
+            'description' => 'required',
+        ];
+    }
+
     // use TranslateModel;
     // use ImageTypeTrait;
     //

@@ -21,6 +21,18 @@ trait CrudTranslateApi
 
         $response = $this->post('/api/v1/' . $model->getApiEndpoint(), $full_data);
         $response->assertStatus(200);
+        $response->assertJsonFragment($full_data);
+
+        $this->assertDatabaseHas($model->getTable(), [
+            'identifier' => $model->identifier,
+        ]);
+
+        $this->assertDatabaseHas($translation->getTable(), [
+            'title' => $translation->title,
+            'subtitle' => $translation->subtitle,
+            'description' => $translation->description,
+        ]);
+
         $user->revokePermissionTo($permision);
     }
 

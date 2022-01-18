@@ -14,15 +14,30 @@ trait ApiControllerTrait
     public function store(Request $request)
     {
         $model = $this->model::findModelOrCreate();
+        $model->isAuthorize('create');
         $model->loadDataFromCreateRequest($request);
         $model->status = $model::STATUS_ACTIVE;
         $model->save();
-        $model->isAuthorize('create');
-
 
         if ($model->isTranstlatableModel()) {
             $translate_model = $model->getTranslatableModel();
             $translate_model->status = $translate_model::STATUS_ACTIVE;
+            $translate_model->save();
+        }
+
+        return response()
+            ->json(['model' => $model->getFullAttributes()]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $model = $this->model::findModel($id);
+        $model->isAuthorize('update');
+        $model->loadDataFromCreateRequest($request);
+        $model->save();
+
+        if ($model->isTranstlatableModel()) {
+            $translate_model = $model->getTranslatableModel();
             $translate_model->save();
         }
 

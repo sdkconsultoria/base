@@ -483,4 +483,16 @@ trait Model
 
         return $model;
     }
+
+    public static function findModel($id)
+    {
+        $class = get_called_class();
+        $model = $class::where('id', $id)->first();
+
+        if ($model) {
+            return $model;
+        }
+
+        throw new APIException(['message' => __('base::responses.404')], 404);
+    }
 }

@@ -22,7 +22,7 @@ class BlogFactory extends Factory
     public function definition()
     {
         return [
-            'identifier' => $this->faker->unique()->word,
+            'identifier' => $this->faker->unique()->word . $this->faker->unixTime(),
         ];
     }
 }

@@ -26,13 +26,8 @@ trait Update
 
     public function testUpdateWithSpecificPermission()
     {
-        $user = $this->loginUser();
 
         $model = $this->model::factory()->create();
-        $permision = $model->getPermissionName('update');
-
-        $user->givePermissionTo($permision);
-
         $translation = $model->getTranslatableModel()::factory([
             'translatable_id' => $model->id
             ])->create();
@@ -44,6 +39,9 @@ trait Update
 
         $full_data = array_merge($translation_values_new, ['identifier' => $model->identifier]);
 
+        $user = $this->loginUser();
+        $permision = $model->getPermissionName('update');
+        $user->givePermissionTo($permision);
         $response = $this->put('/api/v1/' . $model->getApiEndpoint() . '/' . $model->id, $full_data);
         $response->assertStatus(200);
         $response->assertJsonFragment($full_data);
@@ -74,15 +72,5 @@ trait Update
         $response->assertJsonFragment($full_data);
 
         $this->assertModel($model, $translation_new, $translation_values_new);
-    }
-
-    private function assertModel($model, $translation, $translation_values)
-    {
-        $this->assertDatabaseHas($model->getTable(), [
-            'identifier' => $model->identifier,
-        ]);
-
-        unset($translation_values['identifier']);
-        $this->assertDatabaseHas($translation->getTable(), $translation_values);
     }
 }

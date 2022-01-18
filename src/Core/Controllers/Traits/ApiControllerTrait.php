@@ -45,6 +45,23 @@ trait ApiControllerTrait
             ->json(['model' => $model->getFullAttributes()]);
     }
 
+    public function destroy($id)
+    {
+        $model = $this->model::findModel($id);
+        $model->isAuthorize('delete');
+        $model->status = $model::STATUS_DELETED;
+        $model->delete();
+
+        if ($model->isTranstlatableModel()) {
+            $translate_model = $model->getTranslatableModel();
+            $translate_model->status = $translate_model::STATUS_DELETED;
+            $translate_model->delete();
+        }
+
+        return response()
+            ->json(['model' => $model->getFullAttributes()]);
+    }
+
     // public function apiIndex(Request $request)
     // {
     //     $model = new $this->model();

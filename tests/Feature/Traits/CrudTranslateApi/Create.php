@@ -41,12 +41,12 @@ trait Create
         $full_data = array_merge($translation_values, ['identifier' => $model->identifier]);
 
         $response = $this->post('/api/v1/' . $model->getApiEndpoint(), $full_data);
+        $user->revokePermissionTo($permision);
         $response->assertStatus(200);
         $response->assertJsonFragment($full_data);
 
         $this->assertModel($model, $translation, $translation_values);
 
-        $user->revokePermissionTo($permision);
     }
 
     public function testCreate()

@@ -43,12 +43,12 @@ trait Update
         $permision = $model->getPermissionName('update');
         $user->givePermissionTo($permision);
         $response = $this->put('/api/v1/' . $model->getApiEndpoint() . '/' . $model->id, $full_data);
+        $user->revokePermissionTo($permision);
         $response->assertStatus(200);
         $response->assertJsonFragment($full_data);
 
         $this->assertModel($model, $translation_new, $translation_values_new);
 
-        $user->revokePermissionTo($permision);
     }
 
     public function testUpdate()

@@ -2,9 +2,9 @@
 
 namespace Sdkconsultoria\Base\Tests\Feature\Traits\CrudTranslateApi;
 
-trait Delete
+trait View
 {
-    public function testDeleteWithoutPermission()
+    public function testViewWithoutPermission()
     {
         $user = $this->loginUser();
 
@@ -13,11 +13,11 @@ trait Delete
             'translatable_id' => $model->id
             ])->create();
 
-        $response = $this->delete('/api/v1/' . $model->getApiEndpoint() . '/' . $model->id);
+        $response = $this->get('/api/v1/' . $model->getApiEndpoint() . '/' . $model->id);
         $response->assertStatus(403);
     }
 
-    public function testDeleteWithSpecificPermission()
+    public function testViewWithSpecificPermission()
     {
         $user = $this->loginUser();
 
@@ -26,17 +26,17 @@ trait Delete
             'translatable_id' => $model->id
             ])->make();
 
-        $permision = $model->getPermissionName('delete');
+        $permision = $model->getPermissionName('view');
         $user->givePermissionTo($permision);
 
-        $response = $this->delete('/api/v1/' . $model->getApiEndpoint() . '/' . $model->id);
+        $response = $this->get('/api/v1/' . $model->getApiEndpoint() . '/' . $model->id);
         $user->revokePermissionTo($permision);
         $response->assertStatus(200);
-        $this->assertSoftDeleted($model);
+        $response->assertJsonFragment($model->getFullAttributes());
 
     }
 
-    public function testDelete()
+    public function testView()
     {
         $this->loginSuperAdmin();
 
@@ -45,8 +45,8 @@ trait Delete
             'translatable_id' => $model->id
             ])->create();
 
-        $response = $this->delete('/api/v1/' . $model->getApiEndpoint() . '/' . $model->id);
+        $response = $this->get('/api/v1/' . $model->getApiEndpoint() . '/' . $model->id);
         $response->assertStatus(200);
-        $this->assertSoftDeleted($model);
+        $response->assertJsonFragment($model->getFullAttributes());
     }
 }

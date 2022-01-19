@@ -112,19 +112,19 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
     private function registerRoutesMacro()
     {
-        Route::macro('ApiResource', function ($uri, $controller) {
-            Route::get("{$uri}", "{$controller}@index")->name("api.{$uri}.index");
-            Route::get("{$uri}/{id}", "{$controller}@show")->name("api.{$uri}.show");
+        Route::macro('SdkApiResource', function ($uri, $controller) {
+            Route::get("{$uri}", "{$controller}@viewAny")->name("api.{$uri}.view-any");
+            Route::get("{$uri}/{id}", "{$controller}@view")->name("api.{$uri}.view");
             Route::post("{$uri}", "{$controller}@storage")->name("api.{$uri}.create");
             Route::put("{$uri}/{id}", "{$controller}@update")->name("api.{$uri}.update");
-            Route::delete("{$uri}", "{$controller}@delete")->name("api.{$uri}.delete");
+            Route::delete("{$uri}/{id}", "{$controller}@delete")->name("api.{$uri}.delete");
         });
     }
 
     private function registerRoutes()
     {
         $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
-        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+        // $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
     }
 
     private function registerCommands() : void

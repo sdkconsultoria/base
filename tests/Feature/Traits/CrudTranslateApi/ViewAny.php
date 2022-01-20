@@ -47,4 +47,22 @@ trait ViewAny
         $response = $this->get('/api/v1/' . $model->getApiEndpoint());
         $response->assertStatus(200);
     }
+
+    public function testFilterBy()
+    {
+        $model = $this->model::factory()->create();
+
+        for ($i=0; $i < 5; $i++) {
+            $this->model::factory()->create();
+        }
+
+        $response = $this->get('/api/v1/' . $model->getApiEndpoint());
+
+
+    }
+
+    public function testOrderBy()
+    {
+
+    }
 }

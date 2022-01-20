@@ -5,12 +5,15 @@ namespace Sdkconsultoria\Base\Core\Controllers\Traits;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Support\Str;
+use Sdkconsultoria\Base\Core\Controllers\Traits\SearchableControllerTrait;
 
 /**
  * Permite crear REST API rapidamente
  */
 trait ApiControllerTrait
 {
+    use SearchableControllerTrait;
+
     public function storage(Request $request)
     {
         $model = $this->model::findModelOrCreate();
@@ -74,5 +77,10 @@ trait ApiControllerTrait
     {
         $model = new $this->model;
         $model->isAuthorize('viewAny');
+
+        $query = $model::with('translate');
+        $query = $this->searchable($query, $request);
+        $query = $query->get();
+        return $query;
     }
 }

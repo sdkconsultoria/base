@@ -6,6 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 trait HasTranslate
 {
+    public function translate(string $language = '')
+    {
+        $translation_class = $this->getTranslatableClassOrFail();
+        $language = $this->getLanguageIfNotSet($language);
+
+        $translation = $this->hasOne($translation_class, 'translatable_id', 'id')->where('language', $language);
+
+        return $translation;
+    }
+
     public function getTranslatableModel(string $language = '') : Model
     {
         $translation_class = $this->getTranslatableClassOrFail();
@@ -47,7 +57,7 @@ trait HasTranslate
     private function getLanguageIfNotSet(string $language = '') : string
     {
         if (!$language) {
-            $language = config('app.locale');
+            $language = app()->getLocale();
         }
 
         return $language;

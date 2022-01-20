@@ -23,6 +23,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->registerRoutesMacro();
         $this->registerRoutes();
         $this->registerCommands();
+        $this->enableQueryLogs();
         // Route::mixin(new AuthRouteMethods);
 
 
@@ -41,10 +42,10 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register()
     {
-        // $this->mergeConfigFrom(
-        //     __DIR__ . '/../config/base.php', 'base'
-        // );
-        //
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/base.php', 'base'
+        );
+
         // $this->app->bind('base',function(){
         //     return new Base();
         // });
@@ -136,5 +137,16 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
                 \Sdkconsultoria\Base\Console\Commands\Permissions::class,
             ]);
         }
+    }
+
+    private function enableQueryLogs()
+    {
+       //  \DB::listen(function($query) {
+       //     \Log::info(
+       //         $query->sql,
+       //         $query->bindings,
+       //         $query->time
+       //     );
+       // });
     }
 }

@@ -16,65 +16,63 @@ trait SearchableControllerTrait
         $filters =  $this->model::getFilters();
         $parameters =  $request->all();
 
-        // for ($i=0; $i < count($filters); $i++) {
-        //
-        //     dump($filters[$i]);
-        // }
-        // dd('GG');
         foreach ($filters as $key => $value) {
-            $filter_columns = $this->getFilterAttribute($key, $value);
+            $parse_options = $this->parseFilterOptions($key, $value);
+            $parse_options['filter_value'] = $request->input($parse_options['name']);
 
-            if ($this->isValidForSearch('$filter_columns')) {
-                // code...
+            if ($parse_options['filter_value']) {
+                $query = $this->applyFilterToQuery($query, $parse_options);
             }
+            // $this->loadFilterFromRequest($parse_options['name'], $request);
 
-            $filter_type = $this->getFilterType($key, $value);
-            dump($filter_type);
+            // if ($this->isValidForSearch($options['name'])) {
+            //     // code...
+            // }
+            //
+            // $filter_type = $this->getFilterType($key, $value);
+            // dump($filter_type);
         }
-        dd('GG');
+        return $query;
     }
 
-    private function getFilterAttribute($key, $value)
+    private function parseFilterOptions($key, $value) : array
     {
+        $options = [
+            'name' => null,
+            'column' => null,
+            'type' => null,
+            'relation' => null,
+        ];
+
         if (is_numeric($key)) {
-            return $value;
+            $options['name'] = $value;
+            $options['type'] = $this->model::DEFAULT_SEARCH;
+            $options['column'] = $value;
+            $options['relation'] = null;
+
+            return $options;
         }
 
         if (! is_array($value)) {
-            return $key;
+            $options['name'] = $key;
+            $options['type'] = $value;
+            $options['column'] = $key;
+            $options['relation'] = null;
+
+            return $options;
         }
 
-        $column = $value['column'] ?? false;
+        $options['name'] = $key;
+        $options['type'] = $value['type'] ?? $this->model::DEFAULT_SEARCH;
+        $options['column'] = $value['column'] ?? $key;
+        $options['relation'] = $value['relation'] ?? false;
 
-        if ($column) {
-            return $column;
-        }
-
-        return $key;
+        return $options;
     }
 
-    private function isValidForSearch(string $searchable_name) : bool
+    private function applyFilterToQuery($query, $parse_options)
     {
-        return true;
-    }
-
-    private function getFilterType($key, $value)
-    {
-        if (is_numeric($key)) {
-            return 'like';
-        }
-
-        if (! is_array($value)) {
-            return $value;
-        }
-
-        $type = $value['type'] ?? false;
-
-        if ($type) {
-            return $type;
-        }
-
-        return 'like';
+        return $query;
     }
 
     private function searchaByLike()

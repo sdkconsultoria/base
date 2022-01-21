@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 /**
  * Permite crear REST API rapidamente
  */
-trait SearchableControllerTrait
+trait SearchableTrait
 {
     private function searchable($query, Request $request)
     {
@@ -23,15 +23,8 @@ trait SearchableControllerTrait
             if ($parse_options['filter_value']) {
                 $query = $this->applyFilterToQuery($query, $parse_options);
             }
-            // $this->loadFilterFromRequest($parse_options['name'], $request);
-
-            // if ($this->isValidForSearch($options['name'])) {
-            //     // code...
-            // }
-            //
-            // $filter_type = $this->getFilterType($key, $value);
-            // dump($filter_type);
         }
+
         return $query;
     }
 
@@ -72,21 +65,20 @@ trait SearchableControllerTrait
 
     private function applyFilterToQuery($query, $parse_options)
     {
+        switch ($parse_options['type']) {
+            case 'like':
+                $query = $query->where($parse_options['column'], 'like', "%{$parse_options['filter_value']}%");
+                break;
+
+            case 'equals':
+                $query = $query->where($parse_options['column'], $parse_options['filter_value']);
+                break;
+
+            default:
+                // code...
+                break;
+        }
+
         return $query;
-    }
-
-    private function searchaByLike()
-    {
-
-    }
-
-    private function searchaByEquals()
-    {
-
-    }
-
-    private function searchaByBetween()
-    {
-
     }
 }

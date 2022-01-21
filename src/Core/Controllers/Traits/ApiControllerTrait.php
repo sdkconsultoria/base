@@ -5,14 +5,16 @@ namespace Sdkconsultoria\Base\Core\Controllers\Traits;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Support\Str;
-use Sdkconsultoria\Base\Core\Controllers\Traits\SearchableControllerTrait;
+use Sdkconsultoria\Base\Core\Controllers\Traits\SearchableTrait;
+use Sdkconsultoria\Base\Core\Controllers\Traits\OrderableTrait;
 
 /**
  * Permite crear REST API rapidamente
  */
 trait ApiControllerTrait
 {
-    use SearchableControllerTrait;
+    use SearchableTrait;
+    use OrderableTrait;
 
     public function storage(Request $request)
     {
@@ -71,7 +73,8 @@ trait ApiControllerTrait
         $model->isAuthorize('view');
 
         return response()
-            ->json(['model' => $model->getFullAttributes()]);    }
+            ->json(['model' => $model->getFullAttributes()]);
+    }
 
     public function viewAny(Request $request)
     {
@@ -80,7 +83,9 @@ trait ApiControllerTrait
 
         $query = $model::with('translate');
         $query = $this->searchable($query, $request);
+        $query = $this->applyOrderByToQuery($query, $request->input('order'));
         $query = $query->get();
+
         return $query;
     }
 }

@@ -16,6 +16,28 @@ trait ApiControllerTrait
     use SearchableTrait;
     use OrderableTrait;
 
+    public function viewAny(Request $request)
+    {
+        $model = new $this->model;
+        $model->isAuthorize('viewAny');
+
+        $query = $model::with('translate');
+        $query = $this->searchable($query, $request);
+        $query = $this->applyOrderByToQuery($query, $request->input('order'));
+        $query = $query->get();
+
+        return $query;
+    }
+
+    public function view(Request $request, $id)
+    {
+        $model = $this->model::findModel($id);
+        $model->isAuthorize('view');
+
+        return response()
+            ->json(['model' => $model->getFullAttributes()]);
+    }
+
     public function storage(Request $request)
     {
         $model = $this->model::findModelOrCreate();
@@ -65,27 +87,5 @@ trait ApiControllerTrait
 
         return response()
             ->json(['model' => $model->getFullAttributes()]);
-    }
-
-    public function view(Request $request, $id)
-    {
-        $model = $this->model::findModel($id);
-        $model->isAuthorize('view');
-
-        return response()
-            ->json(['model' => $model->getFullAttributes()]);
-    }
-
-    public function viewAny(Request $request)
-    {
-        $model = new $this->model;
-        $model->isAuthorize('viewAny');
-
-        $query = $model::with('translate');
-        $query = $this->searchable($query, $request);
-        $query = $this->applyOrderByToQuery($query, $request->input('order'));
-        $query = $query->get();
-
-        return $query;
     }
 }

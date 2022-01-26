@@ -23,7 +23,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->registerRoutesMacro();
         $this->registerRoutes();
         $this->registerCommands();
-        $this->enableQueryLogs();
+        // $this->enableQueryLogs();
         // Route::mixin(new AuthRouteMethods);
 
 
@@ -141,12 +141,12 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
     private function enableQueryLogs()
     {
-       //  \DB::listen(function($query) {
-       //     \Log::info(
-       //         $query->sql,
-       //         $query->bindings,
-       //         $query->time
-       //     );
-       // });
+        \DB::listen(function($query) {
+           \Log::info(
+               $query->sql,
+               $query->bindings,
+               $query->time
+           );
+       });
     }
 }

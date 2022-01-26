@@ -25,15 +25,8 @@ class Blog extends BaseModel
     public static function getFilters()
     {
         return [
-            'comodin' => [
-                'column' => [
-                    'identifier',
-                    'title',
-                    'subtitle',
-                ]
-            ],
             'identifier',
-            'title' => 'like',
+            'title',
             'subtitle',
         ];
     }

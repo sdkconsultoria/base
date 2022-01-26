@@ -17,11 +17,11 @@ trait SearchableTrait
         $parameters =  $request->all();
 
         foreach ($filters as $key => $value) {
-            $parse_options = $this->parseFilterOptions($key, $value);
-            $parse_options['filter_value'] = $request->input($parse_options['name']);
+            $parsed_options = $this->parseFilterOptions($key, $value);
+            $parsed_options['filter_value'] = $request->input($parsed_options['name']);
 
-            if ($parse_options['filter_value']) {
-                $query = $this->applyFilterToQuery($query, $parse_options);
+            if ($parsed_options['filter_value']) {
+                $query = $this->applyFilters($query, $parsed_options);
             }
         }
 
@@ -63,22 +63,35 @@ trait SearchableTrait
         return $options;
     }
 
-    private function applyFilterToQuery($query, $parse_options)
+    private function applyFilters($query, $parsed_options)
     {
-        switch ($parse_options['type']) {
+        if (is_array($parsed_options['column'])) {
+            $query->where(function($query) use ($parsed_options) {
+                foreach ($parsed_options['column'] as $column) {
+                    $query->orWhere($column, 'like', "%{$parsed_options['filter_value']}%");
+                }
+            });
+        } else {
+            $query = $this->applyFilterToQuery($query, $parsed_options);
+        }
+
+        return $query;
+    }
+
+    private function applyFilterToQuery(&$query, $parsed_options)
+    {
+        switch ($parsed_options['type']) {
             case 'like':
-                $query = $query->where($parse_options['column'], 'like', "%{$parse_options['filter_value']}%");
+                $query->where($parsed_options['column'], 'like', "%{$parsed_options['filter_value']}%");
                 break;
 
             case 'equals':
-                $query = $query->where($parse_options['column'], $parse_options['filter_value']);
+                $query->where($parsed_options['column'], $parsed_options['filter_value']);
                 break;
 
             default:
                 // code...
                 break;
         }
-
-        return $query;
     }
 }

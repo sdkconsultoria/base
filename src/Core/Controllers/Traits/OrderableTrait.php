@@ -13,12 +13,23 @@ trait OrderableTrait
 {
     private function applyOrderByToQuery($query, $order)
     {
-        if ($order) {
+        if ($this->isValidForOrder($order)) {
             $parsed_order = $this->parseOrderToValueAndType($order);
             $query = $query->orderBy($parsed_order['value'], $parsed_order['type']);
         }
 
         return $query;
+    }
+
+    private function isValidForOrder($order)
+    {
+        if (!$order) {
+            return false;
+        }
+
+        $model =  new $this->model;
+
+        return $model->hasColumn(str_replace('-', '', $order));
     }
 
     private function parseOrderToValueAndType($order)

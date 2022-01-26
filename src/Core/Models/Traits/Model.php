@@ -199,6 +199,20 @@ trait Model
         return strtolower(class_basename($this));
     }
 
+    public function getTableColumns()
+    {
+        return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
+    }
+
+    public function hasColumn($column)
+    {
+        if (in_array($column, $this->getTableColumns())) {
+            return true;
+        }
+
+        return false;
+    }
+
     // private function findModel
 
     /**
@@ -249,29 +263,6 @@ trait Model
         }
 
         return __($package . 'models.common.' . $attribute);
-    }
-
-    /**
-     * Gets the list of all columns.
-     * @return array
-     */
-    public function getTableColumns()
-    {
-        return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
-    }
-
-    /**
-     * Check if a specific column exists or not.
-     * @param  string  $column column to search
-     * @return bool
-     */
-    public function hasColumn($column)
-    {
-        if (in_array($column, $this->getTableColumns())) {
-            return true;
-        }
-
-        return false;
     }
 
     /**

@@ -213,6 +213,35 @@ trait Model
         return false;
     }
 
+    public static function createEmpty()
+    {
+        $class = get_called_class();
+        $user_id = auth()->user()->id;
+        $model = $class::where('created_by', $user_id)->where('status', $class::STATUS_CREATION)->first();
+
+        if ($model) {
+            return $model;
+        }
+
+        $model = new $class;
+        $model->created_by = $user_id;
+        $model->save();
+
+        return $model;
+    }
+
+    public static function findModel($id)
+    {
+        $class = get_called_class();
+        $model = $class::where('id', $id)->first();
+
+        if ($model) {
+            return $model;
+        }
+
+        throw new APIException(['message' => __('base::responses.404')], 404);
+    }
+
     // private function findModel
 
     /**
@@ -456,34 +485,5 @@ trait Model
     public function scopeActive($query)
     {
         return $query->where('status', self::STATUS_ACTIVE);
-    }
-
-    public static function createEmpty()
-    {
-        $class = get_called_class();
-        $user_id = auth()->user()->id;
-        $model = $class::where('created_by', $user_id)->where('status', $class::STATUS_CREATION)->first();
-
-        if ($model) {
-            return $model;
-        }
-
-        $model = new $class;
-        $model->created_by = $user_id;
-        $model->save();
-
-        return $model;
-    }
-
-    public static function findModel($id)
-    {
-        $class = get_called_class();
-        $model = $class::where('id', $id)->first();
-
-        if ($model) {
-            return $model;
-        }
-
-        throw new APIException(['message' => __('base::responses.404')], 404);
     }
 }

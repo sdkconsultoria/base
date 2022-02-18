@@ -21,7 +21,7 @@ trait SearchableTrait
             $parsed_options['filter_value'] = $request->input($parsed_options['name']);
 
             if ($parsed_options['filter_value']) {
-                $query = $this->applyFilters($query, $parsed_options);
+                $this->applyFilters($query, $parsed_options);
             }
         }
 
@@ -72,7 +72,7 @@ trait SearchableTrait
                 }
             });
         } else {
-            $query = $this->applyFilterToQuery($query, $parsed_options);
+            $this->applyFilterToQuery($query, $parsed_options);
         }
 
         return $query;
@@ -80,17 +80,15 @@ trait SearchableTrait
 
     private function applyFilterToQuery(&$query, $parsed_options)
     {
-        switch ($parsed_options['type']) {
-            case 'like':
-                $query->where($parsed_options['column'], 'like', "%{$parsed_options['filter_value']}%");
-                break;
 
+        switch ($parsed_options['type']) {
             case 'equals':
                 $query->where($parsed_options['column'], $parsed_options['filter_value']);
                 break;
-
+            case 'like':
             default:
-                // code...
+            // dump($parsed_options);
+                $query->where($parsed_options['column'], 'like', "%{$parsed_options['filter_value']}%");
                 break;
         }
     }

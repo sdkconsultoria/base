@@ -21,7 +21,7 @@ trait ApiControllerTrait
         $model = new $this->model;
         $model->isAuthorize('viewAny');
 
-        $query = $model;
+        $query = $model::where('status', $model::STATUS_ACTIVE);
         $query = $this->searchable($query, $request);
         $query = $this->applyOrderByToQuery($query, $request->input('order'));
         $query = $query->get();

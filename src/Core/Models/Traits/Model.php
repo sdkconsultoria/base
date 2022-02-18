@@ -18,56 +18,6 @@ trait Model
         parent::save($options);
     }
 
-    public function getModelAttributes(string $rules = 'getValidationRules', $request = '') : array
-    {
-        $full_attributes = $this->getModelAttributesFromRules($rules, $request);
-
-        return $this->convertModelAttributesToArray($full_attributes, $this);
-    }
-
-    public function getModelAttributesFromCreateRules()
-    {
-        return $this->getModelAttributesFromRules();
-    }
-
-    public function getModelAttributesFromRules(string $rules = 'getValidationRules', $request = '') : array
-    {
-        $rules_array = $this->$rules($request);
-        $attributes = [];
-
-        foreach ($rules_array as $attribute => $rule) {
-            array_push($attributes, $attribute);
-        }
-
-        return $attributes;
-    }
-
-    public function getModelAttributesTranslatable(array $full_attributes) : array
-    {
-        unset($full_attributes['identifier']);
-        $full_attributes = $this->convertModelAttributesToArray($full_attributes, $this->getTranslatableModel());
-
-        $full_attributes['identifier'] = $this->identifier;
-
-        return $full_attributes;
-    }
-
-    public function convertModelAttributesToArray(array $attributes, EloquentModel $model) : array
-    {
-        $attributes_array = [];
-
-        foreach ($attributes as $attribute) {
-            $attributes_array[$attribute] = $model->$attribute;
-        }
-
-        return $attributes_array;
-    }
-
-    public function getValidationRules($request = '') : array
-    {
-        return [];
-    }
-
     public static function findModelOrCreate() : EloquentModel
     {
         $model = get_called_class()::where('created_by', auth()->user()->id)
@@ -93,46 +43,6 @@ trait Model
         }
 
         return $model;
-    }
-
-    public function loadDataFromCreateRequest(Request $request) : void
-    {
-        $create_attributes = $this->getModelAttributesFromCreateRules();
-        $valid_attributes = $this->loadValidFieldsFromRequest($request, $create_attributes);
-
-        $this->loadDataFromRequest($request, $valid_attributes);
-    }
-
-    public function loadDataFromRequest(Request $request, array $atributes) : void
-    {
-        $this->assignValuesToModel($atributes, $this);
-    }
-
-    private function loadValidFieldsFromRequest(Request $request, array $attributes) : array
-    {
-        $valid_values = [];
-
-        foreach ($request->all() as $attribute => $value) {
-            if (in_array($attribute, $attributes)) {
-                $valid_values[$attribute] = $value;
-            }
-        }
-
-        return $valid_values;
-    }
-
-    private function assignValuesToModel(array $values, EloquentModel &$model ) : EloquentModel
-    {
-        foreach ($values as $attribute => $value) {
-            $model->$attribute = $value;
-        }
-
-        return $model;
-    }
-
-    public function getApiEndpoint()
-    {
-        return strtolower(class_basename($this));
     }
 
     public function getTableColumns()

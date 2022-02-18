@@ -15,7 +15,6 @@ class CreateBlogsTable extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->commonFields();
-            $table->string('identifier')->unique()->nullable();
             $table->string('title')->nullable();
             $table->string('subtitle')->nullable();
             $table->string('description')->nullable();

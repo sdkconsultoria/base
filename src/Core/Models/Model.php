@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Sdkconsultoria\Base\Core\Models\Traits\Model as TraitBaseModel;
+use Sdkconsultoria\Base\Core\Models\Traits\Authorize;
 
 abstract class Model extends BaseModel
 {
     use HasFactory;
     use TraitBaseModel;
+    use Authorize;
     use SoftDeletes;
 
     public const DEFAULT_SEARCH = 'like';

@@ -18,31 +18,6 @@ trait Model
         parent::save($options);
     }
 
-    public function isAuthorize(string $action)
-    {
-        $auth_user = auth()->user();
-        $permision = $this->getPermissionName($action);
-
-        if ($auth_user->can($permision)) {
-            return;
-        }
-
-        $is_super_admin = $auth_user->hasRole('super_admin');
-
-        if ($is_super_admin) {
-            return;
-        }
-
-        throw new APIException(['message' => __('base::responses.403')], 403);
-    }
-
-    public function getPermissionName(string $action) : string
-    {
-        $resouce = Str::snake(class_basename($this));
-
-        return "$resouce:$action";
-    }
-
     public function getModelAttributes(string $rules = 'getValidationRules', $request = '') : array
     {
         $full_attributes = $this->getModelAttributesFromRules($rules, $request);

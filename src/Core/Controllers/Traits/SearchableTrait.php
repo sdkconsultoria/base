@@ -87,7 +87,6 @@ trait SearchableTrait
                 break;
             case 'like':
             default:
-            // dump($parsed_options);
                 $query->where($parsed_options['column'], 'like', "%{$parsed_options['filter_value']}%");
                 break;
         }

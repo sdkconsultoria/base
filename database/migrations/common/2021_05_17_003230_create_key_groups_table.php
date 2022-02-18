@@ -16,6 +16,7 @@ class CreateKeyGroupsTable extends Migration
         Schema::create('key_groups', function (Blueprint $table) {
             $table->commonFields();
             $table->string('identifier')->nullable();
+            $table->string('name')->nullable();
         });
     }
 

@@ -17,6 +17,10 @@ class CreateBlogPostsTable extends Migration
             $table->commonFields();
             $table->string('identifier')->unique()->nullable();
             $table->foreignId('blog_id')->nullable()->constrained();
+            $table->string('title')->nullable();
+            $table->string('subtitle')->nullable();
+            $table->string('description')->nullable();
+            $table->string('short_description')->nullable();
         });
     }
 

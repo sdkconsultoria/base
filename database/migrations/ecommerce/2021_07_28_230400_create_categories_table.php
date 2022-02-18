@@ -17,6 +17,9 @@ class CreateCategoriesTable extends Migration
             $table->commonFields();
             $table->string('identifier')->unique()->nullable();
             $table->foreignId('category_id')->constrained()->nullable();
+            $table->string('name');
+            $table->string('seoname');
+            $table->text('description');
         });
     }
 

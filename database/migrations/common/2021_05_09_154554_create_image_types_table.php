@@ -16,6 +16,7 @@ class CreateImageTypesTable extends Migration
         Schema::create('image_types', function (Blueprint $table) {
             $table->commonFields();
             $table->string('identifier')->unique()->nullable();
+            $table->string('name')->nullable();
             $table->string('imageable_id')->nullable();
             $table->string('imageable_type')->nullable();
         });

@@ -15,8 +15,9 @@ class CreateCompaniesTable extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->commonFields();
-            $table->string('identifier')->unique()->nullable();
-        });
+            $table->string('name');
+            $table->string('seoname');
+            $table->text('description');        });
     }
 
     /**

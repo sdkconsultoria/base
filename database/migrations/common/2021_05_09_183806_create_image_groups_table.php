@@ -16,6 +16,7 @@ class CreateImageGroupsTable extends Migration
         Schema::create('image_groups', function (Blueprint $table) {
             $table->commonFields();
             $table->string('identifier')->unique()->nullable();
+            $table->string('name')->nullable();
         });
     }
 

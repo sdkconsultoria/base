@@ -15,7 +15,7 @@ class CreateTagsTable extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->commonFields();
-            $table->string('identifier')->nullable();
+            $table->string('name')->nullable();
         });
     }
 

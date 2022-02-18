@@ -16,6 +16,12 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->commonFields();
             $table->string('identifier')->unique()->nullable();
+            $table->string('name');
+            $table->string('seoname');
+            $table->text('description');
+            $table->string('short_description');
+            $table->double('price')->nullable();
+            $table->double('cost_price')->nullable();
         });
     }
 

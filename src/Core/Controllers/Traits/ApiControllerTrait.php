@@ -21,7 +21,7 @@ trait ApiControllerTrait
         $model = new $this->model;
         $model->isAuthorize('viewAny');
 
-        $query = $model::with('translate');
+        $query = $model;
         $query = $this->searchable($query, $request);
         $query = $this->applyOrderByToQuery($query, $request->input('order'));
         $query = $query->get();
@@ -35,7 +35,7 @@ trait ApiControllerTrait
         $model->isAuthorize('view');
 
         return response()
-            ->json(['model' => $model->getFullAttributes()]);
+            ->json(['model' => $model->getAttributes()]);
     }
 
     public function storage(Request $request)
@@ -46,14 +46,8 @@ trait ApiControllerTrait
         $model->status = $model::STATUS_ACTIVE;
         $model->save();
 
-        if ($model->isTranstlatableModel()) {
-            $translate_model = $model->getTranslatableModel();
-            $translate_model->status = $translate_model::STATUS_ACTIVE;
-            $translate_model->save();
-        }
-
         return response()
-            ->json(['model' => $model->getFullAttributes()]);
+            ->json(['model' => $model->getAttributes()]);
     }
 
     public function update(Request $request, $id)
@@ -63,13 +57,8 @@ trait ApiControllerTrait
         $model->loadDataFromCreateRequest($request);
         $model->save();
 
-        if ($model->isTranstlatableModel()) {
-            $translate_model = $model->getTranslatableModel();
-            $translate_model->save();
-        }
-
         return response()
-            ->json(['model' => $model->getFullAttributes()]);
+            ->json(['model' => $model->getAttributes()]);
     }
 
     public function delete($id)
@@ -79,13 +68,7 @@ trait ApiControllerTrait
         $model->status = $model::STATUS_DELETED;
         $model->delete();
 
-        if ($model->isTranstlatableModel()) {
-            $translate_model = $model->getTranslatableModel();
-            $translate_model->status = $translate_model::STATUS_DELETED;
-            $translate_model->delete();
-        }
-
         return response()
-            ->json(['model' => $model->getFullAttributes()]);
+            ->json(['model' => $model->getAttributes()]);
     }
 }

@@ -32,7 +32,7 @@ trait View
         $response = $this->get('/api/v1/' . $model->getApiEndpoint() . '/' . $model->id);
         $user->revokePermissionTo($permision);
         $response->assertStatus(200);
-        $response->assertJsonFragment($model->getFullAttributes());
+        $response->assertJsonFragment($model->getAttributes());
 
     }
 
@@ -47,6 +47,6 @@ trait View
 
         $response = $this->get('/api/v1/' . $model->getApiEndpoint() . '/' . $model->id);
         $response->assertStatus(200);
-        $response->assertJsonFragment($model->getFullAttributes());
+        $response->assertJsonFragment($model->getAttributes());
     }
 }

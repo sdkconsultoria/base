@@ -43,28 +43,9 @@ trait Model
         return "$resouce:$action";
     }
 
-    public function getFullAttributes()
-    {
-        if ($this->isTranstlatableModel()) {
-
-            $translate_model =  $this->getTranslatableModel()->getAttributes();
-
-            return array_merge(
-                $translate_model,
-                ['identifier' => $this->identifier]
-            );
-        }
-
-        return $this->getAttributes();
-    }
-
     public function getModelAttributes(string $rules = 'getValidationRules', $request = '') : array
     {
         $full_attributes = $this->getModelAttributesFromRules($rules, $request);
-
-        if ($this->isTranstlatableModel()) {
-            return $this->getModelAttributesTranslatable($full_attributes);
-        }
 
         return $this->convertModelAttributesToArray($full_attributes, $this);
     }
@@ -84,11 +65,6 @@ trait Model
         }
 
         return $attributes;
-    }
-
-    public function isTranstlatableModel()
-    {
-        return method_exists($this, 'getTranslatableClassOrFail');
     }
 
     public function getModelAttributesTranslatable(array $full_attributes) : array
@@ -141,15 +117,6 @@ trait Model
             $model->save();
         }
 
-        if ($model->isTranstlatableModel()) {
-            $translate_model = $model->getTranslatableModel();
-            $translate_model->translatable_id = $model->id;
-            $translate_model->created_by = auth()->user()->id;
-            $translate_model->language = config('app.locale');
-            $translate_model->status = $translate_model::STATUS_CREATION;
-            $translate_model->save();
-        }
-
         return $model;
     }
 
@@ -163,13 +130,7 @@ trait Model
 
     public function loadDataFromRequest(Request $request, array $atributes) : void
     {
-        if ($this->isTranstlatableModel()) {
-            $translatable_model =  $this->getTranslatableModel();
-            $this->assignValuesToModel(['identifier' => $request->input('identifier')], $this);
-            unset($atributes['identifier']);
-            $translatable_model = $this->assignValuesToModel($atributes, $translatable_model);
-            $translatable_model->save();
-        }
+        $this->assignValuesToModel($atributes, $this);
     }
 
     private function loadValidFieldsFromRequest(Request $request, array $attributes) : array
@@ -241,8 +202,6 @@ trait Model
 
         throw new APIException(['message' => __('base::responses.404')], 404);
     }
-
-    // private function findModel
 
     /**
      * Obtiene los atributos por los cuales que se puede buscar

@@ -9,13 +9,9 @@ use Sdkconsultoria\Base\Core\Models\Traits\HasTranslate;
 
 class Blog extends BaseModel
 {
-    use HasTranslate;
-
     public function getValidationRules($request = '') : array
     {
         return [
-            'identifier' => 'required',
-            'language' => 'required',
             'title' => 'required',
             'subtitle' => 'required',
             'description' => 'required',
@@ -25,7 +21,6 @@ class Blog extends BaseModel
     public static function getFilters()
     {
         return [
-            'identifier',
             'title',
             'subtitle',
         ];

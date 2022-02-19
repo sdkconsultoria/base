@@ -5,6 +5,7 @@ namespace Sdkconsultoria\Base\Core\Models\Traits;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Facades\Validator;
+use Sdkconsultoria\Base\Exceptions\APIException;
 
 trait LoadFromRequest
 {
@@ -85,7 +86,7 @@ trait LoadFromRequest
         $validator = Validator::make($request->all(), $rules, [], $this->getLabels());
 
         if ($validator->fails()) {
-            dd($validator->errors());
+            throw new APIException($validator->errors()->toArray(), 403);
         }
     }
 }

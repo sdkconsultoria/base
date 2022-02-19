@@ -82,7 +82,7 @@ trait LoadFromRequest
 
     public function validateRequest(Request $request, array $rules)
     {
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($request->all(), $rules, [], $this->getLabels());
 
         if ($validator->fails()) {
             dd($validator->errors());

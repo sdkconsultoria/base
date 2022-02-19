@@ -4,6 +4,7 @@ namespace Sdkconsultoria\Base\Core\Models\Traits;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
+use Illuminate\Support\Facades\Validator;
 
 trait LoadFromRequest
 {
@@ -24,6 +25,7 @@ trait LoadFromRequest
 
     public function loadDataFromCreateRequest(Request $request) : void
     {
+        $this->validateRequest($request, $this->getValidationRules());
         $attributes = $this->getModelAttributesFromRules();
         $valid_attributes = $this->loadValidFieldsFromRequest($request, $attributes);
 
@@ -32,6 +34,7 @@ trait LoadFromRequest
 
     public function loadDataFromUpdateRequest(Request $request) : void
     {
+        $this->validateRequest($request, $this->getUpdateValidationRules());
         $attributes = $this->getModelAttributesFromRules('getUpdateValidationRules');
         $valid_attributes = $this->loadValidFieldsFromRequest($request, $attributes);
 
@@ -75,5 +78,14 @@ trait LoadFromRequest
         }
 
         return $attributes;
+    }
+
+    public function validateRequest(Request $request, array $rules)
+    {
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            dd($validator->errors());
+        }
     }
 }

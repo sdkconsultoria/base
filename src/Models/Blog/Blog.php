@@ -18,11 +18,20 @@ class Blog extends BaseModel
         ];
     }
 
-    public static function getFilters()
+    public static function getFilters() : array
     {
         return [
             'title',
             'subtitle',
+        ];
+    }
+
+    public function getLabels() : array
+    {
+        return [
+            'title' => 'Título',
+            'subtitle' => 'Subtitulo',
+            'description' => 'Descripción',
         ];
     }
 }

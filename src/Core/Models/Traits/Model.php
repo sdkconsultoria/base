@@ -18,6 +18,18 @@ trait Model
         parent::save($options);
     }
 
+    public static function findModel($id)
+    {
+        $class = get_called_class();
+        $model = $class::where('id', $id)->first();
+
+        if ($model) {
+            return $model;
+        }
+
+        throw new APIException(['message' => __('base::responses.404')], 404);
+    }
+
     public static function findModelOrCreate() : EloquentModel
     {
         $model = get_called_class()::where('created_by', auth()->user()->id)
@@ -59,47 +71,19 @@ trait Model
         return false;
     }
 
-    public static function createEmpty()
+    public function createdBy()
     {
-        $class = get_called_class();
-        $user_id = auth()->user()->id;
-        $model = $class::where('created_by', $user_id)->where('status', $class::STATUS_CREATION)->first();
-
-        if ($model) {
-            return $model;
-        }
-
-        $model = new $class;
-        $model->created_by = $user_id;
-        $model->save();
-
-        return $model;
+        return $this->hasOne('App\Models\User', 'id', 'created_by');
     }
 
-    public static function findModel($id)
+    public function updatedBy()
     {
-        $class = get_called_class();
-        $model = $class::where('id', $id)->first();
-
-        if ($model) {
-            return $model;
-        }
-
-        throw new APIException(['message' => __('base::responses.404')], 404);
+        return $this->hasOne('App\Models\User', 'id', 'updated_by');
     }
 
-    /**
-     * Obtiene los atributos por los cuales que se puede buscar
-     * @return array
-     */
-    public function getFiltersAttribute()
+    public function deletedBy()
     {
-        return [
-            'status' => [
-                'type' => 'dropdown',
-                'options' => $this->getStatus()
-            ]
-        ];
+        return $this->hasOne('App\Models\User', 'id', 'updated_by');
     }
 
     /**
@@ -139,26 +123,6 @@ trait Model
     }
 
     /**
-     * Check if the selected filter exists.
-     * @param  string  $attr searched filter
-     * @return mixed         current filter or false if not exist
-     */
-    public function hasFilter($attr)
-    {
-        if (array_key_exists($attr, $this->filters)) {
-            return $this->filters[$attr];
-        }
-
-        foreach ($this->filters as $key => $value) {
-            if ($value == $attr) {
-                return $attr;
-            }
-        }
-
-        return false;
-    }
-
-    /**
      * Genera un Slug el cual puede ser unico o no
      * @param  string  $attribute    atributo del cual se debe generar el slug
      * @param  string  $slug         atributo donde se va a guardar el slig
@@ -176,33 +140,6 @@ trait Model
                 }
             }
         }
-    }
-
-    /**
-     * Devuelve el usuario que creo el elemento
-     * @return App\Models\User
-     */
-    public function createdBy()
-    {
-        return $this->hasOne('App\Models\User', 'id', 'created_by');
-    }
-
-    /**
-     * Devuelve el ultimo usuario que modifico este elemento
-     * @return App\Models\User
-     */
-    public function updatedBy()
-    {
-        return $this->hasOne('App\Models\User', 'id', 'updated_by');
-    }
-
-    /**
-     * Devuelve usuario que elimino este elemento
-     * @return App\Models\User
-     */
-    public function deletedBy()
-    {
-        return $this->hasOne('App\Models\User', 'id', 'updated_by');
     }
 
     /**
@@ -309,16 +246,6 @@ trait Model
     public function getKeyId()
     {
         return $this->{$this::$keyId};
-    }
-
-    public static function updateRules($request)
-    {
-        return get_called_class()::rules($request);
-    }
-
-    public static function rules($request)
-    {
-        return [];
     }
 
     public function scopeStatus($query, $type)

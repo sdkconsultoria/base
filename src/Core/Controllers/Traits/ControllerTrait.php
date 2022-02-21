@@ -4,9 +4,6 @@ namespace Sdkconsultoria\Base\Traits;
 
 use Illuminate\Http\Request;
 
-/**
- * Permite crear REST API rapidamente
- */
 trait ControllerTrait
 {
     protected function loadData(&$model, $request)

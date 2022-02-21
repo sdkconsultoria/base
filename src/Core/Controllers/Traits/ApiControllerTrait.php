@@ -5,8 +5,6 @@ namespace Sdkconsultoria\Base\Core\Controllers\Traits;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Support\Str;
-use Sdkconsultoria\Base\Core\Controllers\Traits\SearchableTrait;
-use Sdkconsultoria\Base\Core\Controllers\Traits\OrderableTrait;
 
 /**
  * Permite crear REST API rapidamente
@@ -15,6 +13,7 @@ trait ApiControllerTrait
 {
     use SearchableTrait;
     use OrderableTrait;
+    use PaginationTrait;
 
     public function viewAny(Request $request)
     {
@@ -24,9 +23,8 @@ trait ApiControllerTrait
         $query = $model::where('status', $model::STATUS_ACTIVE);
         $query = $this->searchable($query, $request);
         $query = $this->applyOrderByToQuery($query, $request->input('order'));
-        $query = $query->get();
 
-        return $query;
+        return $this->setPagination($query, $request);
     }
 
     public function view(Request $request, $id)

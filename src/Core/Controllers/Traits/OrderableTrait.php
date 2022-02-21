@@ -6,9 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Support\Str;
 
-/**
- * Permite crear REST API rapidamente
- */
 trait OrderableTrait
 {
     private function applyOrderByToQuery($query, $order)

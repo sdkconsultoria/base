@@ -81,11 +81,10 @@ class InstallCommand extends Command
         //     continue;
         // }
         (new Filesystem)->ensureDirectoryExists(app_path('stubs'));
-        copy(__DIR__.'/../../../stubs/models/User.php', base_path('app/Models/User.php'));
-        copy(__DIR__.'/../../../stubs/seeders/UserSeeder.php', base_path('database/seeders/UserSeeder.php'));
-        copy(__DIR__.'/../../../stubs/factories/UserFactory.php', base_path('database/factories/UserFactory.php'));
-        copy(__DIR__.'/../../../stubs/webpack.mix.js', base_path('webpack.mix.js'));
-        copy(__DIR__.'/../../../stubs/tailwind.config.js', base_path('tailwind.config.js'));
+        $this->writteUserChanges();
+        $this->writteTailwindConfig();
+        $this->writteConfig();
+
         // copy(__DIR__.'/../../../stubs/routes/web.php', base_path('routes/web.php'));
         // copy(__DIR__.'/../../../stubs/.gitignore', base_path('.gitignore'));
         // copy(__DIR__.'/../../../stubs/.env.example', base_path('.env.example'));
@@ -93,13 +92,31 @@ class InstallCommand extends Command
 
         // (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/stubs', base_path('stubs'));
         // (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/views', base_path('resources/views'));
-        // (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/lang', base_path('resources/lang'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/lang', base_path('resources/lang'));
         // (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/back', base_path('resources/back'));
         // (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/front', base_path('resources/front'));
         // (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/public/images', base_path('public/images'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/app/', base_path('app'));
-        // (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/config/', base_path('config'));
+
         // $this->replaceInFile('/home', '/dashboard', resource_path('views/welcome.blade.php'));
+    }
+
+    private function writteUserChanges()
+    {
+        copy(__DIR__.'/../../../stubs/models/User.php', base_path('app/Models/User.php'));
+        copy(__DIR__.'/../../../stubs/seeders/UserSeeder.php', base_path('database/seeders/UserSeeder.php'));
+        copy(__DIR__.'/../../../stubs/factories/UserFactory.php', base_path('database/factories/UserFactory.php'));
+    }
+
+    private function writteTailwindConfig()
+    {
+        copy(__DIR__.'/../../../stubs/webpack.mix.js', base_path('webpack.mix.js'));
+        copy(__DIR__.'/../../../stubs/tailwind.config.js', base_path('tailwind.config.js'));
+    }
+
+    private function writteConfig()
+    {
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/app/', base_path('app'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/config/', base_path('config'));
     }
 
     /**

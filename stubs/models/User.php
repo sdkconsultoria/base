@@ -3,19 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
-use Sdkconsultoria\Base\Traits\BaseModel as TBaseModel;
+use Sdkconsultoria\Base\Core\Models\Traits\BaseModel as TraitBaseModel;
 use Sdkconsultoria\Base\Traits\ImageTrait;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Sdkconsultoria\Base\Models\Auth\UserSocial;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, TBaseModel, ImageTrait;
+    use HasApiTokens, Notifiable, HasRoles, TraitBaseModel, ImageTrait;
     use TwoFactorAuthenticatable;
 
     public const STATUS_DELETED = 0;
@@ -23,9 +22,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public const STATUS_DISABLED = 15;
     public const STATUS_CREATION = 20;
     public const STATUS_ACTIVE = 30;
-
-    protected static $package = 'base';
-    public static $keyId = 'id';
 
     /**
      * Obtiene los atributos por los cuales que se puede buscar
@@ -94,7 +90,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * The attributes that are mass assignable.
      *
-     * @var string[]
+     * @var array<int, string>
      */
     protected $fillable = [
         'name',
@@ -107,7 +103,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $hidden = [
         'password',
@@ -117,7 +113,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * The attributes that should be cast.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'email_verified_at' => 'datetime',

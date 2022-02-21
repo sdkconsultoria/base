@@ -6,8 +6,17 @@ use Illuminate\Http\Request;
 
 trait PaginationTrait
 {
+    protected $pagination = 1;
+
     protected function setPagination($query, Request $request)
     {
-        return $query->paginate(2);
+        $pages = $this->getElementsPerPage($request);
+
+        return $query->paginate($pages)->appends($request->all());
+    }
+
+    protected function getElementsPerPage(Request $request)
+    {
+        return $request->pagination ?? $this->pagination;
     }
 }

@@ -24,11 +24,11 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->registerRoutes();
         $this->registerCommands();
         // $this->enableQueryLogs();
-        // Route::mixin(new AuthRouteMethods);
+        Route::mixin(new AuthRouteMethods);
 
 
-        // $this->loadViewsFrom(__DIR__.'/../views', 'base');
-        // $this->loadTranslationsFrom(__DIR__.'/../lang', 'base');
+        $this->loadViewsFrom(__DIR__.'/../views', 'base');
+        $this->loadTranslationsFrom(__DIR__.'/../lang', 'base');
 
         // $this->publishes([
         //     __DIR__.'/../views' => resource_path('views/vendor/base'),
@@ -46,9 +46,9 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             __DIR__ . '/../config/base.php', 'base'
         );
 
-        // $this->app->bind('base',function(){
-        //     return new Base();
-        // });
+        $this->app->bind('base',function(){
+            return new Base();
+        });
     }
 
     private function registerMigrationsMacro()
@@ -125,7 +125,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     private function registerRoutes()
     {
         $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
-        // $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
     }
 
     private function registerCommands() : void

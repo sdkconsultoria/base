@@ -5,6 +5,7 @@ namespace Sdkconsultoria\Base\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 class InstallCommand extends Command
 {
@@ -40,7 +41,15 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->copyStubs();
+        $this->updateNode();
 
+
+        $this->info('SDK Base se instalo correctamente.');
+        $this->comment('Ejecuta el comando "npm install && npm run sdk && npm run dev" para generar tus assets.');
+    }
+
+    private function updateNode()
+    {
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
@@ -66,9 +75,6 @@ class InstallCommand extends Command
                 'sdk' => 'cd vendor/sdkconsultoria/base && npm install',
             ] + $scripts;
         });
-
-        $this->info('SDK Base se instalo correctamente.');
-        $this->comment('Ejecuta el comando "npm install && npm run sdk && npm run dev" para generar tus assets.');
     }
 
     /**
@@ -81,7 +87,7 @@ class InstallCommand extends Command
         //     continue;
         // }
         (new Filesystem)->ensureDirectoryExists(app_path('stubs'));
-        $this->writteUserChanges();
+        // $this->writteUserChanges();
         $this->writteTailwindConfig();
         $this->writteConfig();
 
@@ -92,7 +98,7 @@ class InstallCommand extends Command
 
         // (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/stubs', base_path('stubs'));
         // (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/views', base_path('resources/views'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/lang', base_path('resources/lang'));
+        // (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/lang', base_path('resources/lang'));
         // (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/back', base_path('resources/back'));
         // (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/resources/front', base_path('resources/front'));
         // (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/public/images', base_path('public/images'));

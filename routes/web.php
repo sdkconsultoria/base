@@ -1,18 +1,18 @@
 <?php
 //
-// Route::namespace('\Sdkconsultoria\Base\Http\Controllers\Admin')
-// ->prefix('admin')
-// ->middleware(['web'])
-// ->group(function () {
-//     Route::get('social-auth/{type}', 'SocialAuthController@login')->name('social-auth');
-//     Route::get('social-link/{type}', 'SocialAuthController@login')->name('social-auth-link');
+Route::namespace('\Sdkconsultoria\Base\Http\Controllers\Admin')
+->prefix('admin')
+->middleware(['web'])
+->group(function () {
+    Route::get('social-auth/{type}', 'SocialAuthController@login')->name('social-auth');
+    Route::get('social-link/{type}', 'SocialAuthController@login')->name('social-auth-link');
 //     Route::post('add-to-cart/{type}', 'ShoppingCartController@add')->name('cart.add');
 //     Route::post('add-to-cart/{type}', 'ShoppingCartController@remove')->name('cart.remove');
 //     Route::post('add-to-whishlist/{type}', 'WhishlistController@add')->name('whishlist.add');
 //     Route::post('add-to-whishlist/{type}', 'WhishlistController@remove')->name('whishlist.remove');
 //
-//     Route::middleware(['auth'])->group(function () {
-//         Route::get('/', 'DashboardController@index')->name('dashboard');
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/', 'DashboardController@index')->name('dashboard');
 //         Route::get('my-account', 'UserController@myAccount')->name('my_account');
 //
 //         Route::middleware(['role:admin'])->group(function () {
@@ -47,5 +47,5 @@
 //             Route::post('related/{id}/{model}/{id_2}/{model_2}', 'RelatedController@create')->name('related.create');
 //             Route::delete('related/{id}/{model}/{id_2}/{model_2}', 'RelatedController@delete')->name('related.delete');
 //         });
-//     });
-// });
+    });
+});

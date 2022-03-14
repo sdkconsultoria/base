@@ -91,6 +91,11 @@ trait Model
         return [];
     }
 
+    public static function getFilters() : array
+    {
+        return [];
+    }
+
     /**
      * Obtiene el nombre limpio de un atributo.
      *

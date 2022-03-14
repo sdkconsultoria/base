@@ -1,6 +1,6 @@
 <?php
 
-namespace Sdkconsultoria\Base\Tests\Feature\Models;
+namespace Sdkconsultoria\Base\Tests\Feature\Models\Blog;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;

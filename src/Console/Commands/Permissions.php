@@ -5,7 +5,6 @@ namespace Sdkconsultoria\Base\Console\Commands;
 use Illuminate\Console\Command;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\Hash;
 
 class Permissions extends Command
 {
@@ -42,7 +41,6 @@ class Permissions extends Command
     {
         $this->createRoles();
         $this->createPermissions();
-        $this->createDefaultUser();
 
         return Command::SUCCESS;
     }
@@ -111,19 +109,4 @@ class Permissions extends Command
     {
         return Permission::firstOrCreate(['name' => "{$model}:{$permision}"]);
     }
-
-    private function createDefaultUser()
-    {
-        $user = new (config('auth.providers.users.model'));
-
-        $user->name = 'admin';
-        $user->lastname = 'sdk';
-        $user->email = 'admin@sdkconsultoria.com';
-        $user->password = Hash::make('password');
-        $user->status = config('auth.providers.users.model')::STATUS_ACTIVE;
-        $user->save();
-
-        $user->assignRole(['super-admin']);
-    }
-
 }

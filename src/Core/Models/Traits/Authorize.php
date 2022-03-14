@@ -16,7 +16,7 @@ trait Authorize
             return;
         }
 
-        $is_super_admin = $auth_user->hasRole('super_admin');
+        $is_super_admin = $auth_user->hasRole('super-admin');
 
         if ($is_super_admin) {
             return;

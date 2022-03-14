@@ -10,7 +10,7 @@ trait LoginUser
     protected function loginSuperAdmin()
     {
         $user = $this->findOrCreateUser('admin@sdkconsultoria.com');
-        $user->assignRole('super_admin');
+        $user->assignRole('super-admin');
 
         $this->actingAs($user);
 

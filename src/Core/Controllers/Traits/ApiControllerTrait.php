@@ -3,8 +3,6 @@
 namespace Sdkconsultoria\Base\Core\Controllers\Traits;
 
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Validation\Factory;
-use Illuminate\Support\Str;
 
 /**
  * Permite crear REST API rapidamente

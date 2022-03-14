@@ -2,43 +2,34 @@
 
 namespace Sdkconsultoria\Base\Models\Blog;
 
-use Sdkconsultoria\Base\Models\Model as BaseModel;
-use Sdkconsultoria\Base\Traits\TranslateModel;
-use Sdkconsultoria\Base\Traits\TagTrait;
+use Sdkconsultoria\Base\Core\Models\Model as BaseModel;
+// use Sdkconsultoria\Base\Traits\TagTrait;
 use Illuminate\Validation\Rule;
-use Sdkconsultoria\Base\Traits\RelatedModelTrait;
 
 class BlogPost extends BaseModel
 {
-    use TranslateModel;
-    use TagTrait;
-    use RelatedModelTrait;
-
-    private $translateClass = BlogPostTranslate::class;
-    protected static $package = 'base';
-
-    /**
-     * Validaciones para crear el modelo.
-     *
-     * @return array
-     */
-    public static function rules($request)
+    public function getValidationRules($request = '') : array
     {
         return [
-            'blog_posts_identifier' => [
-                'required',
-                Rule::unique('blog_posts', 'identifier')->ignoreModel($request->model)
-            ],
-            'blog_posts_blog_id' => 'required',
+            'title' => 'required',
+            'subtitle' => 'required',
+            'description' => 'required',
+            'blog_id' => 'required',
+            // 'blog_posts_identifier' => [
+            //     'required',
+            //     Rule::unique('blog_posts', 'identifier')->ignoreModel($request->model)
+            // ],
         ];
     }
 
-    /**
-     * Obtiene el blog de este post.
-     */
-    public function blog()
+    public function getLabels() : array
     {
-        return $this->belongsTo(Blog::class);
+        return [
+            'title' => 'Título',
+            'subtitle' => 'Subtitulo',
+            'description' => 'Descripción',
+            'blog_id' => 'Blog',
+        ];
     }
 
     public function select(string $type)
@@ -48,5 +39,10 @@ class BlogPost extends BaseModel
                 return Blog::active()->get()->pluck('identifier', 'id')->toArray();
                 break;
         }
+    }
+
+    public function blog()
+    {
+        return $this->belongsTo(Blog::class);
     }
 }

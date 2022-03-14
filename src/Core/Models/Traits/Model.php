@@ -86,6 +86,11 @@ trait Model
         return $this->hasOne('App\Models\User', 'id', 'updated_by');
     }
 
+    public function getLabels() : array
+    {
+        return [];
+    }
+
     /**
      * Obtiene el nombre limpio de un atributo.
      *

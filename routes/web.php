@@ -15,7 +15,7 @@ Route::namespace('\Sdkconsultoria\Base\Http\Controllers\Admin')
         Route::get('/', 'DashboardController@index')->name('dashboard');
 //         Route::get('my-account', 'UserController@myAccount')->name('my_account');
 //
-//         Route::middleware(['role:admin'])->group(function () {
+        // Route::middleware(['role:admin'])->group(function () {
 //             Route::resource('users', 'UserController');
 //             Route::post('save-account', 'UserController@saveAccount')->name('save.my_account');
 //             Route::post('new-token', 'UserController@createToken')->name('user.new-token');
@@ -46,6 +46,6 @@ Route::namespace('\Sdkconsultoria\Base\Http\Controllers\Admin')
 //
 //             Route::post('related/{id}/{model}/{id_2}/{model_2}', 'RelatedController@create')->name('related.create');
 //             Route::delete('related/{id}/{model}/{id_2}/{model_2}', 'RelatedController@delete')->name('related.delete');
-//         });
+        // });
     });
 });

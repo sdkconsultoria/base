@@ -120,6 +120,12 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             Route::put("{$uri}/{id}", "{$controller}@update")->name("api.{$uri}.update");
             Route::delete("{$uri}/{id}", "{$controller}@delete")->name("api.{$uri}.delete");
         });
+        Route::macro('SdkResource', function ($uri, $controller) {
+            Route::get("{$uri}", "{$controller}@viewAny")->name("{$uri}.index");
+            Route::get("{$uri}/create", "{$controller}@view")->name("{$uri}.create");
+            Route::get("{$uri}/update/{id}", "{$controller}@storage")->name("{$uri}.update");
+            Route::get("{$uri}/{id}", "{$controller}@storage")->name("{$uri}.details");
+        });
     }
 
     private function registerRoutes()

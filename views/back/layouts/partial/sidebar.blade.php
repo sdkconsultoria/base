@@ -19,81 +19,81 @@
                 [
                     'name' => __('base::models.user.plural'),
                     'icon' => Base::icon('users', ['class' => 'h-6 w-6']),
-                    'url' => 'users.index',
-                    'crud' => 'users',
+                    // 'url' => 'users.index',
+                    // 'crud' => 'users',
                 ],
-                [
-                    'name' => __('base::models.blog.plural'),
-                    'icon' => Base::icon('book-open', ['class' => 'h-6 w-6']),
-                    'items' => [
-                        [
-                            'name' => __('base::models.blog.plural'),
-                            'icon' => Base::icon('book-open', ['class' => 'h-6 w-6']),
-                            'url' => 'blogs.index',
-                            'crud' => 'blogs',
-                        ],
-                        [
-                            'name' => __('base::models.blog-post.plural'),
-                            'icon' => Base::icon('book-open', ['class' => 'h-6 w-6']),
-                            'url' => 'blog-posts.index',
-                            'crud' => 'blog-posts',
-                        ],
-                        [
-                            'name' => __('base::models.tag.plural'),
-                            'icon' => Base::icon('tag', ['class' => 'h-6 w-6']),
-                            'url' => 'tags.index',
-                            'crud' => 'tags',
-                        ],
-                    ],
-                ],
-                [
-                    'name' => __('base::models.image.plural'),
-                    'icon' => Base::icon('photograph', ['class' => 'h-6 w-6']),
-                    'items' => [
-                        [
-                            'name' => __('base::models.image-group.plural'),
-                            'icon' => Base::icon('photograph', ['class' => 'h-6 w-6']),
-                            'url' => 'image-groups.index',
-                            'crud' => 'image-groups',
-                        ],
-                        [
-                            'name' => __('base::models.image-type.plural'),
-                            'icon' => Base::icon('code', ['class' => 'h-6 w-6']),
-                            'url' => 'image-types.index',
-                            'crud' => 'image-types',
-                        ],
-                        [
-                            'name' => __('base::models.image-size.plural'),
-                            'icon' => Base::icon('template', ['class' => 'h-6 w-6']),
-                            'url' => 'image-sizes.index',
-                            'crud' => 'image-sizes',
-                        ],
-                    ],
-                ],
-                [
-                    'name' => __('base::app.config.plural'),
-                    'icon' => Base::icon('cog', ['class' => 'h-6 w-6']),
-                    'items' => [
-                        [
-                            'name' => __('base::models.key.plural'),
-                            'icon' => Base::icon('puzzle', ['class' => 'h-6 w-6']),
-                            'items' => [
-                                [
-                                    'name' => __('base::models.key.plural'),
-                                    'icon' => Base::icon('code', ['class' => 'h-6 w-6']),
-                                    'url' => 'keys.index',
-                                    'crud' => 'keys',
-                                ],
-                                [
-                                    'name' => __('base::models.key-group.plural'),
-                                    'icon' => Base::icon('puzzle', ['class' => 'h-6 w-6']),
-                                    'url' => 'key-groups.index',
-                                    'crud' => 'key-groups',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
+                // [
+                //     'name' => __('base::models.blog.plural'),
+                //     'icon' => Base::icon('book-open', ['class' => 'h-6 w-6']),
+                //     'items' => [
+                //         [
+                //             'name' => __('base::models.blog.plural'),
+                //             'icon' => Base::icon('book-open', ['class' => 'h-6 w-6']),
+                //             'url' => 'blogs.index',
+                //             'crud' => 'blogs',
+                //         ],
+                //         [
+                //             'name' => __('base::models.blog-post.plural'),
+                //             'icon' => Base::icon('book-open', ['class' => 'h-6 w-6']),
+                //             'url' => 'blog-posts.index',
+                //             'crud' => 'blog-posts',
+                //         ],
+                //         [
+                //             'name' => __('base::models.tag.plural'),
+                //             'icon' => Base::icon('tag', ['class' => 'h-6 w-6']),
+                //             'url' => 'tags.index',
+                //             'crud' => 'tags',
+                //         ],
+                //     ],
+                // ],
+                // [
+                //     'name' => __('base::models.image.plural'),
+                //     'icon' => Base::icon('photograph', ['class' => 'h-6 w-6']),
+                //     'items' => [
+                //         [
+                //             'name' => __('base::models.image-group.plural'),
+                //             'icon' => Base::icon('photograph', ['class' => 'h-6 w-6']),
+                //             'url' => 'image-groups.index',
+                //             'crud' => 'image-groups',
+                //         ],
+                //         [
+                //             'name' => __('base::models.image-type.plural'),
+                //             'icon' => Base::icon('code', ['class' => 'h-6 w-6']),
+                //             'url' => 'image-types.index',
+                //             'crud' => 'image-types',
+                //         ],
+                //         [
+                //             'name' => __('base::models.image-size.plural'),
+                //             'icon' => Base::icon('template', ['class' => 'h-6 w-6']),
+                //             'url' => 'image-sizes.index',
+                //             'crud' => 'image-sizes',
+                //         ],
+                //     ],
+                // ],
+                // [
+                //     'name' => __('base::app.config.plural'),
+                //     'icon' => Base::icon('cog', ['class' => 'h-6 w-6']),
+                //     'items' => [
+                //         [
+                //             'name' => __('base::models.key.plural'),
+                //             'icon' => Base::icon('puzzle', ['class' => 'h-6 w-6']),
+                //             'items' => [
+                //                 [
+                //                     'name' => __('base::models.key.plural'),
+                //                     'icon' => Base::icon('code', ['class' => 'h-6 w-6']),
+                //                     'url' => 'keys.index',
+                //                     'crud' => 'keys',
+                //                 ],
+                //                 [
+                //                     'name' => __('base::models.key-group.plural'),
+                //                     'icon' => Base::icon('puzzle', ['class' => 'h-6 w-6']),
+                //                     'url' => 'key-groups.index',
+                //                     'crud' => 'key-groups',
+                //                 ],
+                //             ],
+                //         ],
+                //     ],
+                // ],
             ];
 
             echo Base::menu($items);

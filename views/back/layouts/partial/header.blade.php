@@ -34,7 +34,7 @@
         </div> -->
 
         <div x-data="{ dropdownOpen: false }"  class="relative">
-            <button x-on:click="dropdownOpen = ! dropdownOpen" class="relative block h-8 w-8 rounded-full overflow-hidden shadow focus:outline-none">
+            {{-- <button x-on:click="dropdownOpen = ! dropdownOpen" class="relative block h-8 w-8 rounded-full overflow-hidden shadow focus:outline-none">
                 @php
                     $user = auth()->user();
                     $image = $user->image;
@@ -57,7 +57,7 @@
                     @csrf
                 </form>
                 <a href="#" onclick="document.getElementById('form-logout').submit()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">@lang('auth.close')</a>
-            </div>
+            </div> --}}
         </div>
     </div>
 </header>

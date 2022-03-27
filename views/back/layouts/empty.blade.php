@@ -9,7 +9,7 @@
     <title> @yield('title', config('app.name'))</title>
     <link href="{{ mix('/back.css') }}" rel="stylesheet">
 </head>
-<body class="h-screen" style="background-size: cover;background-image: url({{asset('images/default-back.jpg')}})">
+<body class="h-screen">
     @yield('content')
     <script src="{{ mix('/back.js') }}"></script>
 </body>

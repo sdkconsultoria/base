@@ -7,11 +7,11 @@
             <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
                 <div class="max-w-md mx-auto">
                     <div class="flex flex-wrap content-center justify-center">
-                        <img src="{{ asset('images/logo_sdk.png')}}" class="h-24" />
+                        <img src="{{ asset('img/logo.svg')}}" class="h-24" />
                     </div>
                     <div class="divide-y divide-gray-200">
                         <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                            <p>SDK Consultoría instalando.</p>
+                            <p>Instalando.</p>
                             <ul class="list-disc space-y-2">
                                 <li class="flex items-start">
                                     <span class="h-6 flex items-center sm:h-7">

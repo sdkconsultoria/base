@@ -13,11 +13,11 @@ Route::namespace('\Sdkconsultoria\Base\Http\Controllers\Admin')
 //
     Route::middleware(['auth'])->group(function () {
         Route::get('/', 'DashboardController@index')->name('dashboard');
-//         Route::get('my-account', 'UserController@myAccount')->name('my_account');
+        Route::get('profile', 'UserController@myAccount')->name('profile');
+        Route::post('save-profile', 'UserController@saveAccount')->name('save.profile');
 //
         // Route::middleware(['role:admin'])->group(function () {
 //             Route::resource('users', 'UserController');
-//             Route::post('save-account', 'UserController@saveAccount')->name('save.my_account');
 //             Route::post('new-token', 'UserController@createToken')->name('user.new-token');
 //             Route::delete('delete-token/{id}', 'UserController@deleteToken')->name('user.delete-token');
 //

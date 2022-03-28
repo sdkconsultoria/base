@@ -1,6 +1,6 @@
 <?php
 
-namespace Sdkconsultoria\Base\Traits;
+namespace Sdkconsultoria\Base\Core\Models\Traits;
 
 use Sdkconsultoria\Base\Models\Common\Image\Image;
 

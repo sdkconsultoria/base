@@ -8,14 +8,18 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Sdkconsultoria\Base\Core\Models\Traits\BaseModel as TraitBaseModel;
-use Sdkconsultoria\Base\Traits\ImageTrait;
+use Sdkconsultoria\Base\Core\Models\Traits\ImageTrait;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Sdkconsultoria\Base\Models\Auth\UserSocial;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, Notifiable, HasRoles, TraitBaseModel, ImageTrait;
+    use HasApiTokens;
+    use ImageTrait;
+    use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasRoles;
+    use TraitBaseModel;
 
     public const STATUS_DELETED = 0;
     public const STATUS_BLOCKED = 10;

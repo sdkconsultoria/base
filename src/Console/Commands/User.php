@@ -46,8 +46,7 @@ class User extends Command
             $this->info("token: " . $user->createToken('token')->plainTextToken);
         }
 
-        return 0;       ;
-
+        return 0;
     }
 
     private function createUser()
@@ -82,6 +81,5 @@ class User extends Command
         $role = $this->argument('role');
 
         $user->assignRole([$role]);
-        dd($user->hasRole($role));
     }
 }

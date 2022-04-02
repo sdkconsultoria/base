@@ -125,7 +125,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             Route::SdkApiResource("$uri/api", $controller);
             Route::get("{$uri}", "{$controller}@index")->name("{$uri}.index");
             Route::get("{$uri}/create", "{$controller}@create")->name("{$uri}.create");
-            Route::get("{$uri}/update/{id}", "{$controller}@update")->name("{$uri}.update");
+            Route::get("{$uri}/update/{id}", "{$controller}@edit")->name("{$uri}.update");
             Route::get("{$uri}/{id}", "{$controller}@show")->name("{$uri}.view");
         });
     }

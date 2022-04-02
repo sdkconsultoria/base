@@ -8,7 +8,7 @@ trait ResourceControllerTrait
 {
     public function index(Request $request)
     {
-
+        return view($this->view . '.index');
     }
 
     public function create(Request $request, $id)

@@ -6,8 +6,6 @@ Route::namespace('\Sdkconsultoria\Base\Http\Controllers\Admin')
 ->group(function () {
     Route::get('social-auth/{type}', 'SocialAuthController@login')->name('social-auth');
     Route::get('social-link/{type}', 'SocialAuthController@login')->name('social-auth-link');
-    Route::SdkResource('blog', 'Blog\BlogController');
-    Route::SdkResource('blog-post', 'BlogPost\BlogController');
 
 //     Route::post('add-to-cart/{type}', 'ShoppingCartController@add')->name('cart.add');
 //     Route::post('add-to-cart/{type}', 'ShoppingCartController@remove')->name('cart.remove');
@@ -18,6 +16,10 @@ Route::namespace('\Sdkconsultoria\Base\Http\Controllers\Admin')
         Route::get('/', 'DashboardController@index')->name('dashboard');
         Route::get('profile', 'UserController@myAccount')->name('profile');
         Route::post('save-profile', 'UserController@saveAccount')->name('save.profile');
+
+        Route::SdkResource('blog', 'Blog\BlogController');
+        Route::SdkResource('blog-post', 'BlogPost\BlogController');
+
 //
         // Route::middleware(['role:admin'])->group(function () {
 //             Route::resource('users', 'UserController');

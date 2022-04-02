@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 trait PaginationTrait
 {
-    protected $pagination = 1;
+    protected $pagination = 10;
 
     protected function setPagination($query, Request $request)
     {

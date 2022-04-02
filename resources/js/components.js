@@ -3,14 +3,14 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
- // import Vue from '@node/vue'
- import { createApp } from 'vue';
- //
- //
- import FormComponent from "./components/FormComponent.vue";
- const app = createApp(FormComponent).mount("#form-component");
+// import Vue from '@node/vue'
+// import { createApp } from 'vue';
+//
+//
+//  import FormComponent from "./components/FormComponent.vue";
+//  const app = createApp(FormComponent).mount("#form-component");
 
- // createApp(App).mount("#app");
+// createApp(App).mount("#app");
 
 /**
  * The following block of code may be used to automatically register your
@@ -20,7 +20,7 @@
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
- //import * from './componets'
+//import * from './componets'
 
 //const files = require.context('./', true, /\.vue$/i);
 //files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
@@ -36,3 +36,13 @@
 // const app = new Vue({
 //     el: '#app',
 // });
+
+import { createApp } from 'vue'
+
+import IndexComponent from "./components/Crud/IndexComponent.vue";
+
+const app = createApp({});
+
+app.component('IndexComponent', IndexComponent)
+
+app.mount('#app');

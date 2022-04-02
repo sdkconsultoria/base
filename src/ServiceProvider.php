@@ -114,11 +114,12 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     private function registerRoutesMacro()
     {
         Route::macro('SdkApiResource', function ($uri, $controller) {
-            Route::get("{$uri}", "{$controller}@viewAny")->name("api.{$uri}.index");
-            Route::get("{$uri}/{id}", "{$controller}@view")->name("api.{$uri}.view");
-            Route::post("{$uri}", "{$controller}@storage")->name("api.{$uri}.create");
-            Route::put("{$uri}/{id}", "{$controller}@update")->name("api.{$uri}.update");
-            Route::delete("{$uri}/{id}", "{$controller}@delete")->name("api.{$uri}.delete");
+            $name = str_replace('/api', '', $uri);
+            Route::get("{$uri}", "{$controller}@viewAny")->name("api.{$name}.index");
+            Route::get("{$uri}/{id}", "{$controller}@view")->name("api.{$name}.view");
+            Route::post("{$uri}", "{$controller}@storage")->name("api.{$name}.create");
+            Route::put("{$uri}/{id}", "{$controller}@update")->name("api.{$name}.update");
+            Route::delete("{$uri}/{id}", "{$controller}@delete")->name("api.{$name}.delete");
         });
 
         Route::macro('SdkResource', function ($uri, $controller) {

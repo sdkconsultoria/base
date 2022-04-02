@@ -3,5 +3,13 @@
 @section('title_tab', __('base::attributes.schedule.edit'))
 
 @section('content')
-    Holisssss desde el index
+    <div id=app>
+        <index-component
+            api="{{route('api.blog.index')}}"
+            :fields="[
+                'title',
+                'subtitle'
+            ]"
+        />
+    </div>
 @endsection

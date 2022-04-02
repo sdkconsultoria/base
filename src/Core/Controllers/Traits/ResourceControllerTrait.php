@@ -8,7 +8,12 @@ trait ResourceControllerTrait
 {
     public function index(Request $request)
     {
-        return view($this->view . '.index');
+        $model = new $this->model;
+        $model->isAuthorize('viewAny');
+
+        return view($this->view . '.index', [
+            'model' => $model
+        ]);
     }
 
     public function create(Request $request, $id)

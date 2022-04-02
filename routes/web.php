@@ -6,6 +6,9 @@ Route::namespace('\Sdkconsultoria\Base\Http\Controllers\Admin')
 ->group(function () {
     Route::get('social-auth/{type}', 'SocialAuthController@login')->name('social-auth');
     Route::get('social-link/{type}', 'SocialAuthController@login')->name('social-auth-link');
+    Route::SdkResource('blog', 'Blog\BlogController');
+    Route::SdkResource('blog-post', 'BlogPost\BlogController');
+
 //     Route::post('add-to-cart/{type}', 'ShoppingCartController@add')->name('cart.add');
 //     Route::post('add-to-cart/{type}', 'ShoppingCartController@remove')->name('cart.remove');
 //     Route::post('add-to-whishlist/{type}', 'WhishlistController@add')->name('whishlist.add');

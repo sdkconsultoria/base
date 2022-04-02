@@ -114,17 +114,19 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     private function registerRoutesMacro()
     {
         Route::macro('SdkApiResource', function ($uri, $controller) {
-            Route::get("{$uri}", "{$controller}@viewAny")->name("api.{$uri}.view-any");
+            Route::get("{$uri}", "{$controller}@viewAny")->name("api.{$uri}.index");
             Route::get("{$uri}/{id}", "{$controller}@view")->name("api.{$uri}.view");
             Route::post("{$uri}", "{$controller}@storage")->name("api.{$uri}.create");
             Route::put("{$uri}/{id}", "{$controller}@update")->name("api.{$uri}.update");
             Route::delete("{$uri}/{id}", "{$controller}@delete")->name("api.{$uri}.delete");
         });
+
         Route::macro('SdkResource', function ($uri, $controller) {
-            Route::get("{$uri}", "{$controller}@viewAny")->name("{$uri}.index");
-            Route::get("{$uri}/create", "{$controller}@view")->name("{$uri}.create");
-            Route::get("{$uri}/update/{id}", "{$controller}@storage")->name("{$uri}.update");
-            Route::get("{$uri}/{id}", "{$controller}@storage")->name("{$uri}.details");
+            Route::get("{$uri}", "{$controller}@index")->name("{$uri}.index");
+            Route::get("{$uri}/create", "{$controller}@create")->name("{$uri}.create");
+            Route::get("{$uri}/update/{id}", "{$controller}@update")->name("{$uri}.update");
+            Route::get("{$uri}/{id}", "{$controller}@view")->name("{$uri}.view");
+            Route::SdkApiResource('api/' . $uri, $controller);
         });
     }
 

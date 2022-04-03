@@ -2,7 +2,7 @@
 
 namespace Sdkconsultoria\Base\Models\Blog;
 
-use Sdkconsultoria\Base\Core\Models\Model as BaseModel;
+use Sdkconsultoria\Core\Models\Model as BaseModel;
 // use Sdkconsultoria\Base\Traits\TagTrait;
 use Illuminate\Validation\Rule;
 

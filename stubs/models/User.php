@@ -7,8 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
-use Sdkconsultoria\Base\Core\Models\Traits\BaseModel as TraitBaseModel;
-use Sdkconsultoria\Base\Core\Models\Traits\ImageTrait;
+use Sdkconsultoria\Core\Models\Traits\BaseModel as TraitBaseModel;
+use Sdkconsultoria\Core\Models\Traits\ImageTrait;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Sdkconsultoria\Base\Models\Auth\UserSocial;
 

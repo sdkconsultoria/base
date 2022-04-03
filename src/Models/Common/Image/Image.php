@@ -3,7 +3,7 @@
 namespace Sdkconsultoria\Base\Models\Common\Image;
 
 use Sdkconsultoria\Base\Helpers\Html\Imageable\Imageable;
-use Sdkconsultoria\Base\Core\Models\Model as BaseModel;
+use Sdkconsultoria\Core\Models\Model as BaseModel;
 use Sdkconsultoria\Base\Helpers\Images;
 use Sdkconsultoria\Base\Traits\ImageTypeTrait;
 use Request;

@@ -2,31 +2,30 @@
     "name": "sdkconsultoria/base",
     "type": "library",
     "description": "Funciones basicas y auxiliares, para generar una página web rápidamente",
-    "keywords": ["laravel", "package", "base"],
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Camilo Antonio Rodríguez Cruz",
-            "email": "camilo@sdkconsultoria.com",
-            "homepage": "https://sdkconsultoria.com",
-            "role": "Developer"
-        }
+    "keywords": [
+        "laravel",
+        "package",
+        "base"
     ],
+    "license": "MIT",
+    "authors": [{
+        "name": "Camilo Antonio Rodríguez Cruz",
+        "email": "camilo@sdkconsultoria.com",
+        "homepage": "https://sdkconsultoria.com",
+        "role": "Developer"
+    }],
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^8.0",
         "spatie/laravel-permission": "^5.1",
         "intervention/image": "^2.6",
         "laravel/fortify": "^1.8",
         "openpay/sdk": "^2.2",
-        "hybridauth/hybridauth": "^3.7"
+        "hybridauth/hybridauth": "^3.7",
+        "sdkconsultoria/core": "*"
     },
-    "require-dev": {
-
-    },
+    "require-dev": {},
     "autoload": {
-        "files": [
-
-        ],
+        "files": [],
         "psr-4": {
             "Sdkconsultoria\\Base\\": "src/",
             "Sdkconsultoria\\Base\\Tests\\": "tests/"

@@ -2,7 +2,7 @@
 
 namespace Sdkconsultoria\Base\Http\Controllers\Admin\Blog;
 
-use Sdkconsultoria\Base\Core\Controllers\ResourceController;
+use Sdkconsultoria\Core\Controllers\ResourceController;
 
 class BlogPostController extends ResourceController
 {

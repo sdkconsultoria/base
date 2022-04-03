@@ -116,6 +116,7 @@ class InstallCommand extends Command
                 'vue' => '^3.2.26',
                 'vue-loader' => '^17.0.0',
                 '@sdkconsultoria/base' => 'file:vendor/sdkconsultoria/base',
+                '@heroicons/vue' => '^1.0.6',
             ] + $packages;
         });
 

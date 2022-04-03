@@ -14,9 +14,12 @@
             <table class="min-w-full divide-y divide-gray-200">
               <thead class="bg-gray-50">
                 <tr>
-                  <!-- aqui van los headers -->
-                  <th v-for="field in fields" :key="field" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      {{field}}
+                  <th
+                    v-for="field in fields" :key="field"
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <label @click="setOrderToUrl(field)" class="cursor-pointer">{{field}}</label>
+
                   </th>
                 </tr>
               </thead>
@@ -26,7 +29,6 @@
                           {{model[field]}}
                       </td>
                   </tr>
-                <!-- aqui van los bodies -->
               </tbody>
             </table>
             <pagination-component :data="data" />
@@ -60,6 +62,11 @@ export default {
       return url + window.location.search;
     }
 
+    function setOrderToUrl(field)
+    {
+
+    }
+
     function fetchData(url) {
       loading.value = true;
       return fetch(url)
@@ -81,7 +88,8 @@ export default {
       data,
       loading,
       error,
-      fetchData
+      fetchData,
+      setOrderToUrl
     };
   },
 };

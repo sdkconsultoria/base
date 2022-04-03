@@ -14,21 +14,24 @@
             <table class="min-w-full divide-y divide-gray-200">
               <thead class="bg-gray-50">
                 <tr>
-                  <th
-                    v-for="field in fields" :key="field"
-                    scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      <label @click="setOrderToUrl(field)" class="cursor-pointer">{{field}}</label>
-
-                  </th>
+                  <order-component
+                    v-for="field in fields"
+                    :key="field"
+                    :field="field"
+                    :current_order="current_order"
+                  ></order-component>
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
-                  <tr v-for="model in data.data" :key="model.id">
-                      <td v-for="field in fields" :key="field" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {{model[field]}}
-                      </td>
-                  </tr>
+                <tr v-for="model in data.data" :key="model.id">
+                  <td
+                    v-for="field in fields"
+                    :key="field"
+                    class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                  >
+                    {{ model[field] }}
+                  </td>
+                </tr>
               </tbody>
             </table>
             <pagination-component :data="data" />
@@ -40,44 +43,43 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
-import PaginationComponent from './PaginationComponent.vue';
+import { ref, onMounted } from "vue";
+import PaginationComponent from "./PaginationComponent.vue";
+import OrderComponent from "./OrderComponent.vue";
 
 export default {
-  name: 'GridView',
+  name: "GridView",
   props: {
     api: String,
     fields: Array,
   },
   components: {
-    PaginationComponent
+    PaginationComponent,
+    OrderComponent,
   },
   setup(props) {
     const data = ref({});
     const loading = ref(true);
     const error = ref(null);
-
-    function addQueryToUrl(url)
-    {
+    const current_order = ref({
+      field: "",
+      order: "",
+    });
+    function addQueryToUrl(url) {
       return url + window.location.search;
-    }
-
-    function setOrderToUrl(field)
-    {
-
     }
 
     function fetchData(url) {
       loading.value = true;
       return fetch(url)
-        .then(response => response.json())
-        .then(response => {
-            data.value = response;
+        .then((response) => response.json())
+        .then((response) => {
+          data.value = response;
         })
         .catch((error) => {
           // handle the error
         })
-        .then(() => loading.value = false);
+        .then(() => (loading.value = false));
     }
 
     onMounted(() => {
@@ -88,8 +90,8 @@ export default {
       data,
       loading,
       error,
+      current_order,
       fetchData,
-      setOrderToUrl
     };
   },
 };

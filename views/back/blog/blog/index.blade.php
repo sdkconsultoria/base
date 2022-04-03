@@ -7,6 +7,7 @@
         <index-component
             api="{{route('api.blog.index')}}"
             :fields="[
+                'id',
                 'title',
                 'subtitle'
             ]"

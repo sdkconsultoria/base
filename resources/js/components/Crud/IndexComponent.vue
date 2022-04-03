@@ -15,22 +15,21 @@
               <thead class="bg-gray-50">
                 <tr>
                   <!-- aqui van los headers -->
-                  <th v-for="field in fields" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th v-for="field in fields" :key="field" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       {{field}}
                   </th>
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
-                  <tr v-for="model in data.data">
-                      <td v-for="field in fields" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <tr v-for="model in data.data" :key="model.id">
+                      <td v-for="field in fields" :key="field" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                           {{model[field]}}
                       </td>
                   </tr>
                 <!-- aqui van los bodies -->
               </tbody>
             </table>
-            <pagination-component/>
-            <!-- links -->
+            <pagination-component :data="data" />
           </div>
         </div>
       </div>
@@ -56,9 +55,14 @@ export default {
     const loading = ref(true);
     const error = ref(null);
 
-    function fetchData() {
+    function addQueryToUrl(url)
+    {
+      return url + window.location.search;
+    }
+
+    function fetchData(url) {
       loading.value = true;
-      return fetch(props.api)
+      return fetch(url)
         .then(response => response.json())
         .then(response => {
             data.value = response;
@@ -70,13 +74,14 @@ export default {
     }
 
     onMounted(() => {
-      fetchData();
+      fetchData(addQueryToUrl(props.api));
     });
 
     return {
       data,
       loading,
       error,
+      fetchData
     };
   },
 };

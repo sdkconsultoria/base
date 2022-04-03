@@ -10,38 +10,25 @@
         <div>
           <p class="text-sm text-gray-600">
             Showing
-            <span class="font-medium">1</span>
-            to
-            <span class="font-medium">10</span>
+            <span class="font-medium">{{data.from}}</span>
+            -
+            <span class="font-medium">{{data.to}}</span>
             of
-            <span class="font-medium">97</span>
+            <span class="font-medium">{{data.total}}</span>
             results
           </p>
         </div>
         <div>
           <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-            <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-              <span class="sr-only">Previous</span>
-              <!-- Heroicon name: solid/chevron-left -->
-              <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-              </svg>
-            </a>
-            <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
-            <a href="#" aria-current="page" class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 1 </a>
-            <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 2 </a>
-            <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium"> 3 </a>
+            <label
+              v-for="(link, index) in data.links" :key="index"
+              v-html="link.label"
+              @click="reloadDataFromApi(link.url, data.current_page)"
+              :class="getClass(index)">
+            </label>
+            <!-- <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium"> 3 </a>
             <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-600"> ... </span>
-            <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium"> 8 </a>
-            <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 9 </a>
-            <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 10 </a>
-            <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-              <span class="sr-only">Next</span>
-              <!-- Heroicon name: solid/chevron-right -->
-              <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-              </svg>
-            </a>
+            <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium"> 8 </a> -->
           </nav>
         </div>
       </div>
@@ -49,19 +36,44 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted } from 'vue'
+<script>
+import { ref, onMounted } from 'vue';
 
-// reactive state
-const count = ref(0)
+export default {
+  name: 'Pagination',
+  props: {
+    data: Object,
+  },
+  methods: {
+    getClass(index)
+    {
+      let {current_page, links} = { ...this.data };
 
-// functions that mutate state and trigger updates
-function increment() {
-  count.value++
-}
+      if(index == 0){
+        return "relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 cursor-pointer";
+      }
 
-// lifecycle hooks
-onMounted(() => {
-  console.log(`The initial count is ${count.value}.`)
-})
+      if(index == links.length - 1){
+        return "relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 cursor-pointer";
+      }
+
+      if(index == current_page){
+        return "bg-blue-100 bg-white border-gray-300 text-gray-500 hover:bg-gray-500 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer";
+      }
+
+      return "bg-white border-gray-300 text-gray-500 hover:bg-gray-500 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer";
+    },
+    setQueryToUrl(url)
+    {
+      let new_url = new URL(url);
+      let query_params = new URLSearchParams(new_url.search);
+
+      history.replaceState(null, null, `?${query_params.toString()}`);
+    },
+    reloadDataFromApi(url, current_page) {
+      this.setQueryToUrl(url);
+      this.$parent.fetchData(url);
+    },
+  }
+};
 </script>

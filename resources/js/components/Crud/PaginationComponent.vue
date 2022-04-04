@@ -13,8 +13,8 @@
       "
     >
       <div class="flex-1 flex justify-between sm:hidden">
-        <a
-          href="#"
+        <button
+          @click="reloadDataFromApi(data.prev_page_url)"
           class="
             relative
             inline-flex
@@ -30,10 +30,10 @@
             hover:bg-gray-50
           "
         >
-          Previous
-        </a>
-        <a
-          href="#"
+          {{ $parent.translations.pagination.previous }}
+        </button>
+        <button
+          @click="reloadDataFromApi(data.next_page_url)"
           class="
             ml-3
             relative
@@ -50,19 +50,19 @@
             hover:bg-gray-50
           "
         >
-          Next
-        </a>
+          {{ $parent.translations.pagination.next }}
+        </button>
       </div>
       <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
         <div>
           <p class="text-sm text-gray-600">
-            Showing
+            {{ $parent.translations.pagination.showing }}
             <span class="font-medium">{{ data.from }}</span>
             -
             <span class="font-medium">{{ data.to }}</span>
-            of
+            {{ $parent.translations.pagination.of }}
             <span class="font-medium">{{ data.total }}</span>
-            results
+            {{ $parent.translations.pagination.results }}
           </p>
         </div>
         <div>
@@ -74,7 +74,7 @@
               v-for="(link, index) in data.links"
               :key="index"
               v-html="link.label"
-              @click="reloadDataFromApi(link.url, data.current_page)"
+              @click="reloadDataFromApi(link.url)"
               :class="getClass(index)"
             >
             </label>
@@ -120,7 +120,7 @@ export default {
 
       history.replaceState(null, null, `?${query_params.toString()}`);
     },
-    reloadDataFromApi(url, current_page) {
+    reloadDataFromApi(url) {
       this.setQueryToUrl(url);
       this.$parent.fetchData(url);
     },

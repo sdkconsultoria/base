@@ -4,7 +4,7 @@
 
 @section('content')
     <div id=app>
-        <index-component
+        <grid-view
             api="{{$model->getRouteApi('index')}}"
             :fields="[
                 'id',

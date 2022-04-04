@@ -22,6 +22,7 @@
                     :current_order="current_order"
                     :label="translations[field]"
                   />
+                  <th></th>
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
@@ -33,6 +34,7 @@
                   >
                     {{ model[field] }}
                   </td>
+                  <td><ActionColumn /></td>
                 </tr>
               </tbody>
             </table>
@@ -49,6 +51,7 @@ import { ref, onMounted } from "vue";
 import PaginationComponent from "./PaginationComponent.vue";
 import OrderComponent from "./OrderComponent.vue";
 import SearchComponent from "./SearchComponent.vue";
+import ActionColumn from "./ActionColumn.vue";
 
 export default {
   name: "GridView",
@@ -61,6 +64,7 @@ export default {
     PaginationComponent,
     OrderComponent,
     SearchComponent,
+    ActionColumn,
   },
   setup(props) {
     const data = ref({});

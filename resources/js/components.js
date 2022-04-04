@@ -39,10 +39,10 @@
 
 import { createApp } from 'vue'
 
-import IndexComponent from "./components/Crud/IndexComponent.vue";
+import GridViewComponent from "./components/Crud/GridView/GridViewComponent.vue";
 
 const app = createApp({});
 
-app.component('IndexComponent', IndexComponent)
+app.component('GridView', GridViewComponent)
 
 app.mount('#app');

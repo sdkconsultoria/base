@@ -63,7 +63,7 @@ export default {
       );
       history.pushState(null, null, `?${this.query_params.toString()}`);
       this.$parent.fetchData(
-        this.$parent.api + `?${this.query_params.toString()}`
+        this.$parent.routes.api + `?${this.query_params.toString()}`
       );
 
       this.$parent.current_order = this.new_order;

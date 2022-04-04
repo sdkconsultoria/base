@@ -15,8 +15,8 @@
           <TrashIcon />
         </button>
       </form>
-      <button class="h-5 w-5 mr-1" href=""> <PencilIcon /> </button>
-      <button class="h-5 w-5 mr-1" href=""> <EyeIcon /> </button>
+      <a href=""> <PencilIcon class="h-5 w-5 mr-1" /> </a>
+      <a href=""> <EyeIcon class="h-5 w-5 mr-1" /> </a>
     </div>
   </div>
 </template>

@@ -5,7 +5,7 @@
 @section('content')
     <div id=app>
         <grid-view
-            api="{{$model->getRouteApi('index')}}"
+            :routes={{json_encode($model->getIndexRoutes())}}
             :fields="[
                 'id',
                 'title',

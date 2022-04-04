@@ -56,9 +56,9 @@ import ActionColumn from "./ActionColumn.vue";
 export default {
   name: "GridView",
   props: {
-    api: String,
     fields: Array,
     translations: JSON,
+    routes: JSON,
   },
   components: {
     PaginationComponent,
@@ -92,7 +92,7 @@ export default {
     }
 
     onMounted(() => {
-      fetchData(addQueryToUrl(props.api));
+      fetchData(addQueryToUrl(props.routes.api));
     });
 
     return {

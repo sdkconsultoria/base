@@ -5,12 +5,13 @@
 @section('content')
     <div id=app>
         <index-component
-            api="{{route('api.blog.index')}}"
+            api="{{$model->getRouteApi('index')}}"
             :fields="[
                 'id',
                 'title',
                 'subtitle'
             ]"
+            :translations='{!! json_encode($model->getFullTranslations()) !!}'
         />
     </div>
 @endsection

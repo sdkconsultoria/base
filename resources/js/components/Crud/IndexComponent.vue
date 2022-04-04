@@ -1,5 +1,6 @@
 <template>
   <div>
+    <SearchComponent />
     <div class="flex flex-col">
       <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -14,12 +15,13 @@
             <table class="min-w-full divide-y divide-gray-200">
               <thead class="bg-gray-50">
                 <tr>
-                  <order-component
+                  <OrderComponent
                     v-for="field in fields"
                     :key="field"
                     :field="field"
                     :current_order="current_order"
-                  ></order-component>
+                    :label="translations[field]"
+                  />
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
@@ -34,7 +36,7 @@
                 </tr>
               </tbody>
             </table>
-            <pagination-component :data="data" />
+            <PaginationComponent :data="data" />
           </div>
         </div>
       </div>
@@ -46,16 +48,19 @@
 import { ref, onMounted } from "vue";
 import PaginationComponent from "./PaginationComponent.vue";
 import OrderComponent from "./OrderComponent.vue";
+import SearchComponent from "./SearchComponent.vue";
 
 export default {
   name: "GridView",
   props: {
     api: String,
     fields: Array,
+    translations: JSON,
   },
   components: {
     PaginationComponent,
     OrderComponent,
+    SearchComponent,
   },
   setup(props) {
     const data = ref({});

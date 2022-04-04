@@ -33,4 +33,12 @@ class Blog extends BaseModel
             'description' => 'Descripción',
         ];
     }
+
+    public function getTranslations() : array
+    {
+        return [
+            'singular' => 'Blog',
+            'plural' => 'Blogs',
+        ];
+    }
 }

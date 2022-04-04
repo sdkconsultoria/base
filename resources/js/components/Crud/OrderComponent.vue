@@ -12,7 +12,7 @@
     "
   >
     <label @click="setOrderToUrl(field)" class="cursor-pointer"
-      >{{ field }} {{ getOrderSymbol(field) }}</label
+      >{{ label }} {{ getOrderSymbol(field) }}</label
     >
   </th>
 </template>
@@ -23,6 +23,7 @@ export default {
   props: {
     field: String,
     current_order: Object,
+    label: String,
   },
   data() {
     return {

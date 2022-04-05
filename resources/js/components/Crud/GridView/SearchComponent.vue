@@ -1,11 +1,11 @@
 <template>
   <div>
-      <button type="button" class="btn btn-warning mb-2 flex flex-row items-center">
+      <button @click="is_open_form = !is_open_form" type="button" class="btn btn-warning mb-2 flex flex-row items-center">
           {{$parent.translations.grid.advanced_search}}
-          <!-- ' . Base::icon('chevron-right', ['class' => 'h-5 ml-3', 'x-show' => '!open']) .'
-          ' . Base::icon('chevron-up', ['class' => 'h-5 ml-3', 'x-show' => 'open']) . ' -->
+          <ChevronRightIcon v-if="!is_open_form" class="h-5 ml-3" />
+          <ChevronUpIcon v-if="is_open_form" class="h-5 ml-3" />
       </button>
-      <form id="search-form"  class="flex flex-row flex-wrap" action="" method="get">
+      <form v-if="is_open_form" class="flex flex-row flex-wrap" action="" method="get">
             <!-- ' . $this->forms() . ' -->
           <div class="w-full flex flex-row justify-end">
               <button class="items-center text-sm rounded-l-lg shadow-md text-gray-700 p-1 bg-yellow-300 mb-2 flex flex-row" type="button">
@@ -21,7 +21,7 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import { DocumentSearchIcon, RefreshIcon } from '@heroicons/vue/solid'
+import { DocumentSearchIcon, RefreshIcon, ChevronRightIcon, ChevronUpIcon } from '@heroicons/vue/solid'
 
 export default {
   name: "Search",
@@ -32,15 +32,33 @@ export default {
   components: {
     DocumentSearchIcon,
     RefreshIcon,
+    ChevronRightIcon,
+    ChevronUpIcon
   },
-  setup(props) {
-    // const error = ref(null);
-
-    onMounted(() => {
-    });
-
+  data() {
     return {
-    };
+      'is_open_form': false
+    }
   },
+  mounted() {
+    this.checkHasSearch();
+  },
+  methods: {
+    checkHasSearch() {
+      let search_params = new URLSearchParams(window.location.search).entries();
+      const params = [];
+
+      for (let param of search_params) {
+        params.push(param[0]);
+      }
+
+      for (let search_item of this.$parent.filters) {
+        if (params.includes(search_item.field)) {
+          this.is_open_form = true;
+          return;
+        }
+      }
+    }
+  }
 };
 </script>

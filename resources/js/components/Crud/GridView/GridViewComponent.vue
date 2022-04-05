@@ -59,6 +59,7 @@ export default {
     fields: Array,
     translations: JSON,
     routes: JSON,
+    filters: JSON,
   },
   components: {
     PaginationComponent,

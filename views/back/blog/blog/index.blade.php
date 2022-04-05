@@ -11,6 +11,7 @@
                 'title',
                 'subtitle'
             ]"
+            :filters={{json_encode($model->getParseSearchFilters())}}
             :translations='{!! json_encode($model->getFullTranslations()) !!}'
         />
     </div>

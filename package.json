@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/sdkconsultoria/base#readme",
   "dependencies": {
+    "@heroicons/vue": "^1.0.6",
     "vue": "^3.2.26",
     "vue-loader": "^17.0.0"
   }

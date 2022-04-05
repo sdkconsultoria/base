@@ -44,6 +44,7 @@ module.exports = {
         './vendor/sdkconsultoria/base/views/**/*.blade.php',
         './vendor/sdkconsultoria/base/src/Helpers/Html/*.php',
         './vendor/sdkconsultoria/base/src/Helpers/Html/**/*.php',
+        './vendor/sdkconsultoria/base/resources/**/*.vue',
         './storage/framework/views/*.php',
         './resources/**/*.blade.php',
         './resources/**/*.js',

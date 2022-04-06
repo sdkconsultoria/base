@@ -22,7 +22,7 @@
                     :current_order="current_order"
                     :label="translations[field]"
                   />
-                  <th></th>
+                  <th width="100px"></th>
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
@@ -34,7 +34,7 @@
                   >
                     {{ model[field] }}
                   </td>
-                  <td><ActionColumn /></td>
+                  <td><ActionColumn :model_id="model.id"/></td>
                 </tr>
               </tbody>
             </table>

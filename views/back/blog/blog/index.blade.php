@@ -1,8 +1,11 @@
 @extends('base::back.layouts.app')
 
-@section('title_tab', __('base::attributes.schedule.edit'))
+@section('title', $model->getFullTranslations()['plural'])
 
 @section('content')
+    <?= Base::breadcrumb([
+        $model->getFullTranslations()['plural']
+    ]) ?>
     <div id=app>
         <grid-view
             :routes={{json_encode($model->getIndexRoutes())}}

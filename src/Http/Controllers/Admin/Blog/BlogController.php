@@ -7,5 +7,4 @@ use Sdkconsultoria\Core\Controllers\ResourceController;
 class BlogController extends ResourceController
 {
     protected $model = \Sdkconsultoria\Base\Models\Blog\Blog::class;
-    protected $view = 'base::back.blog.blog';
 }

@@ -3,11 +3,19 @@
 namespace Sdkconsultoria\Base\Models\Blog;
 
 use Sdkconsultoria\Core\Models\Model as BaseModel;
-// use Sdkconsultoria\Base\Traits\ImageTypeTrait;
-// use Illuminate\Validation\Rule;
+use Sdkconsultoria\Base\Fields\TextField;
 
 class Blog extends BaseModel
 {
+    public function fields()
+    {
+        return[
+            TextField::make('title'),
+            TextField::make('subtitle'),
+            TextField::make('description'),
+        ];
+    }
+
     public function getValidationRules($request = '') : array
     {
         return [

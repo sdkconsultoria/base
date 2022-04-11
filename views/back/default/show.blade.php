@@ -1,11 +1,11 @@
 @extends('base::back.layouts.app')
 
-@section('title', $model->getLabel('plural'))
+@section('title', $model->getTranslation('showed'))
 
 @section('content')
-    <?= Base::breadcrumb([ $model->getRoute('index') => $model->getLabel('plural'),  $model->getTranslate('showed')]) ?>
+    <?= Base::breadcrumb([ $model->getRoute('index') => $model->getTranslation('plural'), $model->getTranslation('showed')]) ?>
 
-    <div class="mb-2 flex flex-row">
+    {{-- <div class="mb-2 flex flex-row">
         <a type="button" href="{{$model->getRoute('edit', $model->getKeyId())}}" class="btn btn-primary"> {!!  $model->getTranslate('edit') !!} </a>
 
         <form
@@ -18,7 +18,7 @@
             <button class="btn btn-danger ml-2" type="submit"> {{$model::getTranslate('delete')}}</button>
         </form>
 
-    </div>
+    </div> --}}
 
     @yield('model')
 @endsection

@@ -7,12 +7,12 @@ use Sdkconsultoria\Base\Fields\TextField;
 
 class Blog extends BaseModel
 {
-    public function fields()
+    protected function fields()
     {
         return[
             TextField::make('title'),
             TextField::make('subtitle'),
-            TextField::make('description'),
+            TextField::make('description')->hideOnIndex(),
         ];
     }
 

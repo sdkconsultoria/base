@@ -40,9 +40,11 @@
 import { createApp } from 'vue'
 
 import GridViewComponent from "./components/Crud/GridView/GridViewComponent.vue";
+import FormModelComponent from "./components/Crud/Form/FormModelComponent.vue";
 
 const app = createApp({});
 
 app.component('GridView', GridViewComponent)
+app.component('FormModel', FormModelComponent)
 
 app.mount('#app');

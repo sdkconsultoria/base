@@ -9,8 +9,11 @@
         <?= Base::settings($model); ?>
     </div>
 
-    <form action="{{$model->getRouteApi('create')}}" method="post">
-        {{-- @include($view . '_form') --}}
-        <button class="btn btn-primary" type="submit" name="button"> {!! $model->getTranslation('create') !!} </button>
-    </form>
+        <div id=app>
+            <form-model
+                :routes={{json_encode($model->getIndexRoutes())}}
+                :translations='{!! json_encode($model->getFullTranslations()) !!}'
+                csrf="{{csrf_token()}}"
+            />
+        </div>
 @endsection

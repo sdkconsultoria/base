@@ -19,7 +19,7 @@
 export default {
   name: "Form",
   props: {
-    // fields: Array,
+    fields: Array,
     translations: JSON,
     routes: JSON,
     csrf: String,

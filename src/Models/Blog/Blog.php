@@ -10,35 +10,9 @@ class Blog extends BaseModel
     protected function fields()
     {
         return[
-            TextField::make('title'),
-            TextField::make('subtitle'),
-            TextField::make('description')->hideOnIndex(),
-        ];
-    }
-
-    public function getValidationRules($request = '') : array
-    {
-        return [
-            'title' => 'required',
-            'subtitle' => 'required',
-            'description' => 'required',
-        ];
-    }
-
-    public static function getFilters() : array
-    {
-        return [
-            'title',
-            'subtitle',
-        ];
-    }
-
-    public function getLabels() : array
-    {
-        return [
-            'title' => 'Título',
-            'subtitle' => 'Subtitulo',
-            'description' => 'Descripción',
+            TextField::make('title')->label('Título')->rules(['required']),
+            TextField::make('subtitle')->label('Subtitulo')->rules(['required']),
+            TextField::make('description')->label('Descripción')->rules(['required'])->hideOnIndex(),
         ];
     }
 

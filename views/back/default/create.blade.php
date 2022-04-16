@@ -8,12 +8,12 @@
     <div class="">
         <?= Base::settings($model); ?>
     </div>
-
         <div id=app>
             <form-model
                 :routes={{json_encode($model->getIndexRoutes())}}
                 :translations='{!! json_encode($model->getFullTranslations()) !!}'
                 csrf="{{csrf_token()}}"
+                :fields={!! json_encode($model->getFields()) !!}
             />
         </div>
 @endsection

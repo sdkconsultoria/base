@@ -8,22 +8,22 @@ abstract class Field
     public bool $visible_on_create = true;
     public bool $visible_on_update = true;
     public bool $visible_on_show = true;
-    public string $field;
+    public string $name;
     public array $rules;
     public string $label;
     public array $searchable;
     public array $filter;
 
-    public static function make(string $field){
+    public static function make(string $name){
         $model =  new (get_called_class());
-        $model->field = $field;
+        $model->name = $name;
 
         return $model;
     }
 
     public function __toString(): string
     {
-        return $this->field;
+        return $this->name;
     }
 
     public function hideOnIndex()
@@ -58,7 +58,7 @@ abstract class Field
     {
         return [
             'type' => $this->field_type,
-            'name' => $this->field,
+            'name' => $this->name,
             'label' => $this->label,
             'rules' => $this->rules,
             'visible_on' => [
@@ -68,7 +68,7 @@ abstract class Field
                 'update' => $this->visible_on_update,
                 'show' => $this->visible_on_show,
             ],
-            'filter' => $this->field,
+            'filter' => $this->name,
         ];
     }
 }

@@ -16,6 +16,7 @@
           type="text"
           class="form-control form-control-l form-control-r border-gray-300"
           :class="getFieldClass(field.name)"
+          :value="field.value"
         />
         <div class="text-red-500 text-xs font-semibold">
           <p v-for="(error, index) in errors[field.name]" :key="index">
@@ -44,16 +45,17 @@ export default {
     return {
       errors: {},
       submited: false,
+      status: 0,
     };
   },
   methods: {
     getFieldClass(field) {
-      if(this.submited) {
-        if(this.errors[field]) {
-          return 'border-red-500';
+      if (this.submited) {
+        if (this.errors[field]) {
+          return "border-red-500";
         }
 
-        return 'border-green-500';
+        return "border-green-500";
       }
     },
     submit(url) {
@@ -64,13 +66,17 @@ export default {
         body: form_data,
         method: "post",
       })
-        .then((response) => response.json())
         .then((response) => {
-          this.errors = response;
+          this.status = response.status;
           this.submited = true;
+          return response.json();
         })
-        .catch((error) => {
-          // handle the error
+        .then((response) => {
+          if (this.status == 200) {
+            window.location.assign(`${this.routes.resource}/${response.model.id}`);
+          }
+
+          this.errors = response;
         });
     },
     onSubmit(event) {

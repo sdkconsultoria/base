@@ -5,12 +5,19 @@
       :action="`${routes.api}`"
       method="POST"
       @submit.prevent="onSubmit"
+      class="flex flex-row flex-wrap"
     >
       <input type="hidden" name="_token" :value="csrf" />
+      <div v-for="field in fields" :key="field.name" class="form-group pr-1">
+        <label for="" class="text-gray-600 font-medium">{{field.label}}</label>
+        <input :name="field.name" type="text" class="form-control form-control-l form-control-r border-gray-300" />
+      </div>
 
-      <button class="btn btn-primary" type="submit" name="button">
-        {{ translations.create }}
-      </button>
+      <div class="form-group pr-1">
+        <button class="btn btn-primary" type="submit" name="button">
+          {{ translations.create }}
+        </button>
+      </div>
     </form>
   </div>
 </template>

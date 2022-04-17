@@ -74,6 +74,8 @@ export default {
         .then((response) => {
           if (this.status == 200) {
             window.location.assign(`${this.routes.resource}/${response.model.id}`);
+            const message = {'text': this.translations.created, 'type': 'success'};
+            localStorage.setItem('toast', JSON.stringify(message));
           }
 
           this.errors = response;

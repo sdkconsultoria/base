@@ -1,25 +1,23 @@
-function noticesHandler() {
-	return {
-		notices: [],
-		visible: [],
-		add(notice) {
-			notice.id = Date.now()
-			this.notices.push(notice)
-			this.fire(notice.id)
-		},
-		fire(id) {
-			this.visible.push(this.notices.find(notice => notice.id == id))
-			const timeShown = 3000 * this.visible.length
-			setTimeout(() => {
-				this.remove(id)
-			}, timeShown)
-		},
-		remove(id) {
-			const notice = this.visible.find(notice => notice.id == id)
-			const index = this.visible.indexOf(notice)
-			this.visible.splice(index, 1)
-		},
+import Swal from "@node/sweetalert2";
 
-	};
+const toast_active = JSON.parse(localStorage.getItem('toast'));
+
+if (toast_active) {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
+    Toast.fire({
+        icon: toast_active.type,
+        title: toast_active.text
+    })
+    localStorage.removeItem('toast');
 }
-window.noticesHandler = noticesHandler;

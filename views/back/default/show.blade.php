@@ -4,19 +4,17 @@
 
 @section('content')
     <?= Base::breadcrumb([$model->getRoute('index') => $model->getTranslation('plural'), $model->getTranslation('showed')]) ?>
+    <div id=app>
+
     <div class="mb-2 flex flex-row">
         <a type="button" href="{{ $model->getRoute('update', $model->getKeyId()) }}" class="btn btn-primary">
             {!! $model->getTranslation('edit') !!} </a>
-        {{-- <form
-        data-title="{{ $model::getTranslate('delete_question') }}"
-        data-confirm="{{ $model::getTranslate('delete') }}"
-        data-cancel="{{ __('base::app.common.cancel') }}"
-        class="form-question" method="POST" action="{{ $model::getRoute('destroy', $model->getKeyId()) }}">
-            @csrf
-            <input type="hidden" name="_method" value="DELETE">
-            <button class="btn btn-danger ml-2" type="submit"> {{$model::getTranslate('delete')}}</button>
-        </form> --}}
-
+            <delete-model
+                :translations='{!! json_encode($model->getFullTranslations()) !!}'
+                :routes='{{json_encode($model->getIndexRoutes())}}'
+                :model_id='{{$model->id}}'
+            />
+        </div>
     </div>
 
     <div class="flex flex-col">
@@ -27,7 +25,7 @@
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($model->getFields() as $field)
                                 <tr>
-                                    <th class="text-gray-700"> {{$field['label']}} </th>
+                                    <th class="text-gray-700"> {{ $field['label'] }} </th>
                                     <td> {{ $model->{$field['name']} }} </td>
                                 </tr>
                             @endforeach

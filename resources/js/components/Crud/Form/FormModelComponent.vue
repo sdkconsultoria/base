@@ -26,7 +26,7 @@
       </div>
 
       <button class="btn btn-primary" type="submit" name="button">
-        {{ translations.create }}
+        {{ button_text }}
       </button>
     </form>
   </div>
@@ -40,13 +40,22 @@ export default {
     translations: JSON,
     routes: JSON,
     csrf: String,
+    model_id: String,
   },
   data() {
     return {
       errors: {},
       submited: false,
       status: 0,
+      button_text: String,
     };
+  },
+  mounted() {
+    if (this.model_id) {
+      this.button_text = this.translations.edit;
+    } else {
+      this.button_text = this.translations.create;
+    }
   },
   methods: {
     getFieldClass(field) {
@@ -73,9 +82,23 @@ export default {
         })
         .then((response) => {
           if (this.status == 200) {
-            window.location.assign(`${this.routes.resource}/${response.model.id}`);
-            const message = {'text': this.translations.created, 'type': 'success'};
-            localStorage.setItem('toast', JSON.stringify(message));
+            let message;
+            if (this.model_id) {
+              message = {
+                text: this.translations.edited,
+                type: "success",
+              };
+            } else {
+              message = {
+                text: this.translations.created,
+                type: "success",
+              };
+            }
+
+            localStorage.setItem("toast", JSON.stringify(message));
+            window.location.assign(
+              `${this.routes.resource}/${response.model.id}`
+            );
           }
 
           this.errors = response;

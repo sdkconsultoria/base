@@ -65,7 +65,7 @@ export default {
         cancelButtonText: event.target.dataset.cancel,
         confirmButtonText: event.target.dataset.confirm,
       }).then((result) => {
-        if (result.ok) {
+        if (result.value) {
           this.deleteModel();
         }
       });

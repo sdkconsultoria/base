@@ -7,6 +7,7 @@
     class="form-question"
     method="POST"
     @submit.prevent="onSubmit"
+    :id="`delete-${model_id}`"
   >
     <input type="hidden" name="_token" :value="csrf" />
     <input type="hidden" name="_method" value="DELETE" />
@@ -36,6 +37,23 @@ export default {
     model_id: Number,
   },
   methods: {
+    deleteModel() {
+      let form = document.getElementById(`delete-${this.model_id}`);
+      let data = new FormData(form);
+
+      fetch(`${this.routes.api}/${this.model_id}`, {
+        body: data,
+        method: "post",
+      }).then((response) => {
+         if (response.ok) {
+           const message = {'text': this.translations.deleted, 'type': 'success'};
+           localStorage.setItem("toast", JSON.stringify(message));
+           window.location.assign(
+             `${this.routes.resource}`
+           );
+         }
+        })
+    },
     onSubmit(event) {
       Swal.fire({
         title: event.target.dataset.title,
@@ -47,12 +65,8 @@ export default {
         cancelButtonText: event.target.dataset.cancel,
         confirmButtonText: event.target.dataset.confirm,
       }).then((result) => {
-        if (result.value) {
-          const message = {'text': this.translations.deleted, 'type': 'success'};
-          localStorage.setItem("toast", JSON.stringify(message));
-          window.location.assign(
-            `${this.routes.resource}`
-          );
+        if (result.ok) {
+          this.deleteModel();
         }
       });
     },

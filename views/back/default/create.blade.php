@@ -11,6 +11,7 @@
             :translations='{!! json_encode($model->getFullTranslations()) !!}'
             csrf="{{csrf_token()}}"
             :fields='{!! json_encode($model->getFields()) !!}'
+            model_id="{{$model->id}}"
         />
     </div>
 @endsection

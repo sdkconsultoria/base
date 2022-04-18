@@ -1,13 +1,9 @@
 import Alpine from '@node/alpinejs'
-import './toast'
-import './question'
-import './jodit'
-import './uploadImg'
-import './imageable'
-import './taggable'
-import './deleteElements'
+import toast from './toast'
 import './components.js'
+// import './jodit'
 
+toast();
 window.Alpine = Alpine;
 
 Alpine.start();

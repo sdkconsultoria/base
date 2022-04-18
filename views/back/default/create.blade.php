@@ -5,9 +5,6 @@
 @section('content')
     <?= Base::breadcrumb([ $model->getRoute('index') => $model->getTranslation('plural'),  $model->getTranslation('create')]) ?>
 
-    <div class="">
-        <?= Base::settings($model); ?>
-    </div>
     <div id=app>
         <form-model
             :routes='{{json_encode($model->getIndexRoutes())}}'

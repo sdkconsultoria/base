@@ -24,6 +24,5 @@
         </div>
     </div>
     <script src="{{ mix('/back.js') }}"></script>
-    <?= Base::toast() ?>
 </body>
 </html>

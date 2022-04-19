@@ -6,6 +6,7 @@
       method="POST"
       @submit.prevent="onSubmit"
     >
+      <slot></slot>
       <input type="hidden" name="_token" :value="csrf" />
       <div v-for="field in fields" :key="field.name" class="form-group pr-1">
         <component

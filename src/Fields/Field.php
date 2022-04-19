@@ -57,7 +57,7 @@ abstract class Field
     public function getField(): array
     {
         return [
-            'type' => $this->field_type,
+            'component' => $this->component,
             'name' => $this->name,
             'label' => $this->label,
             'rules' => $this->rules,

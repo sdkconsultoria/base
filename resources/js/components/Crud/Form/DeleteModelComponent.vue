@@ -23,7 +23,6 @@
 import Swal from "@node/sweetalert2";
 import csrf from "@base/js/csrf_token";
 
-console.log();
 export default {
   name: "DeleteModel",
   data() {

@@ -33,9 +33,7 @@
     },
     "extra": {
         "laravel": {
-            "providers": [
-                "Sdkconsultoria\\Base\\ServiceProvider"
-            ],
+            "providers": [],
             "aliases": {
                 "Base": "Sdkconsultoria\\Base\\Facade"
             }

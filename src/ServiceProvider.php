@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Sdkconsultoria\Base\Services\MenuService;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
@@ -29,6 +30,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
         $this->loadViewsFrom(__DIR__.'/../views', 'base');
         $this->loadTranslationsFrom(__DIR__.'/../lang', 'base');
+        $this->registerMenu();
 
         // $this->publishes([
         //     __DIR__.'/../views' => resource_path('views/vendor/base'),
@@ -46,9 +48,14 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             __DIR__ . '/../config/base.php', 'base'
         );
 
+        $this->app->singleton(MenuService::class, function () {
+            return new MenuService();
+        });
+
         $this->app->bind('base',function(){
             return new Base();
         });
+
     }
 
     private function registerMigrationsMacro()
@@ -147,6 +154,17 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
                 \Sdkconsultoria\Base\Console\Commands\User::class,
             ]);
         }
+    }
+
+    private function registerMenu()
+    {
+        $service_menu = app(MenuService::class);
+        $service_menu->addElement([
+            'name' => __('base::app.dashboard'),
+            'icon' => \Base::icon('home', ['class' => 'h-6 w-6']),
+            'url' => 'dashboard',
+        ]);
+        $service_menu->addElement(\App\Models\User::makeMenu('users'));
     }
 
     private function enableQueryLogs()

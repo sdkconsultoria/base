@@ -176,7 +176,13 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\FortifyServiceProvider::class,
+
+        /**
+         * SDK Consultoría
+         */
+        Sdkconsultoria\Core\ServiceProvider::class,
+        Sdkconsultoria\Base\ServiceProvider::class,
+        Sdkconsultoria\Blog\ServiceProvider::class,
 
     ],
 

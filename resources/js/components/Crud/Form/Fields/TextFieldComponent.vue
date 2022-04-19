@@ -8,7 +8,7 @@
       type="text"
       class="form-control form-control-l form-control-r border-gray-300"
       :class="getFieldClass(name)"
-      :value="value"
+      :v-model="current_value"
     />
     <div class="text-red-500 text-xs font-semibold">
       <p v-for="(error, index) in errors[name]" :key="index">
@@ -29,6 +29,11 @@ export default {
     value: String,
     errors: JSON,
     submited: Boolean,
+  },
+  data() {
+    return {
+      current_value: this.value
+    }
   },
   methods: {
     getFieldClass,

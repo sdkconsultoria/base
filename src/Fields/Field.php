@@ -13,6 +13,7 @@ abstract class Field
     public string $label;
     public array $searchable;
     public array $filter;
+    public bool $can_be_saved = true;
 
     public static function make(string $name){
         $model =  new (get_called_class());
@@ -26,13 +27,6 @@ abstract class Field
         return $this->name;
     }
 
-    public function hideOnIndex()
-    {
-        $this->visible_on_index = false;
-
-        return $this;
-    }
-
     public function label(string $label) : self
     {
         $this->label = $label;
@@ -43,6 +37,18 @@ abstract class Field
     public function rules(array $rules)
     {
         $this->rules = $rules;
+
+        return $this;
+    }
+
+    public function filter($filter)
+    {
+        return $this;
+    }
+
+    public function canBeSaved($can_be_saved)
+    {
+        $this->can_be_saved = $can_be_saved;
 
         return $this;
     }
@@ -61,6 +67,8 @@ abstract class Field
             'name' => $this->name,
             'label' => $this->label,
             'rules' => $this->rules,
+            'filter' => $this->name,
+            'can_be_saved' => $this->can_be_saved,
             'visible_on' => [
                 'index' => $this->visible_on_index,
                 'update' => $this->visible_on_update,
@@ -68,7 +76,13 @@ abstract class Field
                 'update' => $this->visible_on_update,
                 'show' => $this->visible_on_show,
             ],
-            'filter' => $this->name,
         ];
+    }
+
+    public function hideOnIndex()
+    {
+        $this->visible_on_index = false;
+
+        return $this;
     }
 }

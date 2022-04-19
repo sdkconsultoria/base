@@ -16,10 +16,6 @@ Route::namespace('\Sdkconsultoria\Base\Http\Controllers\Admin')
         Route::get('/', 'DashboardController@index')->name('dashboard');
         Route::get('profile', 'UserController@myAccount')->name('profile');
         Route::post('save-profile', 'UserController@saveAccount')->name('save.profile');
-
-        Route::SdkResource('blog', 'Blog\BlogController');
-        Route::SdkResource('blog-post', 'BlogPost\BlogController');
-
 //
         // Route::middleware(['role:admin'])->group(function () {
 //             Route::resource('users', 'UserController');

@@ -14,8 +14,11 @@ Route::namespace('\Sdkconsultoria\Base\Http\Controllers\Admin')
 //
     Route::middleware(['auth'])->group(function () {
         Route::get('/', 'DashboardController@index')->name('dashboard');
+        Route::SdkResource('user', 'UserController');
+
         Route::get('profile', 'UserController@myAccount')->name('profile');
         Route::post('save-profile', 'UserController@saveAccount')->name('save.profile');
+
 //
         // Route::middleware(['role:admin'])->group(function () {
 //             Route::resource('users', 'UserController');

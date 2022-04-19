@@ -17,6 +17,8 @@
             csrf="{{csrf_token()}}"
             :fields='{!! json_encode($model->getFields()) !!}'
             model_id="{{$model->id}}"
-        />
+        >
+            <input type="hidden" name="_method" value="PUT" />
+        </form-model>
     </div>
 @endsection

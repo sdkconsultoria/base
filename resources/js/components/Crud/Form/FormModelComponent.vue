@@ -6,6 +6,7 @@
       method="POST"
       @submit.prevent="onSubmit"
     >
+      <slot></slot>
       <input type="hidden" name="_token" :value="csrf" />
       <div v-for="field in fields" :key="field.name" class="form-group pr-1">
         <label for="" class="text-gray-600 font-medium">
@@ -47,12 +48,14 @@ export default {
       errors: {},
       submited: false,
       status: 0,
-      button_text: String,
+      button_text: "",
+      url: this.routes.api,
     };
   },
   mounted() {
     if (this.model_id) {
       this.button_text = this.translations.edit;
+      this.url += `/${this.model_id}`;
     } else {
       this.button_text = this.translations.create;
     }
@@ -71,7 +74,7 @@ export default {
       let search_form = document.getElementById("form-create");
       let form_data = new FormData(search_form);
 
-      fetch(this.routes.api, {
+      fetch(this.url, {
         body: form_data,
         method: "post",
       })

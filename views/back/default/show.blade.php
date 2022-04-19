@@ -25,8 +25,8 @@
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($model->getFields() as $field)
                                 <tr>
-                                    <th class="text-gray-700"> {{ $field['label'] }} </th>
-                                    <td> {{ $model->{$field['name']} }} </td>
+                                    <th class="text-gray-700 p-2"> {{ $field['label'] }} </th>
+                                    <td class="p-2"> {{ $model->{$field['name']} }} </td>
                                 </tr>
                             @endforeach
                         </tbody>

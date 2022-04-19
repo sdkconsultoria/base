@@ -164,8 +164,8 @@ class Menu extends BaseHtml implements iHtml
     protected function getCrudUrls($item, &$urls){
         if (isset($item['crud'])) {
             array_push($urls, $item['crud'].'.create');
-            array_push($urls, $item['crud'].'.edit');
-            array_push($urls, $item['crud'].'.show');
+            array_push($urls, $item['crud'].'.update');
+            array_push($urls, $item['crud'].'.view');
         }
     }
 }

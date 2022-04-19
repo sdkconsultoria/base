@@ -11,6 +11,8 @@ use Sdkconsultoria\Core\Models\Traits\BaseModel as TraitBaseModel;
 use Sdkconsultoria\Core\Models\Traits\ImageTrait;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Sdkconsultoria\Base\Models\Auth\UserSocial;
+use Sdkconsultoria\Base\Fields\TextField;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -21,47 +23,52 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasRoles;
     use TraitBaseModel;
 
+    public const DEFAULT_SEARCH = 'like';
     public const STATUS_DELETED = 0;
     public const STATUS_BLOCKED = 10;
     public const STATUS_DISABLED = 15;
     public const STATUS_CREATION = 20;
     public const STATUS_ACTIVE = 30;
 
-    /**
-     * Obtiene los atributos por los cuales que se puede buscar
-     * @return array
-     */
-    public function getFiltersAttribute()
+    public $canCreateEmpty = false;
+
+    protected function fields()
     {
-        return [
-            'name' => [
-                'column' => [
-                    'name',
-                    'lastname',
-                    'lastname_2',
-                ],
-            ],
-            'email',
-            'status' => [
-                'type' => 'dropdown',
-                'options' => $this->getStatus()
-            ]
+        return[
+            TextField::make('name')
+                ->label('Nombre')
+                ->rules(['required'])
+                ->filter([
+                    'column' => [
+                        'name',
+                        'lastname',
+                        'lastname_2',
+                    ],
+                ]),
+            TextField::make('lastname')
+                ->label('Apellido Paterno')
+                ->rules(['required']),
+            TextField::make('lastname_2')
+                ->label('Apellido Materno')
+                ->rules(['required']),
+            TextField::make('email')
+                ->label('Correo')
+                ->rules(['required', 'email']),
+            TextField::make('password')
+                ->label('Contraseña')
+                ->rules(['required', 'min:6', 'confirmed'])->hideOnIndex(),
+            TextField::make('password_confirmation')
+                ->label('Confirmar contraseña')
+                ->rules(['min:6'])->hideOnIndex()->canBeSaved(false),
         ];
     }
 
-    /**
-     * Validaciones para crear el modelo.
-     *
-     * @return array
-     */
-    public static function rules($request)
+
+    public function getTranslations() : array
     {
         return [
-            'users_name' => 'required',
-            'users_lastname' => 'required',
-            'users_email' => 'required|email',
-            'users_password' => 'required|min:6|confirmed',
-            'users_password_confirmation' => 'min:6',
+            'singular' => 'Usuario',
+            'plural' => 'Usuarios',
         ];
     }
 
@@ -136,6 +143,10 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function save(array $options = [])
     {
+        if ($this->isDirty('password')) {
+            $this->password = Hash::make($this->password);
+        }
+
         parent::save($options);
     }
 }

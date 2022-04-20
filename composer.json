@@ -33,7 +33,7 @@
     },
     "extra": {
         "laravel": {
-            "providers": [],
+            "providers": ["Sdkconsultoria\\Base\\InstallProvider"],
             "aliases": {
                 "Base": "Sdkconsultoria\\Base\\Facade"
             }

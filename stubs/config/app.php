@@ -169,6 +169,7 @@ return [
          */
         Sdkconsultoria\Core\ServiceProvider::class,
         Sdkconsultoria\Base\ServiceProvider::class,
+        App\Providers\MenuServiceProvider::class,
 
         /*
          * Application Service Providers...

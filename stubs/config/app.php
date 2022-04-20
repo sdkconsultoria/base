@@ -167,6 +167,8 @@ return [
         /*
          * Package Service Providers...
          */
+        Sdkconsultoria\Core\ServiceProvider::class,
+        Sdkconsultoria\Base\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -177,13 +179,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
-
-        /**
-         * SDK Consultoría
-         */
-        Sdkconsultoria\Core\ServiceProvider::class,
-        Sdkconsultoria\Base\ServiceProvider::class,
-
     ],
 
     /*

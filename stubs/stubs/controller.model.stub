@@ -2,10 +2,9 @@
 
 namespace {{ namespace }};
 
-use Sdkconsultoria\Base\Http\Controllers\ResourceController;
+use Sdkconsultoria\Core\Controllers\ResourceController;
 
 class {{ class }} extends ResourceController
 {
     protected $model = \{{ namespacedModel }}::class;
-    protected $view = '';
 }

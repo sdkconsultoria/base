@@ -2,29 +2,23 @@
 
 namespace {{ namespace }};
 
-use Sdkconsultoria\Base\Models\Model as BaseModel;
+use Sdkconsultoria\Core\Models\Model as BaseModel;
+use Sdkconsultoria\Base\Fields\TextField;
 
 class {{ class }} extends BaseModel
 {
-    /**
-     * Obtiene los atributos por los cuales que se puede buscar
-     * @return array
-     */
-    public function getFiltersAttribute()
+    protected function fields()
     {
-        return array_merge([
-
-        ], parent::getFiltersAttribute());
+        return[
+            TextField::make('')->label('')->rules(['required']),
+        ];
     }
 
-    /**
-     * Validaciones para crear el modelo.
-     *
-     * @return array
-     */
-    public static function rules($request)
+    public function getTranslations() : array
     {
         return [
+            'singular' => '',
+            'plural' => '',
         ];
     }
 }

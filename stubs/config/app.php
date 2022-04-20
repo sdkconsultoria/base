@@ -183,7 +183,6 @@ return [
          */
         Sdkconsultoria\Core\ServiceProvider::class,
         Sdkconsultoria\Base\ServiceProvider::class,
-        Sdkconsultoria\Blog\ServiceProvider::class,
 
     ],
 

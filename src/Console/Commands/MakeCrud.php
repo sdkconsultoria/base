@@ -43,6 +43,7 @@ class MakeCrud extends Command
         $this->createModel($model);
         $this->fixController($model);
         $this->generateRoute($model);
+        $this->addModelToMenu($model);
 
         $this->info("Se creó correctamente el CRUD {$model}.");
     }
@@ -58,7 +59,7 @@ class MakeCrud extends Command
         $singular = Str::singular(Str::kebab($model));
         $route = '    Route::SdkResource(\'' . $singular . '\', ' . $model . 'Controller::class);';
 
-        if( strpos(file_get_contents(base_path('routes/web.php')), $route) !== false) {
+        if (strpos(file_get_contents(base_path('routes/web.php')), $route) !== false) {
             return;
         }
 
@@ -97,5 +98,31 @@ class MakeCrud extends Command
     protected function replaceInFile($search, $replace, $path)
     {
         file_put_contents($path, str_replace($search, $replace, file_get_contents($path)));
+    }
+
+    protected function addModelToMenu($model)
+    {
+        $file_provider = app_path('Providers/MenuServiceProvider.php');
+        $menu_use_code = 'use Sdkconsultoria\Base\Services\MenuService;';
+        $model_use_code = "use App\Models\\" . $model . ";";
+
+        if (strpos(file_get_contents($file_provider), $model_use_code) == false) {
+            $this->replaceInFile(
+                $menu_use_code,
+                "$menu_use_code\n$model_use_code",
+                $file_provider
+            );
+        }
+
+        $instance_code = '$service_menu = app(MenuService::class);';
+        $menu_code = "\$service_menu->addElement($model::makeMenu('book-open'));";
+
+        if (strpos(file_get_contents($file_provider), $menu_code) == false) {
+            $this->replaceInFile(
+                $instance_code,
+                "$instance_code\n        $menu_code",
+                $file_provider
+            );
+        }
     }
 }

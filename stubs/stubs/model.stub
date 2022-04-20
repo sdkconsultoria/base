@@ -17,8 +17,8 @@ class {{ class }} extends BaseModel
     public function getTranslations() : array
     {
         return [
-            'singular' => '',
-            'plural' => '',
+            'singular' => '{{class}}',
+            'plural' => '{{class}}',
         ];
     }
 }

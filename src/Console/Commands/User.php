@@ -67,7 +67,7 @@ class User extends Command
         $user->name = $name;
         $user->lastname = $lastname;
         $user->email = $email;
-        $user->password = Hash::make('password');
+        $user->password = 'password';
         $user->status = config('auth.providers.users.model')::STATUS_ACTIVE;
         $user->save();
 

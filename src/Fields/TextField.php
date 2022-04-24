@@ -2,7 +2,9 @@
 
 namespace Sdkconsultoria\Base\Fields;
 
-class TextField extends Field
+use Sdkconsultoria\Core\Fields\TextField as CoreTextField;
+
+class TextField extends CoreTextField
 {
     public $component = "TextField";
 }

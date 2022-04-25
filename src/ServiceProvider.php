@@ -16,10 +16,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function boot()
     {
-        $this->registerMigrationsMacro();
         $this->registerMigrations();
         $this->registerCustomFactory();
-        $this->registerRoutesMacro();
         $this->registerRoutes();
         $this->registerCommands();
         // $this->enableQueryLogs();

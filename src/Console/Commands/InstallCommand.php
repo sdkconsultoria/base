@@ -40,6 +40,8 @@ class InstallCommand extends Command
      */
     public function handle()
     {
+        Artisan::call("sdk:core-install");
+
         $this->copyStubs();
         $this->updateNode();
         $this->writteResources();

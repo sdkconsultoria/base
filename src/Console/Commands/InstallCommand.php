@@ -85,7 +85,6 @@ class InstallCommand extends Command
     private function writteUserChanges()
     {
         copy(__DIR__.'/../../../stubs/models/User.php', base_path('app/Models/User.php'));
-        copy(__DIR__.'/../../../stubs/factories/UserFactory.php', base_path('database/factories/UserFactory.php'));
     }
 
     private function writteTailwindConfig()

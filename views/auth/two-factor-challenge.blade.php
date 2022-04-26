@@ -1,4 +1,4 @@
-@extends('base::back.layouts.widget.central')
+@extends('core::back.layouts.widget.central')
 
 @section('central')
     <div class="col-md-8">
@@ -18,7 +18,7 @@
                             'required' => 'required',
                             'name' => 'code',
                             'autofocus' => 'autofocus',
-                        ])->setTranslate(__('base::models.user.code'))->prepend(Base::icon('key'))->passwordInput()->label(false);
+                        ])->setTranslate(__('core::models.user.code'))->prepend(Base::icon('key'))->passwordInput()->label(false);
                     ?>
 
                     <div class="mb-0 form-group row">
@@ -49,7 +49,7 @@
                             'required' => 'required',
                             'name' => 'recovery_code',
                             'autofocus' => 'autofocus',
-                        ])->setTranslate(__('base::models.user.recovery_code'))->prepend(Base::icon('key'))->passwordInput()->label(false);
+                        ])->setTranslate(__('core::models.user.recovery_code'))->prepend(Base::icon('key'))->passwordInput()->label(false);
                     ?>
 
                     <div class="mb-0 form-group row">

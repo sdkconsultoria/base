@@ -26,7 +26,7 @@ class UserController extends ResourceController
     // public function createToken(Request $request)
     // {
     //     $token = auth()->user()->createToken($request->input('name'))->plainTextToken;
-    //     $request->session()->flash('sactum_token', __('base::models.token.created', ['token' => $token]));
+    //     $request->session()->flash('sactum_token', __('core::models.token.created', ['token' => $token]));
 
     //     return redirect()->route('my_account');
     // }
@@ -34,7 +34,7 @@ class UserController extends ResourceController
     // public function deleteToken(string $id)
     // {
     //     auth()->user()->tokens()->where('id', $id)->delete();
-    //     request()->session()->flash('sactum_token', trans_choice('base::models.common.deleted', 1, ['item' => 'Token']));
+    //     request()->session()->flash('sactum_token', trans_choice('core::models.common.deleted', 1, ['item' => 'Token']));
 
     //     return redirect()->route('my_account');
     // }

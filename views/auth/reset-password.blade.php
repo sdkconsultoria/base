@@ -1,4 +1,4 @@
-@extends('base::back.layouts.widget.central')
+@extends('core::back.layouts.widget.central')
 
 @section('central')
 
@@ -16,7 +16,7 @@
                 'name' => 'email',
                 'value' => request()->email ?? old('email'),
                 'readOnly' => 'readOnly',
-            ])->setTranslate(__('base::models.user.email'))->prepend(Base::icon('mail'))->label(false);
+            ])->setTranslate(__('core::models.user.email'))->prepend(Base::icon('mail'))->label(false);
             ?>
 
             <?=
@@ -24,7 +24,7 @@
                 'required' => 'required',
                 'name' => 'password',
                 'autofocus' => 'autofocus',
-            ])->setTranslate(__('base::models.user.password'))->prepend(Base::icon('key'))->passwordInput()->label(false);
+            ])->setTranslate(__('core::models.user.password'))->prepend(Base::icon('key'))->passwordInput()->label(false);
             ?>
 
             <?=

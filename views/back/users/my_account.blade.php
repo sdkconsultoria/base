@@ -1,4 +1,4 @@
-@extends('base::back.layouts.app')
+@extends('core::back.layouts.app')
 
 @section('title', $model->getLabel('my_account'))
 
@@ -27,7 +27,7 @@
                 <?= $model->input('password')->passwordInput() ?>
                 <?= $model->input('password_confirmation')->passwordInput() ?>
                 <?= $model->input('photo')->imageInput([], 'users_profile_photo') ?>
-                <button class="btn btn-primary mt-3" type="submit" name="button"> @lang('base::app.common.update') </button>
+                <button class="btn btn-primary mt-3" type="submit" name="button"> @lang('core::app.common.update') </button>
             </div>
             <div class="w-1/2 flex flex-row flex-wrap justify-center items-center">
                 @if ($model->image)
@@ -79,8 +79,8 @@
         @endphp
 
         <div class="">
-            <h3 class="text-90 uppercase tracking-wide font-bold text-sm py-4">@lang('base::models.token.plural')</h3>
-            <button x-on:click="tokenModal = true" class="btn btn-primary mb-3" type="button" name="button">@lang('base::models.common.create', ['model' => 'Token'])</button>
+            <h3 class="text-90 uppercase tracking-wide font-bold text-sm py-4">@lang('core::models.token.plural')</h3>
+            <button x-on:click="tokenModal = true" class="btn btn-primary mb-3" type="button" name="button">@lang('core::models.common.create', ['model' => 'Token'])</button>
         </div>
 
         <div x-show="tokenModal" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
@@ -95,23 +95,23 @@
                             <div class="sm:flex sm:items-start">
                                 <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                     <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                                        @lang('base::models.common.create', ['model' => 'Token'])
+                                        @lang('core::models.common.create', ['model' => 'Token'])
                                     </h3>
                                     <?=
                                     Base::input([
                                         'required' => 'required',
                                         'name' => 'name',
-                                    ])->setTranslate(__('base::models.common.name'))->prepend(Base::icon('document-text'))->label(false);
+                                    ])->setTranslate(__('core::models.common.name'))->prepend(Base::icon('document-text'))->label(false);
                                     ?>
                                 </div>
                             </div>
                         </div>
                         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                             <button type="submit" class="btn btn-success">
-                                @lang('base::app.common.save')
+                                @lang('core::app.common.save')
                             </button>
                             <button x-on:click="tokenModal = false" type="button" class="btn btn-danger mr-2">
-                                @lang('base::app.common.cancel')
+                                @lang('core::app.common.cancel')
                             </button>
                         </div>
                     </form>
@@ -133,9 +133,9 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$token->name}}</td>
                                     <td>
                                         <form
-                                        data-title="{!!trans_choice('base::models.common.delete_question', 1, ['item' => 'Token'])!!}"
-                                        data-confirm="@lang('base::models.common.delete', ['model' => 'Token'])"
-                                        data-cancel="@lang('base::app.common.cancel')"
+                                        data-title="{!!trans_choice('core::models.common.delete_question', 1, ['item' => 'Token'])!!}"
+                                        data-confirm="@lang('core::models.common.delete', ['model' => 'Token'])"
+                                        data-cancel="@lang('core::app.common.cancel')"
                                         class="form-question" method="POST" action="{{route('user.delete-token', $token->id)}}">
                                             <input type="hidden" name="_token" value="{{csrf_token()}}" />
                                             <input type="hidden" name="_method" value="DELETE">

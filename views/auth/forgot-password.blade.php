@@ -1,4 +1,4 @@
-@extends('base::back.layouts.widget.central')
+@extends('core::back.layouts.widget.central')
 
 @section('central')
     <p class="text-center text-gray-500 fancy">@lang('auth.reset')</p>
@@ -15,7 +15,7 @@
         Base::input([
             'required' => 'required',
             'name' => 'email',
-        ])->setTranslate(__('base::models.user.email'))->prepend(Base::icon('mail'))->label(false);
+        ])->setTranslate(__('core::models.user.email'))->prepend(Base::icon('mail'))->label(false);
         ?>
 
         <button type="submit" class="btn btn-primary mt-2 text-center w-full">

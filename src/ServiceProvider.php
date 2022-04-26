@@ -97,7 +97,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $service_menu = app(MenuService::class);
         $service_menu->addElement([
-            'name' => __('base::app.dashboard'),
+            'name' => __('core::app.dashboard'),
             'icon' => \Base::icon('home', ['class' => 'h-6 w-6']),
             'url' => 'dashboard',
         ]);

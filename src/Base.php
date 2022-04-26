@@ -80,7 +80,7 @@ class Base
     public function languages()
     {
         return collect(config('base.languages'))->map(function ($lang) {
-            return __('base::languages.' . $lang[0]);
+            return __('core::languages.' . $lang[0]);
         })->toArray();
     }
 

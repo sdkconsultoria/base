@@ -1,4 +1,4 @@
-@extends('base::back.layouts.empty')
+@extends('core::back.layouts.empty')
 
 @section('content')
 <div class="p-3 min-h-full flex flex-colum flex-wrap content-center justify-center">

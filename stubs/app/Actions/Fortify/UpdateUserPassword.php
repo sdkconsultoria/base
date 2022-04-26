@@ -24,7 +24,7 @@ class UpdateUserPassword implements UpdatesUserPasswords
             'password' => $this->passwordRules(),
         ])->after(function ($validator) use ($user, $input) {
             if (! isset($input['current_password']) || ! Hash::check($input['current_password'], $user->password)) {
-                $validator->errors()->add('current_password', __('base::models.users.invalid_confirm'));
+                $validator->errors()->add('current_password', __('core::models.users.invalid_confirm'));
             }
         })->validateWithBag('updatePassword');
 

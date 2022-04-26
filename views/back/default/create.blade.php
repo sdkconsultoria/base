@@ -1,4 +1,4 @@
-@extends('base::back.layouts.app')
+@extends('core::back.layouts.app')
 
 @section('title', $model->getTranslation('create') )
 

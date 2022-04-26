@@ -46,7 +46,7 @@ class Breadcrumb extends BaseHtml implements iHtml
         $html = '
             <nav class="bg-white p-3 mb-6 rounded-lg shadow-md" aria-label="breadcrumb">
                 <ol class="flex leading-none text-cyan-600 divide-x divide-indigo-400">
-                    <li class="pr-4"><a href="' . route('dashboard') . '">' . __('base::app.dashboard') . '</a></li>
+                    <li class="pr-4"><a href="' . route('dashboard') . '">' . __('core::app.dashboard') . '</a></li>
                     ' . $this->items() . '
 
                 </ol>

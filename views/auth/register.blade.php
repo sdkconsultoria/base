@@ -1,4 +1,4 @@
-@extends('base::back.layouts.widget.central')
+@extends('core::back.layouts.widget.central')
 
 @section('central')
     <form class="" action="{{ route('register') }}" method="post" novalidate>
@@ -8,21 +8,21 @@
            Base::input([
                'required' => 'required',
                'name' => 'email',
-           ])->setTranslate(__('base::models.user.email'))->prepend(Base::icon('mail'))->label(false);
+           ])->setTranslate(__('core::models.user.email'))->prepend(Base::icon('mail'))->label(false);
        ?>
 
        <?=
            Base::input([
                'required' => 'required',
                'name' => 'name',
-           ])->setTranslate(__('base::models.user.name'))->prepend(Base::icon('user'))->label(false);
+           ])->setTranslate(__('core::models.user.name'))->prepend(Base::icon('user'))->label(false);
        ?>
 
        <?=
            Base::input([
                'required' => 'required',
                'name' => 'lastname',
-           ])->setTranslate(__('base::models.user.lastname'))->prepend(Base::icon('users'))->label(false);
+           ])->setTranslate(__('core::models.user.lastname'))->prepend(Base::icon('users'))->label(false);
        ?>
 
        <?=
@@ -30,7 +30,7 @@
                'required' => 'required',
                'name' => 'lastname_2',
            ])
-           ->setTranslate(__('base::models.user.lastname_2'))
+           ->setTranslate(__('core::models.user.lastname_2'))
            ->prepend(Base::icon('users'))
            ->label(false);
        ?>
@@ -40,7 +40,7 @@
                'required' => 'required',
                'name' => 'password',
            ])
-           ->setTranslate(__('base::models.user.password'))
+           ->setTranslate(__('core::models.user.password'))
            ->prepend(Base::icon('key'))
            ->label(false)
            ->passwordInput();
@@ -52,7 +52,7 @@
                'name' => 'password_confirmation',
            ])
            ->validate(false)
-           ->setTranslate(__('base::models.user.password_confirmation'))
+           ->setTranslate(__('core::models.user.password_confirmation'))
            ->prepend(Base::icon('key'))
            ->label(false)
            ->passwordInput();
@@ -65,5 +65,5 @@
             <a class="tracking-wider text-white bg-red-500 px-5 py-2 text-sm rounded leading-loose mx-2 font-semibold"  href="{{route('social-auth', 'google')}}"> Google </a>
         </div>
     </form>
-    @include('base::auth.sso')
+    @include('core::auth.sso')
 @endsection

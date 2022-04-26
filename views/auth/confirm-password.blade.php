@@ -1,4 +1,4 @@
-@extends('base::back.layouts.widget.central')
+@extends('core::back.layouts.widget.central')
 
 @section('central')
     <p class="text-center text-gray-500 fancy">@lang('auth.before_continuing')</p>
@@ -10,7 +10,7 @@
                 Base::input([
                     'required' => 'required',
                     'name' => 'password',
-                ])->setTranslate(__('base::models.user.password'))->prepend(Base::icon('lock-closed'))->passwordInput()->label(false);
+                ])->setTranslate(__('core::models.user.password'))->prepend(Base::icon('lock-closed'))->passwordInput()->label(false);
                 ?>
             </div>
         </div>

@@ -109,7 +109,7 @@ class Input extends BaseHtml  implements iHtml
             data-target="'.$target.'"
             data-upload="' . route('image.upload-single', ['class' => $this->model::class, 'id' => $this->model->id]) . '">
                 <div class="drop-message">
-                    ' . __('base::models.image.upload_one') . '
+                    ' . __('core::models.image.upload_one') . '
                 </div>
                 <div id="image-preview" class="flex flex-row flex-wrap"></div>
             </div>';
@@ -127,7 +127,7 @@ class Input extends BaseHtml  implements iHtml
             class="bg-white rounded-lg border-2 border-dotted p-2 border-blue-500"
             data-upload="' . route('image.upload', ['class' => $this->model::class, 'id' => $this->model->id]) . '">
                 <div class="drop-message">
-                    ' . __('base::models.image.upload_one') . '
+                    ' . __('core::models.image.upload_one') . '
                 </div>
                 <div id="image-preview" class="flex flex-row flex-wrap"></div>
             </div>';

@@ -1,4 +1,4 @@
-@extends('core::default.show')
+@extends('base::default.show')
 
 
 @section('model')

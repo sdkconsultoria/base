@@ -1,4 +1,4 @@
-@extends('core::back.layouts.empty')
+@extends('base::back.layouts.empty')
 
 <div class="container">
     <div class="row justify-content-center">

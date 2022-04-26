@@ -1,4 +1,4 @@
-@extends('core::back.layouts.app')
+@extends('base::back.layouts.app')
 
 @section('title_tab', __('core::attributes.schedule.edit'))
 

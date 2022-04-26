@@ -1,4 +1,4 @@
-@extends('core::back.layouts.widget.central')
+@extends('base::back.layouts.widget.central')
 
 @section('central')
     <p class="text-center text-gray-500 fancy">@lang('auth.before_continuing')</p>

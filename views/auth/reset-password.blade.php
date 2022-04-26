@@ -1,4 +1,4 @@
-@extends('core::back.layouts.widget.central')
+@extends('base::back.layouts.widget.central')
 
 @section('central')
 

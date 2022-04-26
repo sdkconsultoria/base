@@ -14,7 +14,7 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('core::auth.login');
+        return view('base::auth.login');
     }
 
     /*

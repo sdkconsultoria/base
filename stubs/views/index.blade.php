@@ -1,4 +1,4 @@
-@extends('core::default.index')
+@extends('base::default.index')
 
 @section('model')
     <?= Base::gridView([

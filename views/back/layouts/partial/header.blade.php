@@ -51,7 +51,7 @@
             <div x-show="dropdownOpen" x-on:click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
 
             <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10">
-                <a href="{{route('profile')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">@lang('core::models.user.my_account')</a>
+                <a href="{{route('profile')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">@lang('base::models.user.my_account')</a>
                 <form id="form-logout" action="{{route('logout')}}" method="post">
                     @csrf
                 </form>

@@ -1,4 +1,4 @@
-@extends('core::back.layouts.widget.central')
+@extends('base::back.layouts.widget.central')
 
 @section('central')
     <form class="" action="{{ route('register') }}" method="post" novalidate>
@@ -65,5 +65,5 @@
             <a class="tracking-wider text-white bg-red-500 px-5 py-2 text-sm rounded leading-loose mx-2 font-semibold"  href="{{route('social-auth', 'google')}}"> Google </a>
         </div>
     </form>
-    @include('core::auth.sso')
+    @include('base::auth.sso')
 @endsection

@@ -11,10 +11,10 @@
 </head>
 <body class="h-screen">
     <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
-        @include('core::back.layouts.partial.sidebar')
+        @include('base::back.layouts.partial.sidebar')
 
         <div class="flex-1 flex flex-col overflow-hidden">
-            @include('core::back.layouts.partial.header')
+            @include('base::back.layouts.partial.header')
 
             <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
                 <div class="container mx-auto px-6 py-8 relative">

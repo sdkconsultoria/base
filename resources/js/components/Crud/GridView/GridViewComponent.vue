@@ -80,8 +80,17 @@ export default {
     }
 
     function fetchData(url) {
+
+      const cookieValue = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('XSRF-TOKEN='))
+      .split('=')[1];
+
       loading.value = true;
-      return fetch(url)
+      return fetch(url, {"headers":{
+        "Accept": "application/json",
+        'X-XSRF-TOKEN': cookieValue
+        }})
         .then((response) => response.json())
         .then((response) => {
           data.value = response;

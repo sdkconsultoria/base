@@ -105,7 +105,8 @@ class InstallCommand extends Command
         $this->updateNodePackages(function ($packages) {
             return [
                 'autoprefixer' =>  '^10.4.0',
-                'postcss' =>  '^8.4.5',
+                'axios' => '^0.27.2',
+                'postcss' =>  '^8.4.13',
                 'tailwindcss' =>  '^3.0.7',
                 'postcss-import' => '^14.0.2',
                 '@tailwindcss/forms' => '^0.4.0',

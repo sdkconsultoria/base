@@ -20,7 +20,7 @@
         "laravel/fortify": "^1.8",
         "openpay/sdk": "^2.2",
         "hybridauth/hybridauth": "^3.7",
-        "sdkconsultoria/core": "*"
+        "sdkconsultoria/api-base": "*"
     },
     "require-dev": {},
     "autoload": {

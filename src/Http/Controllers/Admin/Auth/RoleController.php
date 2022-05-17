@@ -6,5 +6,5 @@ use Sdkconsultoria\Core\Controllers\ResourceController;
 
 class RoleController extends ResourceController
 {
-    protected $model = \Sdkconsultoria\RoleManager\Models\Role::class;
+    protected $model = \Sdkconsultoria\ApiBase\Models\Role::class;
 }

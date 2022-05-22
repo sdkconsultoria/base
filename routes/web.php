@@ -1,4 +1,5 @@
 <?php
+
 //
 Route::namespace('\Sdkconsultoria\Base\Http\Controllers\Admin')
 ->prefix('admin')

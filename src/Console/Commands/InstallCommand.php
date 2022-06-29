@@ -4,7 +4,6 @@ namespace Sdkconsultoria\Base\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
 class InstallCommand extends Command
@@ -40,7 +39,7 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        Artisan::call("sdk:core-install");
+        Artisan::call('sdk:core-install');
 
         $this->copyStubs();
         $this->updateNode();
@@ -49,13 +48,13 @@ class InstallCommand extends Command
         $this->writteUserChanges();
         $this->writteConfig();
 
-
         $this->info('SDK Base se instalo correctamente.');
         $this->comment('Ejecuta el comando "npm install && npm run sdk && npm run dev" para generar tus assets.');
     }
 
     /**
      * Copia los stubs
+     *
      * @return void
      */
     private function copyStubs()
@@ -63,15 +62,12 @@ class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(app_path('stubs'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/stubs', base_path('stubs'));
 
-
         copy(__DIR__.'/../../../stubs/routes/web.php', base_path('routes/web.php'));
         // copy(__DIR__.'/../../../stubs/.gitignore', base_path('.gitignore'));
         // copy(__DIR__.'/../../../stubs/.env.example', base_path('.env.example'));
         // copy(__DIR__.'/../../../stubs/phpunit.xml', base_path('phpunit.xml'));
 
-
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/public/img', base_path('public/img'));
-
     }
 
     private function writteResources()

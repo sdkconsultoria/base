@@ -17,7 +17,6 @@ class ForgotPasswordController extends Controller
         return view('base::auth.passwords.email');
     }
 
-
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller

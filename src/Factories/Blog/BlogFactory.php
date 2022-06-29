@@ -2,8 +2,8 @@
 
 namespace Sdkconsultoria\Base\Factories\Blog;
 
-use Sdkconsultoria\Base\Models\Blog\Blog;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Sdkconsultoria\Base\Models\Blog\Blog;
 
 class BlogFactory extends Factory
 {

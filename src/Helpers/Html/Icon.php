@@ -2,16 +2,15 @@
 
 namespace Sdkconsultoria\Base\Helpers\Html;
 
-/**
- *
- */
 class Icon extends BaseHtml
 {
     private $icon = '';
+
     private $type = '';
+
     private $options = ['class' => 'text-gray-500'];
 
-    function __construct(string $icon, array $options = [], string $type = 'outline')
+    public function __construct(string $icon, array $options = [], string $type = 'outline')
     {
         $this->icon = $icon;
         $this->type = $type;
@@ -25,19 +24,17 @@ class Icon extends BaseHtml
 
     private function parseIcon(string $icon)
     {
-        return str_replace('<svg ', '<svg ' .  $this->options , $icon);
+        return str_replace('<svg ', '<svg '.$this->options, $icon);
     }
 
-    public function render() : string
+    public function render(): string
     {
-        $path = dirname(__DIR__ ) . '/../../resources/icons/' . $this->type . '/' . $this->icon . '.svg';
+        $path = dirname(__DIR__).'/../../resources/icons/'.$this->type.'/'.$this->icon.'.svg';
 
         try {
             return $this->parseIcon(file_get_contents($path));
         } catch (\Exception $e) {
             return '';
         }
-
     }
 }
-

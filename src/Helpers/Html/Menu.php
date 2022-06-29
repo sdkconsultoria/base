@@ -2,24 +2,28 @@
 
 namespace Sdkconsultoria\Base\Helpers\Html;
 
-use Route;
 use Base;
+use Route;
 
-/**
- *
- */
 class Menu extends BaseHtml implements iHtml
 {
     protected $item_class = 'flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100';
+
     protected $sub_item_class = 'ml-4 flex items-center mt-1 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100';
+
     protected $active_class = 'bg-gray-700 bg-opacity-25 text-gray-100';
+
     protected $purge_class = 'text-gray-500';
+
     protected $current_route;
+
     protected $items;
+
     protected $urls;
+
     protected $is_active = false;
 
-    function __construct(array $items)
+    public function __construct(array $items)
     {
         $this->items = $items;
         $this->current_route = Route::currentRouteName();
@@ -36,9 +40,11 @@ class Menu extends BaseHtml implements iHtml
      * Determina si el item actual esta activo o no
      * Determina que clases son necesarias
      * Si es un sub item agrega padding izquierdo
+     *
      * @return string las clases que se deben agregar al elemento
      */
-    protected function isActive(int $level = 0, $urls = [], $last_active = false){
+    protected function isActive(int $level = 0, $urls = [], $last_active = false)
+    {
         $class = $this->item_class;
         $is_active = false;
 
@@ -49,7 +55,7 @@ class Menu extends BaseHtml implements iHtml
         }
 
         if ($level) {
-            $class .= ' ml-' . ($level * 5) . ' ';
+            $class .= ' ml-'.($level * 5).' ';
         }
 
         return [$class, $is_active];
@@ -57,7 +63,8 @@ class Menu extends BaseHtml implements iHtml
 
     /**
      * Obtiene la ruta de un item
-     * @param  array   $item
+     *
+     * @param  array  $item
      * @return string  ruta
      */
     protected function getRoute(array $item)
@@ -72,7 +79,7 @@ class Menu extends BaseHtml implements iHtml
             return '#';
         }
 
-        if (substr( $route, 0, 1) === '#' || substr( $route, 0, 4) === 'http') {
+        if (substr($route, 0, 1) === '#' || substr($route, 0, 4) === 'http') {
             return $route;
         }
 
@@ -81,6 +88,7 @@ class Menu extends BaseHtml implements iHtml
 
     /**
      * Convierte esta clase a un html valido
+     *
      * @return string
      */
     public function render()
@@ -102,18 +110,18 @@ class Menu extends BaseHtml implements iHtml
         $items = $this->getItems($item, $level + 1);
         $is_active = $this->isActive($level, $urls, $items[1]);
         $html = '
-        <div ' . ($items?'x-data="{ open: ' . ($is_active[1]?'true':'false') . ' }"':'') . '>
-            <a  '.($items?'x-on:click="open = !open"':'').' class="' . $is_active[0] . '" href="' . $this->getRoute($item) . '">
-                ' . ($item['icon'] ?? '') . '
-                <span class="mx-3">' . $item['name'] . '</span>
-                ' . $this->getDrowpdownIcon($items[0]) . '
+        <div '.($items ? 'x-data="{ open: '.($is_active[1] ? 'true' : 'false').' }"' : '').'>
+            <a  '.($items ? 'x-on:click="open = !open"' : '').' class="'.$is_active[0].'" href="'.$this->getRoute($item).'">
+                '.($item['icon'] ?? '').'
+                <span class="mx-3">'.$item['name'].'</span>
+                '.$this->getDrowpdownIcon($items[0]).'
 
-            </a>' . $items[0] . '
+            </a>'.$items[0].'
         </div>';
 
         return [
             $html,
-            $is_active[1]
+            $is_active[1],
         ];
     }
 
@@ -140,28 +148,32 @@ class Menu extends BaseHtml implements iHtml
     {
         $icon = '';
         if ($items) {
-            $icon .= Base::icon('chevron-right', ['class' => 'h-6 w-6 ml-auto', 'x-show' => '!open']) ;
-            $icon .= Base::icon('chevron-up', ['class' => 'h-6 w-6 ml-auto', 'x-show' => 'open']) ;
+            $icon .= Base::icon('chevron-right', ['class' => 'h-6 w-6 ml-auto', 'x-show' => '!open']);
+            $icon .= Base::icon('chevron-up', ['class' => 'h-6 w-6 ml-auto', 'x-show' => 'open']);
         }
+
         return $icon;
     }
 
-    protected function getUrls($item){
+    protected function getUrls($item)
+    {
         $urls = [];
-        array_push($urls, $item['url']??'#');
+        array_push($urls, $item['url'] ?? '#');
         $this->getCrudUrls($item, $urls);
         $this->getExtraUrls($item, $urls);
 
         return $urls;
     }
 
-    protected function getExtraUrls($item, &$urls){
+    protected function getExtraUrls($item, &$urls)
+    {
         foreach ($item['extra_urls'] ?? [] as $url) {
             array_push($urls, $url);
         }
     }
 
-    protected function getCrudUrls($item, &$urls){
+    protected function getCrudUrls($item, &$urls)
+    {
         if (isset($item['crud'])) {
             array_push($urls, $item['crud'].'.create');
             array_push($urls, $item['crud'].'.update');

@@ -10,5 +10,6 @@ class ImageType extends BaseModel
     use TranslateModel;
 
     private $translateClass = ImageTypeTranslate::class;
+
     protected static $package = 'base';
 }

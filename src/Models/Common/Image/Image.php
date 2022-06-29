@@ -2,22 +2,23 @@
 
 namespace Sdkconsultoria\Base\Models\Common\Image;
 
+use Request;
 use Sdkconsultoria\Base\Helpers\Html\Imageable\Imageable;
-use Sdkconsultoria\Core\Models\Model as BaseModel;
 use Sdkconsultoria\Base\Helpers\Images;
 use Sdkconsultoria\Base\Traits\ImageTypeTrait;
-use Request;
+use Sdkconsultoria\Core\Models\Model as BaseModel;
 
 class Image extends BaseModel
 {
     use ImageTypeTrait;
+
     protected static $package = 'base';
 
     public function convertImage()
     {
         $table = new $this->imageable_type;
 
-        Images::convertImage('images/' . $table->getTable() .'/' . $this->imageable_id . '/', $this->id, $this->extension);
+        Images::convertImage('images/'.$table->getTable().'/'.$this->imageable_id.'/', $this->id, $this->extension);
     }
 
     /**
@@ -28,7 +29,7 @@ class Image extends BaseModel
         return $this->morphTo();
     }
 
-    public function url(string $size = 'medium') : string
+    public function url(string $size = 'medium'): string
     {
         $table = new $this->imageable_type;
         $format = '.jpg';
@@ -37,23 +38,23 @@ class Image extends BaseModel
             $format = '.webp';
         }
 
-        return asset('storage/images/' . $table->getTable() . '/' . $this->imageable_id . '/' . $this->id . '-' . $size . $format);
+        return asset('storage/images/'.$table->getTable().'/'.$this->imageable_id.'/'.$this->id.'-'.$size.$format);
     }
 
-    public function image(string $size = 'medium', array $options = []) : string
+    public function image(string $size = 'medium', array $options = []): string
     {
         return '
-            <img src="' . $this->url($size) . '" ' . $this->setAttributes($options) . ' />
+            <img src="'.$this->url($size).'" '.$this->setAttributes($options).' />
         ';
     }
 
-    public function imagePreview(string $size = 'medium', string $target = 'large', array $options = []) : string
+    public function imagePreview(string $size = 'medium', string $target = 'large', array $options = []): string
     {
         $options['class'] = $options['class'] ?? '';
         $options['class'] .= ' img-preview';
 
         return '
-            <img target="'.$this->url($target).'" src="' . $this->url($size) . '" ' . $this->setAttributes($options) . ' />
+            <img target="'.$this->url($target).'" src="'.$this->url($size).'" '.$this->setAttributes($options).' />
         ';
     }
 
@@ -72,7 +73,7 @@ class Image extends BaseModel
     {
         $table = new $this->imageable_type;
 
-        Images::removeImage('images/' . $table->getTable() . '/' . $this->imageable_id . '/' . $this->route, $this->id, $this->extension, $rm_original);
+        Images::removeImage('images/'.$table->getTable().'/'.$this->imageable_id.'/'.$this->route, $this->id, $this->extension, $rm_original);
     }
 
     public function getRow()
@@ -80,6 +81,7 @@ class Image extends BaseModel
         $object = new $this->imageable_type;
         $imageable = new Imageable();
         $imageable->table = $object->getTable();
+
         return $imageable->row($this);
     }
 }

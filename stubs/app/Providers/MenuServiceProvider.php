@@ -14,7 +14,6 @@ class MenuServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
     }
 
     /**

@@ -24,15 +24,15 @@ return [
     ],
     'hybridauth' => [
         'facebook' => [
-            'callback' => env('APP_URL') . '/admin/social-auth/facebook',
+            'callback' => env('APP_URL').'/admin/social-auth/facebook',
             'keys' => ['key' => env('FACEBOOK_KEY'), 'secret' => env('FACEBOOK_SECRET')],
         ],
         'twitter' => [
-            'callback' => env('APP_URL') . '/admin/social-auth/twitter',
+            'callback' => env('APP_URL').'/admin/social-auth/twitter',
             'keys' => ['key' => env('TWITTER_KEY'), 'secret' => env('TWITTER_SECRET')],
         ],
         'google' => [
-            'callback' => env('APP_URL') . '/admin/social-auth/google',
+            'callback' => env('APP_URL').'/admin/social-auth/google',
             'keys' => ['key' => env('GOOGLE_KEY'), 'secret' => env('GOOGLE_SECRET')],
         ],
     ],

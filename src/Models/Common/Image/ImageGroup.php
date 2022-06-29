@@ -10,5 +10,6 @@ class ImageGroup extends BaseModel
     use TranslateModel;
 
     private $translateClass = ImageGroupTranslate::class;
+
     protected static $package = 'base';
 }

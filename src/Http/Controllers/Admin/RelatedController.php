@@ -9,6 +9,7 @@ class RelatedController extends Controller
 {
     /**
      * Crea un nuevo modelo relacionado.
+     *
      * @param  [type] $id      [description]
      * @param  [type] $model   [description]
      * @param  [type] $id_2    [description]
@@ -22,6 +23,7 @@ class RelatedController extends Controller
 
     /**
      * Elimina un nuevo modelo relacionado.
+     *
      * @param  [type] $id      [description]
      * @param  [type] $model   [description]
      * @param  [type] $id_2    [description]
@@ -31,11 +33,13 @@ class RelatedController extends Controller
     public function delete($id, $model, $id_2, $model_2)
     {
         $this->model = $model;
+
         return $this->findReladed($id, $model, $id_2, $model_2)->forceDelete();
     }
 
     /**
      * Encuentra o crea un modelo
+     *
      * @return RelatedModel
      */
     protected function findReladed($id, $model, $id_2, $model_2)

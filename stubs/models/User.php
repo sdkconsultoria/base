@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
+use Sdkconsultoria\Base\Fields\TextField;
+use Sdkconsultoria\Base\Models\Auth\UserSocial;
 use Sdkconsultoria\Core\Models\Traits\BaseModel as TraitBaseModel;
 use Sdkconsultoria\Core\Models\Traits\ImageTrait;
-use Laravel\Fortify\TwoFactorAuthenticatable;
-use Sdkconsultoria\Base\Models\Auth\UserSocial;
-use Sdkconsultoria\Base\Fields\TextField;
-use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -24,10 +24,15 @@ class User extends Authenticatable implements MustVerifyEmail
     use TraitBaseModel;
 
     public const DEFAULT_SEARCH = 'like';
+
     public const STATUS_DELETED = 0;
+
     public const STATUS_BLOCKED = 10;
+
     public const STATUS_DISABLED = 15;
+
     public const STATUS_CREATION = 20;
+
     public const STATUS_ACTIVE = 30;
 
     public $canCreateEmpty = false;
@@ -63,8 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-
-    public function getTranslations() : array
+    public function getTranslations(): array
     {
         return [
             'singular' => 'Usuario',
@@ -82,9 +86,9 @@ class User extends Authenticatable implements MustVerifyEmail
         $rules = self::rules($request);
         $rules['users_password'] = 'nullable|min:6|confirmed';
         $rules['users_password_confirmation'] = 'exclude_if:users_password,null|min:6';
+
         return $rules;
     }
-
 
     /**
      * Validaciones para actualizar mi cuenta.
@@ -95,6 +99,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $rules = self::updateRules($request);
         unset($rules['users_email']);
+
         return $rules;
     }
 

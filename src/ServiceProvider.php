@@ -2,8 +2,8 @@
 
 namespace Sdkconsultoria\Base;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Sdkconsultoria\Base\Services\MenuService;
 
@@ -23,7 +23,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         // $this->enableQueryLogs();
         Route::mixin(new AuthRouteMethods);
 
-
         $this->loadViewsFrom(__DIR__.'/../views', 'base');
         $this->loadTranslationsFrom(__DIR__.'/../lang', 'base');
         $this->registerMenu();
@@ -41,17 +40,16 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/base.php', 'base'
+            __DIR__.'/../config/base.php', 'base'
         );
 
         $this->app->singleton(MenuService::class, function () {
             return new MenuService();
         });
 
-        $this->app->bind('base',function(){
+        $this->app->bind('base', function () {
             return new Base();
         });
-
     }
 
     private function registerMigrations()
@@ -67,14 +65,14 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             $sdk = Str::startsWith($model_name, 'Sdkconsultoria');
 
             if ($sdk) {
-                return Str::of($model_name)->replace('Models', 'Factories') . 'Factory';
+                return Str::of($model_name)->replace('Models', 'Factories').'Factory';
             }
 
             $namespace = 'Database\\Factories\\';
 
             $model_name = str_replace('App\\Models\\', '', $model_name);
 
-            return $namespace . $model_name . 'Factory';
+            return $namespace.$model_name.'Factory';
         });
     }
 
@@ -84,7 +82,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
     }
 
-    private function registerCommands() : void
+    private function registerCommands(): void
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -106,12 +104,12 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
     private function enableQueryLogs()
     {
-        \DB::listen(function($query) {
-           \Log::info(
+        \DB::listen(function ($query) {
+            \Log::info(
                $query->sql,
                $query->bindings,
                $query->time
            );
-       });
+        });
     }
 }

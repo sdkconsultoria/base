@@ -7,7 +7,6 @@ use Illuminate\Foundation\Auth\ConfirmsPasswords;
 
 class ConfirmPasswordController extends Controller
 {
-
     /**
      * Display the password confirmation view.
      *

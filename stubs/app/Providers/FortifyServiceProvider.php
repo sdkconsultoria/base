@@ -6,13 +6,13 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -37,11 +37,11 @@ class FortifyServiceProvider extends ServiceProvider
             return view('base::auth.confirm-password');
         });
 
-        Fortify::registerView(function(){
+        Fortify::registerView(function () {
             return view('base::auth.register');
         });
 
-        Fortify::loginView(function(){
+        Fortify::loginView(function () {
             return view('base::auth.login');
         });
 
@@ -61,9 +61,9 @@ class FortifyServiceProvider extends ServiceProvider
             return view('base::auth.reset-password', ['request' => $request]);
         });
 
-        Fortify::authenticateUsing(function(Request $request){
-            $user = User::where('email',$request->email)->first();
-            if($user && Hash::check($request->password,$user->password)){
+        Fortify::authenticateUsing(function (Request $request) {
+            $user = User::where('email', $request->email)->first();
+            if ($user && Hash::check($request->password, $user->password)) {
                 return $user;
             }
         });

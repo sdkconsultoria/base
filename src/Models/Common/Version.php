@@ -9,6 +9,7 @@ class Version extends BaseModel
 {
     /**
      * Sets up the relation.
+     *
      * @return MorphTo
      */
     public function versionable()
@@ -18,6 +19,7 @@ class Version extends BaseModel
 
     /**
      * Return the versioned model.
+     *
      * @return Model
      */
     public function getModel()

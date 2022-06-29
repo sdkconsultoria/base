@@ -12,6 +12,7 @@ class History extends BaseModel
 
     /**
      * Devuelve el usuario que creó este historial.
+     *
      * @return BelongsTo
      */
     public function user()

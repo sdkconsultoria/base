@@ -11,6 +11,7 @@ trait VersionableTrait
     /**
      * Private variable to detect if this is an update
      * or an insert.
+     *
      * @var bool
      */
     private $updating;
@@ -56,6 +57,7 @@ trait VersionableTrait
     /**
      * Pre save hook to determine if versioning is enabled and if we're updating
      * the model.
+     *
      * @return void
      */
     protected function versionablePreSave()
@@ -78,7 +80,7 @@ trait VersionableTrait
             $version->save();
 
             if (isset($this->versionable_parent)) {
-                $parent_id = Str::snake(class_basename($this->versionable_parent)) . '_id';
+                $parent_id = Str::snake(class_basename($this->versionable_parent)).'_id';
                 $parent_model = $this->versionable_parent::where('id', $this->$parent_id)->first();
 
                 $parent_version = new Version();
@@ -97,6 +99,7 @@ trait VersionableTrait
 
     /**
      * Return all versions of the model.
+     *
      * @return MorphMany
      */
     public function versions()
@@ -106,6 +109,7 @@ trait VersionableTrait
 
     /**
      * Returns the latest version available.
+     *
      * @return Version
      */
     public function previousVersion()
@@ -115,6 +119,7 @@ trait VersionableTrait
 
     /**
      * Returns the latest version available.
+     *
      * @return Version
      */
     public function specificVersion(string $version)

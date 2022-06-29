@@ -57,7 +57,7 @@ class MakeCrud extends Command
     private function generateRoute(string $model)
     {
         $singular = Str::singular(Str::kebab($model));
-        $route = '    Route::SdkResource(\'' . $singular . '\', ' . $model . 'Controller::class);';
+        $route = '    Route::SdkResource(\''.$singular.'\', '.$model.'Controller::class);';
 
         if (strpos(file_get_contents(base_path('routes/web.php')), $route) !== false) {
             return;
@@ -65,7 +65,7 @@ class MakeCrud extends Command
 
         $this->replaceInFile(
             "->prefix('admin')->group(function () {",
-            "->prefix('admin')->group(function () { \n" . $route,
+            "->prefix('admin')->group(function () { \n".$route,
             base_path('routes/web.php')
         );
     }
@@ -76,8 +76,8 @@ class MakeCrud extends Command
 
         $this->ensureFolderExist($controllers_path);
 
-        $controller = app_path('Http/Controllers/' . $model . 'Controller.php');
-        $new_controller = app_path('Http/Controllers/Admin/' . $model . 'Controller.php');
+        $controller = app_path('Http/Controllers/'.$model.'Controller.php');
+        $new_controller = app_path('Http/Controllers/Admin/'.$model.'Controller.php');
 
         if (file_exists($new_controller)) {
             return;
@@ -90,7 +90,7 @@ class MakeCrud extends Command
 
     protected function ensureFolderExist(string $folder)
     {
-        if (!file_exists($folder)) {
+        if (! file_exists($folder)) {
             mkdir($folder);
         }
     }
@@ -104,7 +104,7 @@ class MakeCrud extends Command
     {
         $file_provider = app_path('Providers/MenuServiceProvider.php');
         $menu_use_code = 'use Sdkconsultoria\Base\Services\MenuService;';
-        $model_use_code = "use App\Models\\" . $model . ";";
+        $model_use_code = "use App\Models\\".$model.';';
 
         if (strpos(file_get_contents($file_provider), $model_use_code) == false) {
             $this->replaceInFile(

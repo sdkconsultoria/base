@@ -2,12 +2,8 @@
 
 namespace Sdkconsultoria\Base\Helpers\Html;
 
-/**
- *
- */
 abstract class BaseHtml
 {
-
     public static function setAttributes(array $options = [])
     {
         $attributes = '';
@@ -23,5 +19,4 @@ abstract class BaseHtml
     {
         return $this->render();
     }
-
 }

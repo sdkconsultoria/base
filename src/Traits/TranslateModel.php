@@ -11,6 +11,7 @@ trait TranslateModel
         }
 
         $language = $language ? $language : app()->getLocale();
+
         return $this->hasOne($this->translateClass)->where('language', $language);
     }
 }

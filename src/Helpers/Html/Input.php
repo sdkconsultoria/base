@@ -5,31 +5,48 @@ namespace Sdkconsultoria\Base\Helpers\Html;
 use Base;
 use Sdkconsultoria\Base\Helpers\Html\Taggeable\Select;
 
-/**
- *
- */
-class Input extends BaseHtml  implements iHtml
+class Input extends BaseHtml implements iHtml
 {
     private $optionsWrap = ['class' => 'form-group'];
+
     private $optionsHtml = ['class' => 'form-control form-control-l form-control-r border-gray-300'];
+
     private $attributes = '';
+
     private $input = '';
+
     private $prepend = '';
+
     private $append = '';
+
     private $invalidClass = 'border-red-500';
+
     private $validClass = 'border-green-500';
+
     private $name = '';
+
     private $validWith = '';
+
     private $feedback = '';
+
     private $isValid = true;
+
     private $wasValidate = false;
+
     private $label = false;
+
     private $generateLabel = true;
+
     private $validate = true;
+
     private $translate = '';
+
     private $wrap = true;
+
     private $value;
+
     private $model;
+
     private $endContent;
 
     public function label($label = true, array $optionsHtml = ['class' => 'text-gray-600 font-medium'])
@@ -38,8 +55,8 @@ class Input extends BaseHtml  implements iHtml
             if ($label !== true) {
                 $this->label = $label;
             }
-            $this->label = '<label ' . self::setAttributes($optionsHtml) . ' > ' . $this->translate . ' </label>';
-        }else {
+            $this->label = '<label '.self::setAttributes($optionsHtml).' > '.$this->translate.' </label>';
+        } else {
             $this->generateLabel = false;
         }
 
@@ -49,6 +66,7 @@ class Input extends BaseHtml  implements iHtml
     public function setTranslate(string $translate = '')
     {
         $this->translate = $translate;
+
         return $this;
     }
 
@@ -69,7 +87,7 @@ class Input extends BaseHtml  implements iHtml
     public function textInput(array $options = [])
     {
         $this->prepareInput();
-        $this->input = '<input type="text" ' . $this->optionsHtml . ' />';
+        $this->input = '<input type="text" '.$this->optionsHtml.' />';
 
         return $this;
     }
@@ -78,11 +96,10 @@ class Input extends BaseHtml  implements iHtml
     {
         $this->optionsHtml = array_merge($this->optionsHtml, $options);
         $this->prepareInput();
-        $this->input = '<input type="file" ' . $this->optionsHtml . ' />';
+        $this->input = '<input type="file" '.$this->optionsHtml.' />';
 
         return $this;
     }
-
 
     public function taggableInput(array $options = [])
     {
@@ -107,9 +124,9 @@ class Input extends BaseHtml  implements iHtml
             id="drop-region"
             class="bg-white rounded-lg border-2 border-dotted p-2 border-blue-500"
             data-target="'.$target.'"
-            data-upload="' . route('image.upload-single', ['class' => $this->model::class, 'id' => $this->model->id]) . '">
+            data-upload="'.route('image.upload-single', ['class' => $this->model::class, 'id' => $this->model->id]).'">
                 <div class="drop-message">
-                    ' . __('core::models.image.upload_one') . '
+                    '.__('core::models.image.upload_one').'
                 </div>
                 <div id="image-preview" class="flex flex-row flex-wrap"></div>
             </div>';
@@ -125,9 +142,9 @@ class Input extends BaseHtml  implements iHtml
             <div
             id="drop-region"
             class="bg-white rounded-lg border-2 border-dotted p-2 border-blue-500"
-            data-upload="' . route('image.upload', ['class' => $this->model::class, 'id' => $this->model->id]) . '">
+            data-upload="'.route('image.upload', ['class' => $this->model::class, 'id' => $this->model->id]).'">
                 <div class="drop-message">
-                    ' . __('core::models.image.upload_one') . '
+                    '.__('core::models.image.upload_one').'
                 </div>
                 <div id="image-preview" class="flex flex-row flex-wrap"></div>
             </div>';
@@ -135,7 +152,7 @@ class Input extends BaseHtml  implements iHtml
         $this->endContent = Base::imageable([
             'images' => $this->model->images,
             'table' => $this->model->getTable(),
-            'openType' => $openType
+            'openType' => $openType,
         ]);
 
         return $this;
@@ -145,7 +162,7 @@ class Input extends BaseHtml  implements iHtml
     {
         $this->optionsHtml = array_merge($this->optionsHtml, $options);
         $this->prepareInput();
-        $this->input = '<textarea ' . $this->optionsHtml . '>' . $this->value . '</textarea>';
+        $this->input = '<textarea '.$this->optionsHtml.'>'.$this->value.'</textarea>';
 
         return $this;
     }
@@ -155,10 +172,10 @@ class Input extends BaseHtml  implements iHtml
         $this->prepareInput();
 
         $this->input = '
-        <select  ' . $this->optionsHtml . ' >
-            <option value=""> ' . trans_choice($empty, 1,['item' => $this->translate]) . ' </option>';
+        <select  '.$this->optionsHtml.' >
+            <option value=""> '.trans_choice($empty, 1, ['item' => $this->translate]).' </option>';
         foreach ($items as $key => $value) {
-            $this->input .= '<option ' . ($this->value == $key ? 'selected' : '') . ' value="' . $key . '">' .  $value . '</option>';
+            $this->input .= '<option '.($this->value == $key ? 'selected' : '').' value="'.$key.'">'.$value.'</option>';
         }
         $this->input .= '</select>';
 
@@ -169,23 +186,22 @@ class Input extends BaseHtml  implements iHtml
     {
         $this->optionsHtml['value'] = '';
         $this->prepareInput();
-        $this->input = '<input type="password" ' . $this->optionsHtml . ' />';
+        $this->input = '<input type="password" '.$this->optionsHtml.' />';
 
         return $this;
     }
 
     public function feedback(string $errors = '')
     {
-        $this->feedback .= '<div class="text-red-500 text-xs font-semibold -mt-2">' . $this->getErrors($errors) . '</div>';
+        $this->feedback .= '<div class="text-red-500 text-xs font-semibold -mt-2">'.$this->getErrors($errors).'</div>';
     }
 
     public function prepend(string $text = '', $options = ['style' => 'width: 40px', 'class' => 'input-prepend'])
     {
         $this->optionsHtml['class'] = str_replace('form-control-l', '', $this->optionsHtml['class']);
-        $this->prepend = '<div ' . self::setAttributes($options) . '>
+        $this->prepend = '<div '.self::setAttributes($options).'>
                               '.$text.'
                           </div>';
-
 
         return $this;
     }
@@ -193,7 +209,7 @@ class Input extends BaseHtml  implements iHtml
     public function append(string $text = '', $options = ['style' => 'width: 40px', 'class' => 'input-append'])
     {
         $this->optionsHtml['class'] = str_replace('form-control-r', '', $this->optionsHtml['class']);
-        $this->append = '<div ' . self::setAttributes($options)  . '>
+        $this->append = '<div '.self::setAttributes($options).'>
                             '.$text.'
                         </div>';
 
@@ -204,7 +220,7 @@ class Input extends BaseHtml  implements iHtml
     {
         if (is_bool($validate)) {
             $this->validate = $validate;
-        }else{
+        } else {
             $this->validWith = $validate;
         }
 
@@ -216,15 +232,14 @@ class Input extends BaseHtml  implements iHtml
         if ($this->wasValidate) {
             if ($this->validate) {
                 if ($this->isValid) {
-                    $this->optionsHtml['class'] .= ' ' . $this->validClass;
+                    $this->optionsHtml['class'] .= ' '.$this->validClass;
                 } else {
-                    $this->optionsHtml['class'] .= ' ' . $this->invalidClass;
+                    $this->optionsHtml['class'] .= ' '.$this->invalidClass;
                 }
             }
         }
 
         $this->optionsHtml['placeholder'] = $this->optionsHtml['placeholder'] ?? $this->translate;
-
     }
 
     private function getErrors(string $errors = '')
@@ -237,8 +252,8 @@ class Input extends BaseHtml  implements iHtml
             $this->wasValidate = true;
         }
 
-        $error_messages = session('errors')?session('errors')->getMessages():[];
-        $error_messages = $error_messages[$this->validWith]??[];
+        $error_messages = session('errors') ? session('errors')->getMessages() : [];
+        $error_messages = $error_messages[$this->validWith] ?? [];
         foreach ($error_messages as $value) {
             $this->isValid = false;
 
@@ -253,6 +268,7 @@ class Input extends BaseHtml  implements iHtml
         if ($this->translate) {
             $translate = str_replace($this->name, $this->translate, $text);
             $translate = str_replace(str_replace('_', ' ', $this->name), $this->translate, $text);
+
             return $translate;
         }
 
@@ -261,9 +277,9 @@ class Input extends BaseHtml  implements iHtml
 
     private function prepareInput()
     {
-         $this->feedback();
-         $this->fixHtmlOptions();
-         $this->optionsHtml = self::setAttributes($this->optionsHtml);
+        $this->feedback();
+        $this->fixHtmlOptions();
+        $this->optionsHtml = self::setAttributes($this->optionsHtml);
     }
 
     public function wrap($wrap, $optionsWrap = [])
@@ -276,23 +292,22 @@ class Input extends BaseHtml  implements iHtml
 
     public function render()
     {
-        if (!$this->input) {
+        if (! $this->input) {
             $this->textInput();
         }
 
-        if (!$this->label && $this->generateLabel) {
+        if (! $this->label && $this->generateLabel) {
             $this->label();
         }
 
         $this->optionsWrap = self::setAttributes($this->optionsWrap);
 
-        $html = $this->label . '<div class="flex flex-row w-full">' . $this->prepend . $this->input . $this->append . '</div>';
+        $html = $this->label.'<div class="flex flex-row w-full">'.$this->prepend.$this->input.$this->append.'</div>';
 
-        if (!$this->wrap) {
+        if (! $this->wrap) {
             return $html;
         }
 
-        return '<div ' . $this->optionsWrap . ' >' . $html .'</div>' . $this->feedback . $this->endContent;
+        return '<div '.$this->optionsWrap.' >'.$html.'</div>'.$this->feedback.$this->endContent;
     }
-
 }

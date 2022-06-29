@@ -15,7 +15,7 @@ class AuthRouteMethods
         return function ($options = [], $local = false) {
             $namespace = $local ? 'App\Http\Controllers' : 'Sdkconsultoria\Base\Http\Controllers';
 
-            $this->group(['namespace' => $namespace], function() use($options) {
+            $this->group(['namespace' => $namespace], function () use ($options) {
                 // Login Routes...
                 if ($options['login'] ?? true) {
                     $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');

@@ -37,7 +37,7 @@ class ConvertImages extends Command
      */
     public function handle()
     {
-        $id   = $this->argument('id');
+        $id = $this->argument('id');
         $blog = $this->option('blog');
         $type = $this->option('type');
     }

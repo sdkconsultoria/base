@@ -6,7 +6,6 @@ use Sdkconsultoria\Base\Models\Common\Image\ImageType;
 
 trait ImageTypeTrait
 {
-
     /**
      * Obtiene los tipos de fotos.
      */

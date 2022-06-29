@@ -6,5 +6,4 @@ use Sdkconsultoria\Base\Models\Model as BaseModel;
 
 class UserSocial extends BaseModel
 {
-
 }

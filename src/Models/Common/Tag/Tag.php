@@ -10,6 +10,6 @@ class Tag extends BaseModel
     use TranslateModel;
 
     private $translateClass = TagTranslate::class;
-    protected static $package = 'base';
 
+    protected static $package = 'base';
 }

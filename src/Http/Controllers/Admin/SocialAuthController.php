@@ -1,11 +1,12 @@
 <?php
+
 namespace Sdkconsultoria\Base\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\{Validator, Hash, Auth};
-use Illuminate\Support\Str;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Sdkconsultoria\Base\Models\Auth\UserSocial;
 
 class SocialAuthController extends Controller
@@ -20,7 +21,7 @@ class SocialAuthController extends Controller
         $userSocial = new UserSocial();
         $userSocial->social_id = $id;
         $userSocial->social_type = $type;
-        $userSocial->created_by =  Auth::user()->id;
+        $userSocial->created_by = Auth::user()->id;
         $userSocial->save();
 
         return $userSocial;
@@ -31,8 +32,8 @@ class SocialAuthController extends Controller
         $providers = array_keys(config('base.hybridauth'));
 
         if (in_array($type, $providers)) {
-            $class   = '\Hybridauth\Provider\\'. ucfirst($type);
-            $adapter = new $class(config('base.hybridauth.' . $type));
+            $class = '\Hybridauth\Provider\\'.ucfirst($type);
+            $adapter = new $class(config('base.hybridauth.'.$type));
             $adapter->authenticate();
             $userProfile = $adapter->getUserProfile();
 
@@ -57,17 +58,17 @@ class SocialAuthController extends Controller
                     }
                 } else {
                     $user = Auth::user();
-                    if (!$userSocial) {
+                    if (! $userSocial) {
                         $this->save($userProfile->identifier, $type);
                     }
                 }
 
                 $adapter->disconnect();
+
                 return redirect()->route('dashboard');
             }
-
         }
 
-        throw new \Exception("Provider " . $type . ' is not supported', 1);
+        throw new \Exception('Provider '.$type.' is not supported', 1);
     }
 }

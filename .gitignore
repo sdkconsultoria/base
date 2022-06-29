@@ -1,5 +1,4 @@
 node_modules/*
 package-lock.json
 vendor
-.php-cs-fixer.cache
 composer.lock

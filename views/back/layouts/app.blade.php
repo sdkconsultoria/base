@@ -7,9 +7,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="Description" content="@yield('description')">
     <title> @yield('title', config('app.name'))</title>
-    <link href="{{ mix('/back.css') }}" rel="stylesheet">
+    @vite(['resources/back/css/app.css', 'resources/back/js/app.js'])
 </head>
-<body class="h-screen">
+<body class="h-screen" data-theme="dark">
     <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
         @include('base::back.layouts.partial.sidebar')
 
@@ -23,6 +23,5 @@
             </main>
         </div>
     </div>
-    <script src="{{ mix('/back.js') }}"></script>
 </body>
 </html>

@@ -85,8 +85,9 @@ class InstallCommand extends Command
 
     private function writteTailwindConfig()
     {
-        copy(__DIR__.'/../../../stubs/webpack.mix.js', base_path('webpack.mix.js'));
+        copy(__DIR__.'/../../../stubs/postcss.config.js', base_path('postcss.config.js'));
         copy(__DIR__.'/../../../stubs/tailwind.config.js', base_path('tailwind.config.js'));
+        copy(__DIR__.'/../../../stubs/vite.config.js', base_path('vite.config.js'));
     }
 
     private function writteConfig()
@@ -105,16 +106,18 @@ class InstallCommand extends Command
                 'postcss' =>  '^8.4.13',
                 'tailwindcss' =>  '^3.0.24',
                 'postcss-import' => '^14.1.0',
-                '@tailwindcss/forms' => '^0.5.1',
                 'alpinejs' => '^3.10.1',
                 'sweetalert2' => '^11.4.14',
                 'jodit' => '^3.18.5',
                 'cropperjs' => '^1.5.12',
                 'photoswipe' => '^5.2.7',
                 'vue' => '^3.2.33',
-                'vue-loader' => '^17.0.0',
                 '@sdkconsultoria/base' => 'file:vendor/sdkconsultoria/base',
                 '@heroicons/vue' => '^1.0.6',
+                'daisyui' => '^2.17.0',
+                '@vitejs/plugin-vue' => '^2.3.3',
+                '@tailwindcss/forms' => '^0.5.2',
+                //'vue-router' => '^4.0.16',
             ] + $packages;
         });
 

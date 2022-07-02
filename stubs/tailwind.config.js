@@ -55,5 +55,6 @@ module.exports = {
         require('tailwindcss'),
         require('@tailwindcss/forms'),
         require('autoprefixer'),
+        require('daisyui'),
     ],
 }

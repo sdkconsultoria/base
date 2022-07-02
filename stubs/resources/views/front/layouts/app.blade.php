@@ -12,10 +12,9 @@
     <meta name="description"  content="@yield('description', '')">
     <meta name="author"       content="@yield('author', config('app.name'))">
     <title> @yield('title', config('app.name'))</title>
-    <link href="{{ mix('/front.css') }}" rel="stylesheet">
+    @vite(['resources/front/css/app.css', 'resources/front/js/app.js'])
 </head>
-<body>
+<body data-theme="dark" >
     @yield('content')
-    <script src="{{ mix('/front.js') }}"></script>
 </body>
 </html>

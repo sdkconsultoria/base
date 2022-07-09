@@ -7,28 +7,32 @@
         </button>
     </div>
 
-    <div class="flex items-center">
-        @php
-            $user = auth()->user();
-            $image = $user->image;
-        @endphp
-        <div x-data="{ dropdownOpen: false }" class="relative">
-            <button x-on:click="dropdownOpen = ! dropdownOpen" >
-                <div class="avatar online placeholder">
-                    <div class="bg-neutral-focus text-neutral-content rounded-full w-10">
-                        @if ($image)
-                            <img src="{{$image}}" />
-                        @else
-                            <span class="uppercase">{{$user->name[0]}}{{$user->lastname[0]}}</span>
-                        @endif
+    @php
+        $user = auth()->user();
+        $image = $user->image;
+    @endphp
+    <div class="flex justify-end flex-1 px-2">
+        <div class="flex items-stretch">
+            <div class="dropdown dropdown-end">
+                <label tabindex="0" class="btn btn-ghost rounded-btn">{!!Base::icon('sun', ['class' => 'h-5'])!!}</label>
+                <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4">
+                    <li class="hover-bordered"><a>Claro</a></li>
+                    <li class="hover-bordered"><a>Obscuro</a></li>
+                </ul>
+            </div>
+            <div class="dropdown dropdown-end">
+                <label tabindex="0" class="btn btn-ghost rounded-btn">
+                    <div class="avatar online placeholder">
+                        <div class="bg-neutral-focus text-neutral-content rounded-full w-10">
+                            @if ($image)
+                                <img src="{{$image}}" />
+                            @else
+                                <span class="uppercase">{{$user->name[0]}}{{$user->lastname[0]}}</span>
+                            @endif
+                        </div>
                     </div>
-                </div>
-            </button>
-
-            <div x-show="dropdownOpen" x-on:click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
-
-            <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 rounded-md overflow-hidden shadow-xl z-10">
-                <ul class="menu bg-base-100 w-56 rounded-box">
+                </label>
+                <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4">
                     <li class="hover-bordered"><a href="{{route('profile')}}">Mi Cuenta</a></li>
                     <li class="hover-bordered"><a href="#" onclick="document.getElementById('form-logout').submit()" >@lang('auth.close')</a></li>
                 </ul>

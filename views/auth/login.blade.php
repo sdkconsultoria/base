@@ -3,9 +3,11 @@
 @section('central')
     <form action="{{ route('login') }}" method="post" novalidate>
         @csrf
-
         <div class="form-control w-full">
-            <input type="text" name="email" placeholder="Correo Electronico" class="input input-bordered w-full" value="{{old('email')}}" required />
+            <label class="input-group">
+                <span>{!! Base::icon('mail', ['class' => 'h-3']) !!}</span>
+                <input type="text" name="email" placeholder="Correo Electronico" class="input input-bordered w-full" value="{{old('email')}}" required/>
+            </label>
             <label class="label">
                 <small class="text-error">
                     <ul>
@@ -18,7 +20,10 @@
         </div>
 
         <div class="form-control w-full">
-            <input type="password" name="password" placeholder="Contraseña" class="input input-bordered w-full" required />
+            <label class="input-group">
+                <span>{!! Base::icon('lock-closed', ['class' => 'h-3']) !!}</span>
+                <input type="password" name="password" placeholder="Contraseña" class="input input-bordered w-full" required />
+            </label>
             <label class="label">
                 <small class="text-error">
                     <ul>

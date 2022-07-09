@@ -1,6 +1,5 @@
 <?php
 
-//
 Route::namespace('\Sdkconsultoria\Base\Http\Controllers\Admin')
 ->prefix('admin')
 ->middleware(['web'])
@@ -8,18 +7,16 @@ Route::namespace('\Sdkconsultoria\Base\Http\Controllers\Admin')
     Route::get('social-auth/{type}', 'SocialAuthController@login')->name('social-auth');
     Route::get('social-link/{type}', 'SocialAuthController@login')->name('social-auth-link');
 
-//     Route::post('add-to-cart/{type}', 'ShoppingCartController@add')->name('cart.add');
-//     Route::post('add-to-cart/{type}', 'ShoppingCartController@remove')->name('cart.remove');
-//     Route::post('add-to-whishlist/{type}', 'WhishlistController@add')->name('whishlist.add');
-//     Route::post('add-to-whishlist/{type}', 'WhishlistController@remove')->name('whishlist.remove');
-//
     Route::middleware(['auth'])->group(function () {
         Route::get('/', 'DashboardController@index')->name('dashboard');
-        Route::SdkResource('user', 'Auth\UserController');
         Route::SdkSimpleResource('role', 'Auth\RoleController');
 
-        Route::get('profile', 'UserController@myAccount')->name('profile');
-        Route::post('save-profile', 'UserController@saveAccount')->name('save.profile');
+        Route::namespace('Auth')
+        ->middleware(['web'])->group(function () {
+            Route::SdkResource('user', 'UserController');
+            Route::get('profile', 'UserController@myAccount')->name('profile');
+            Route::post('save-profile', 'UserController@saveAccount')->name('save.profile');
+        });
 
 //
         // Route::middleware(['role:admin'])->group(function () {

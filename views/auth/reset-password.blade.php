@@ -10,30 +10,44 @@
 
             <input type="hidden" name="token" value="{{ request()->token }}">
 
-            <?=
-            Base::input([
-                'required' => 'required',
-                'name' => 'email',
-                'value' => request()->email ?? old('email'),
-                'readOnly' => 'readOnly',
-            ])->setTranslate(__('core::models.user.email'))->prepend(Base::icon('mail'))->label(false);
-            ?>
+            <div class="form-control w-full">
+                <input type="text" name="email" placeholder="Correo" class="input input-bordered w-full" value="{{old('email')}}" required />
+                <label class="label">
+                    <small class="text-error">
+                        <ul>
+                            @foreach ($errors->get('email') as $error)
+                            <li v-for="error in errors" :key="error"> {{$error}} </li>
+                            @endforeach
+                        </ul>
+                    </small>
+                </label>
+            </div>
 
-            <?=
-            Base::input([
-                'required' => 'required',
-                'name' => 'password',
-                'autofocus' => 'autofocus',
-            ])->setTranslate(__('core::models.user.password'))->prepend(Base::icon('key'))->passwordInput()->label(false);
-            ?>
+            <div class="form-control w-full">
+                <input type="text" name="password" placeholder="Contraseña" class="input input-bordered w-full" value="{{old('password')}}" required />
+                <label class="label">
+                    <small class="text-error">
+                        <ul>
+                            @foreach ($errors->get('password') as $error)
+                            <li v-for="error in errors" :key="error"> {{$error}} </li>
+                            @endforeach
+                        </ul>
+                    </small>
+                </label>
+            </div>
 
-            <?=
-            Base::input([
-                'required' => 'required',
-                'name' => 'password_confirmation',
-                'autocomplete' => 'new-password'
-            ])->setTranslate(__('auth.password_confirm'))->prepend(Base::icon('key'))->passwordInput()->label(false);
-            ?>
+            <div class="form-control w-full">
+                <input type="text" name="password_confirmation" placeholder="Confirmar Contraseña" class="input input-bordered w-full" value="{{old('password_confirmation')}}" required />
+                <label class="label">
+                    <small class="text-error">
+                        <ul>
+                            @foreach ($errors->get('password_confirmation') as $error)
+                            <li v-for="error in errors" :key="error"> {{$error}} </li>
+                            @endforeach
+                        </ul>
+                    </small>
+                </label>
+            </div>
 
              <button type="submit" class="btn btn-primary mt-2 w-full">
                  {{__('auth.reset')}}

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SearchComponent />
+    <SearchComponent :create_route="create_route" :translations="translations" />
     <table class="table w-full mt-3 mb-3">
         <thead>
         <tr>
@@ -44,6 +44,7 @@ export default {
     translations: JSON,
     routes: JSON,
     filters: JSON,
+    create_route: String,
   },
   components: {
     PaginationComponent,

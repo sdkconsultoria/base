@@ -7,12 +7,9 @@
         $model->getTranslation('plural')
     ]) ?>
 
-    <div class="mb-2">
-        <a type="button" href="{{$model->getRoute('create')}}" class="btn btn-primary"> {!! $model->getTranslation('create') !!} </a>
-    </div>
-
     <div id=app>
         <grid-view
+            create_route="{{$model->getRoute('create')}}"
             :routes={{json_encode($model->getIndexRoutes())}}
             :fields="{{json_encode($model->getIndexFields())}}"
             :filters={{json_encode($model->getParseSearchFilters())}}

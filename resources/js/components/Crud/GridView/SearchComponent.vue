@@ -1,14 +1,18 @@
 <template>
   <div>
-    <button
-      @click="is_open_form = !is_open_form"
-      type="button"
-      class="btn btn-warning mb-2 flex flex-row items-center"
-    >
-      {{ $parent.translations.grid.advanced_search }}
-      <ChevronRightIcon v-if="!is_open_form" class="h-5 ml-3" />
-      <ChevronUpIcon v-if="is_open_form" class="h-5 ml-3" />
-    </button>
+    <div class="flex mb-1">
+        <a type="button" :href="create_route" class="btn btn-primary mr-1"> {{translations.create}} </a>
+
+        <button
+        @click="is_open_form = !is_open_form"
+        type="button"
+        class="btn btn-warning mb"
+        >
+        {{ $parent.translations.grid.advanced_search }}
+        <ChevronRightIcon v-if="!is_open_form" class="h-5 ml-3" />
+        <ChevronUpIcon v-if="is_open_form" class="h-5 ml-3" />
+        </button>
+    </div>
     <form
       @submit.prevent="onSubmit"
       v-if="is_open_form"
@@ -85,6 +89,8 @@ export default {
   props: {
     api: String,
     search: Array,
+    translations: Object,
+    create_route: String,
   },
   components: {
     DocumentSearchIcon,

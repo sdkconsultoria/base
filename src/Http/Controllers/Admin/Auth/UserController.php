@@ -10,6 +10,5 @@ class UserController extends ResourceController
 
     public function myAccount()
     {
-
     }
 }

@@ -10,13 +10,13 @@
     @vite(['resources/back/css/app.css', 'resources/back/js/app.js'])
 </head>
 <body class="h-screen" data-theme="dark">
-    <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
+    <div x-data="{ sidebarOpen: false }" class="flex h-screen">
         @include('base::back.layouts.partial.sidebar')
 
         <div class="flex-1 flex flex-col overflow-hidden">
             @include('base::back.layouts.partial.header')
 
-            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
+            <main class="flex-1 overflow-x-hidden overflow-y-auto">
                 <div class="container mx-auto px-6 py-8 relative">
                     @yield('content')
                 </div>

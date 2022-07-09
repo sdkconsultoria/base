@@ -2,6 +2,8 @@
 
 namespace Sdkconsultoria\Base\Helpers\Html;
 
+use Base;
+
 class Breadcrumb extends BaseHtml implements iHtml
 {
     protected $items;
@@ -23,10 +25,10 @@ class Breadcrumb extends BaseHtml implements iHtml
         $html = '';
         $current = array_pop($this->items);
         foreach ($this->items as $key => $value) {
-            $html .= '<li class="px-4"><a href="'.$key.'">'.$value.'</a></li>';
+            $html .= '<li>'.Base::icon('folder', ['class' => 'h-5 mr-1']).'<a href="'.$key.'">'.$value.'</a></li>';
         }
 
-        $html .= '<li class="px-4 text-gray-700" aria-current="page">'.$current.'</li>';
+        $html .= '<li>' .Base::icon('folder-open', ['class' => 'h-5 mr-1']).$current.'</li>';
 
         return $html;
     }
@@ -39,13 +41,12 @@ class Breadcrumb extends BaseHtml implements iHtml
     public function render()
     {
         $html = '
-            <nav class="bg-white p-3 mb-6 rounded-lg shadow-md" aria-label="breadcrumb">
-                <ol class="flex leading-none text-cyan-600 divide-x divide-indigo-400">
-                    <li class="pr-4"><a href="'.route('dashboard').'">Dashboard</a></li>
+            <div class="text-sm breadcrumbs mb-3">
+                <ul>
+                    <li><a href="'.route('dashboard').'"> ' . Base::icon('folder', ['class' => 'h-5 mr-1']) . 'Dashboard</a></li>
                     '.$this->items().'
-
-                </ol>
-            </nav>
+                </ul>
+            </div>
         ';
 
         return $html;

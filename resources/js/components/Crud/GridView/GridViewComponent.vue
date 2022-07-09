@@ -1,7 +1,7 @@
 <template>
   <div>
     <SearchComponent />
-    <table class="table w-full">
+    <table class="table w-full mt-3 mb-3">
         <thead>
         <tr>
             <OrderComponent

@@ -7,4 +7,9 @@ use Sdkconsultoria\Core\Controllers\ResourceController;
 class UserController extends ResourceController
 {
     protected $model = \App\Models\User::class;
+
+    public function myAccount()
+    {
+
+    }
 }

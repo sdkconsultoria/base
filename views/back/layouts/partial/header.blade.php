@@ -1,4 +1,4 @@
-<header class="flex justify-between items-center py-4 px-6 bg-white border-b-4 border-indigo-600">
+<header class="flex justify-between items-center py-4 px-6 border-b-4 border-indigo-600">
     <div class="flex items-center">
         <button x-on:click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
             <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,7 +17,7 @@
 
             <div x-show="notificationOpen" x-on:click="notificationOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
 
-            <div x-show="notificationOpen" class="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl overflow-hidden z-10" style="width:20rem;">
+            <div x-show="notificationOpen" class="absolute right-0 mt-2 w-80 rounded-lg shadow-xl overflow-hidden z-10" style="width:20rem;">
                 <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:text-white hover:bg-indigo-600 -mx-2">
                     <img class="h-8 w-8 rounded-full object-cover mx-1" src="" alt="avatar">
                     <p class="text-sm mx-2">

@@ -9,7 +9,7 @@
     <title> @yield('title', config('app.name'))</title>
     @vite(['resources/back/css/app.css', 'resources/back/js/app.js'])
 </head>
-<body class="h-screen" data-theme="dark">
+<body class="h-screen" data-theme="{{Cache::get('theme', config('base.theme'))}}">
     @yield('content')
 </body>
 </html>

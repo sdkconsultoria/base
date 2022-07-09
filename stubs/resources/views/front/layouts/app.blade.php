@@ -14,7 +14,8 @@
     <title> @yield('title', config('app.name'))</title>
     @vite(['resources/front/css/app.css', 'resources/front/js/app.js'])
 </head>
-<body data-theme="dark" >
+<body data-theme="{{Cache::get('theme', config('base.theme'))}}" >
     @yield('content')
 </body>
 </html>
+

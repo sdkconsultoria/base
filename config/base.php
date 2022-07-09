@@ -36,4 +36,11 @@ return [
             'keys' => ['key' => env('GOOGLE_KEY'), 'secret' => env('GOOGLE_SECRET')],
         ],
     ],
+    'theme' => 'emerald',
+    'themes' => [
+        'light' => 'Claro',
+        'dark' => 'Obscuro',
+        'emerald' => 'Esmeralda',
+        'halloween' => 'Halloween',
+    ]
 ];

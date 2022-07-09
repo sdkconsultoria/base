@@ -1,4 +1,4 @@
-<header class="flex justify-between items-center py-4 px-6 border-b-4 border-primary">
+<header class="flex justify-between items-center py-2 px-6 border-b-4 border-primary">
     <div class="flex items-center">
         <button x-on:click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
             {!!Base::icon('view-list', ['class' => 'h-6'])!!}

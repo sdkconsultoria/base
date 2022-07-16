@@ -58,7 +58,7 @@
         </div>
 
         <div class="form-control w-full">
-            <input type="text" name="password" placeholder="Contraseña" class="input input-bordered w-full" value="{{old('password')}}" required />
+            <input type="password" name="password" placeholder="Contraseña" class="input input-bordered w-full" value="{{old('password')}}" required />
             <label class="label">
                 <small class="text-error">
                     <ul>
@@ -71,7 +71,7 @@
         </div>
 
         <div class="form-control w-full">
-            <input type="text" name="password_confirmation" placeholder="Confirmar contraseña" class="input input-bordered w-full" value="{{old('password_confirmation')}}" required />
+            <input type="password" name="password_confirmation" placeholder="Confirmar contraseña" class="input input-bordered w-full" value="{{old('password_confirmation')}}" required />
             <label class="label">
                 <small class="text-error">
                     <ul>

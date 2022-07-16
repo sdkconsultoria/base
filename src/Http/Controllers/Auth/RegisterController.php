@@ -80,7 +80,7 @@ class RegisterController extends Controller
             'lastname' => $data['lastname'],
             'lastname2' => $data['lastname2'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => $data['password'],
         ]);
 
         $user->assignRole(['client']);

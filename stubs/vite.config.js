@@ -7,8 +7,8 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/css/app.css',
-                'resources/js/app.js',
+                'resources/front/css/app.css',
+                'resources/front/js/app.js',
                 'resources/back/css/app.css',
                 'resources/back/js/app.js',
             ],
@@ -43,5 +43,5 @@ export default defineConfig({
     server: {
         port: 5173,
         host: '127.0.0.1',
-      },
+    },
 });

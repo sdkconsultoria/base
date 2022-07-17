@@ -68,6 +68,7 @@ class InstallCommand extends Command
         // copy(__DIR__.'/../../../stubs/phpunit.xml', base_path('phpunit.xml'));
 
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/public/img', base_path('public/img'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/tests', base_path('tests'));
     }
 
     private function writteResources()

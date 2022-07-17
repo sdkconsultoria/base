@@ -39,9 +39,5 @@ export default defineConfig({
             '@base': path.resolve(__dirname, 'vendor/sdkconsultoria/base/resources'),
             '@node': path.resolve(__dirname, 'node_modules')
         },
-    },
-    server: {
-        port: 5173,
-        host: '127.0.0.1',
-    },
+    }
 });

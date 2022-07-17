@@ -21,7 +21,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->registerRoutes();
         $this->registerCommands();
         // $this->enableQueryLogs();
-        Route::mixin(new AuthRouteMethods);
 
         $this->loadViewsFrom(__DIR__.'/../views', 'base');
         $this->loadTranslationsFrom(__DIR__.'/../lang', 'base');

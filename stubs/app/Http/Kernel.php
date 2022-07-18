@@ -39,7 +39,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \Sdkconsultoria\Base\Http\Middleware\Theme::class,
             \Sdkconsultoria\Base\Http\Middleware\Language::class,
-            \Sdkconsultoria\Base\Http\Middleware\ChangePassword::class,
+            \Sdkconsultoria\Base\Http\Middleware\UpdatePassword::class,
         ],
 
         'api' => [

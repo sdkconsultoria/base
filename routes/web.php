@@ -2,7 +2,7 @@
 
 Route::namespace('\Sdkconsultoria\Base\Http\Controllers\Admin')
 ->prefix('admin')
-->middleware(['web'])
+->middleware(['web', 'verified'])
 ->group(function () {
     Route::get('social-auth/{type}', 'SocialAuthController@login')->name('social-auth');
     Route::get('social-link/{type}', 'SocialAuthController@login')->name('social-auth-link');

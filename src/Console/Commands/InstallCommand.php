@@ -116,7 +116,7 @@ class InstallCommand extends Command
                 '@sdkconsultoria/base' => 'file:vendor/sdkconsultoria/base',
                 '@heroicons/vue' => '^1.0.6',
                 'daisyui' => '^2.17.0',
-                '@vitejs/plugin-vue' => '^2.3.3',
+                '@vitejs/plugin-vue' => '^3.0.1',
                 '@tailwindcss/forms' => '^0.5.2',
                 //'vue-router' => '^4.0.16',
             ] + $packages;

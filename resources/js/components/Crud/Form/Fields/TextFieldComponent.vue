@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <label for="" class="text-gray-600 font-medium">
-      {{ label }}
+  <div class="form-control w-full mb-2">
+    <label for="" class="label">
+      <span class="label-text">{{ label }}</span>
     </label>
     <input
       :name="name"
       type="text"
-      class="form-control form-control-l form-control-r border-gray-300"
+      class="input input-bordered w-full"
       :class="getFieldClass(name)"
       v-model="current_value"
     />
@@ -32,8 +32,8 @@ export default {
   },
   data() {
     return {
-      current_value: this.value
-    }
+      current_value: this.value,
+    };
   },
   methods: {
     getFieldClass,

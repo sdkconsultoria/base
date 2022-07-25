@@ -32,11 +32,11 @@
           :placeholder="$parent.translations[filter.field]"
           :name="filter.field"
           type="text"
-          class="form-control form-control-l form-control-r border-gray-300"
+          class="input input-bordered"
           :value="query_params.get(filter.field)"
         />
       </div>
-      <div class="w-full flex flex-row justify-end">
+      <div class="w-full flex flex-row justify-end mt-2">
         <button
           class="
             items-center

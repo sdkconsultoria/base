@@ -10,5 +10,8 @@ class UserController extends ResourceController
 
     public function myAccount()
     {
+        return view('base::back.users.my_account', [
+            'model' => auth()->user()
+        ]);
     }
 }

@@ -15,4 +15,9 @@ class MenuService
     {
         $this->elements[] = $element;
     }
+
+    public function removeElement(int $index)
+    {
+        unset($this->elements[$index]);
+    }
 }

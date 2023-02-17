@@ -50,7 +50,7 @@ class MakeCrud extends Command
 
     private function createModel(string $model)
     {
-        Artisan::call("make:model {$model} -crmf --test");
+        Artisan::call("make:model {$model} -crmf --test --policy");
         $this->comment('Modelo Creado.');
     }
 

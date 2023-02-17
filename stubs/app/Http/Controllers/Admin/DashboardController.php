@@ -8,7 +8,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('base::back.dashboard.index', [
+        return view('back.dashboard.index', [
         ]);
     }
 }

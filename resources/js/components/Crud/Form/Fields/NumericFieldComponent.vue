@@ -3,7 +3,7 @@
     <LabelComponent :label="label" :tooltip="tooltip" />
     <input
       :name="name"
-      type="text"
+      type="number"
       class="input input-bordered w-full"
       :class="getFieldClass(name)"
       v-model="current_value"
@@ -21,7 +21,7 @@ import getFieldClass from "./getFieldClass";
 import LabelComponent from "./components/LabelComponent.vue";
 
 export default {
-  name: "TextField",
+  name: "NumericField",
   components: {
     LabelComponent
   },

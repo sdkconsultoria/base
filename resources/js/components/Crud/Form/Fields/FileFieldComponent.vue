@@ -21,7 +21,7 @@ import getFieldClass from "./getFieldClass";
 import LabelComponent from "./components/LabelComponent.vue";
 
 export default {
-  name: "TextField",
+  name: "FileField",
   components: {
     LabelComponent
   },

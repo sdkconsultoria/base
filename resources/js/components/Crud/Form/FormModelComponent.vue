@@ -13,6 +13,8 @@
           :is="field.component"
           :name="field.name"
           :label="field.label"
+          :tooltip="field.tooltip"
+          :extra="field.extra"
           :value="field.value"
           :errors="errors"
           :submited="submited"

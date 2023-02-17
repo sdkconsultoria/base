@@ -20,7 +20,7 @@
 
 <script>
 import Swal from "@node/sweetalert2";
-import { TrashIcon, PencilIcon, EyeIcon } from "@heroicons/vue/outline";
+import { TrashIcon, PencilIcon, EyeIcon } from "@heroicons/vue/24/outline";
 import DeleteModel from "./../Form/DeleteModelComponent.vue";
 
 export default {

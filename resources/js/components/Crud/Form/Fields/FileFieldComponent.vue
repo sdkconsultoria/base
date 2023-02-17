@@ -1,12 +1,11 @@
 <template>
-  <div class="form-control w-full mb-2">
+  <div class="w-full mb-2">
     <LabelComponent :label="label" :tooltip="tooltip" />
     <input
       :name="name"
-      type="text"
-      class="input input-bordered w-full"
+      type="file"
+      class="file-input file-input-bordered w-full max-w-xs"
       :class="getFieldClass(name)"
-      v-model="current_value"
     />
     <div class="text-red-500 text-xs font-semibold">
       <p v-for="(error, index) in errors[name]" :key="index">

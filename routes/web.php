@@ -8,7 +8,6 @@ Route::namespace('\Sdkconsultoria\Base\Http\Controllers\Admin')
     Route::get('social-link/{type}', 'SocialAuthController@login')->name('social-auth-link');
 
     Route::middleware(['auth'])->group(function () {
-        Route::get('/', 'DashboardController@index')->name('dashboard');
         Route::SdkSimpleResource('role', 'Auth\RoleController');
 
         Route::namespace('Auth')

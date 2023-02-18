@@ -26,9 +26,9 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->loadTranslationsFrom(__DIR__.'/../lang', 'base');
         $this->registerMenu();
 
-        // $this->publishes([
-        //     __DIR__.'/../views' => resource_path('views/vendor/base'),
-        // ]);
+        $this->publishes([
+            __DIR__.'/../views' => resource_path('views/vendor/base'),
+        ]);
     }
 
     /**

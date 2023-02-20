@@ -8,7 +8,7 @@ class Icon extends BaseHtml
 
     private $type = '';
 
-    private $options = ['class' => 'text-gray-500'];
+    private $options = ['class' => 'text-gray-500 fill-black', 'stroke'=>'#fff'];
 
     public function __construct(string $icon, array $options = [], string $type = 'outline')
     {
@@ -24,7 +24,8 @@ class Icon extends BaseHtml
 
     private function parseIcon(string $icon)
     {
-        return str_replace('<svg ', '<svg '.$this->options, $icon);
+        $icon = str_replace('<svg ', '<svg '.$this->options, $icon);
+        return str_replace('stroke="#0F172A"', 'stroke="currentColor"', $icon);
     }
 
     public function render(): string

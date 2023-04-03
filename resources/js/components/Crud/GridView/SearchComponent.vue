@@ -52,7 +52,7 @@
           type="button"
           @click="clearApi()"
         >
-          <RefreshIcon class="h-4 mr-1" /> {{ $parent.translations.grid.clear }}
+          <ArrowPathIcon class="h-4 mr-1" /> {{ $parent.translations.grid.clear }}
         </button>
         <button
           class="
@@ -68,7 +68,7 @@
           "
           type="submit"
         >
-          <DocumentSearchIcon class="h-4 mr-1" />
+          <DocumentMagnifyingGlassIcon class="h-4 mr-1" />
           {{ $parent.translations.grid.search }}
         </button>
       </div>
@@ -78,8 +78,8 @@
 
 <script>
 import {
-  DocumentSearchIcon,
-  RefreshIcon,
+  DocumentMagnifyingGlassIcon,
+  ArrowPathIcon,
   ChevronRightIcon,
   ChevronUpIcon,
 } from "@heroicons/vue/24/solid";
@@ -93,8 +93,8 @@ export default {
     create_route: String,
   },
   components: {
-    DocumentSearchIcon,
-    RefreshIcon,
+    DocumentMagnifyingGlassIcon,
+    ArrowPathIcon,
     ChevronRightIcon,
     ChevronUpIcon,
   },

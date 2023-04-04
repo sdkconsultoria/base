@@ -108,7 +108,7 @@ class InstallCommand extends Command
                 'tailwindcss' =>  '^3.3.1',
                 'postcss-import' => '^15.1.0',
                 'alpinejs' => '^3.12',
-                'sweetalert2' => '^11.7.1',
+                'sweetalert2' => '^11.7.3',
                 'jodit' => '^3.24.7',
                 'cropperjs' => '^1.5.12',
                 'photoswipe' => '^5.3.7',

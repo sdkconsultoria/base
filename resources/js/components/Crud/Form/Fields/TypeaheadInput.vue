@@ -1,6 +1,6 @@
 <template>
     <div class="w-full relative">
-        <div class="mt-1 flex rounded-md shadow-sm">
+        <div class="flex rounded-md shadow-sm">
             <input type="text" :class="classProps" :placeholder="placeholder" aria-label="Search" @keypress="loadFromApi"
                 v-model="search" @input="showSearchItems = true" ref="searchBox" />
         </div>

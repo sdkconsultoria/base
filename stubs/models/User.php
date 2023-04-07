@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use Sdkconsultoria\Base\Fields\TextField;
+use Sdkconsultoria\Core\Fields\PasswordField;
 use Sdkconsultoria\Base\Models\Auth\UserSocial;
 use Sdkconsultoria\Core\Models\Traits\BaseModel as TraitBaseModel;
 use Sdkconsultoria\Core\Models\Traits\ImageTrait;
@@ -59,10 +60,10 @@ class User extends Authenticatable implements MustVerifyEmail
             TextField::make('email')
                 ->label('Correo')
                 ->rules(['required', 'email']),
-            TextField::make('password')
+            PasswordField::make('password')
                 ->label('Contraseña')
                 ->rules(['required', 'min:6', 'confirmed'])->hideOnIndex(),
-            TextField::make('password_confirmation')
+            PasswordField::make('password_confirmation')
                 ->label('Confirmar contraseña')
                 ->rules(['min:6'])->hideOnIndex()->canBeSaved(false),
         ];

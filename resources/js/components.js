@@ -5,6 +5,7 @@ import DeleteModelComponent from "./components/Crud/Form/DeleteModelComponent.vu
 import TextFieldComponent from "./components/Crud/Form/Fields/TextFieldComponent.vue";
 import NumericFieldComponent from "./components/Crud/Form/Fields/NumericFieldComponent.vue";
 import FileFieldComponent from "./components/Crud/Form/Fields/FileFieldComponent.vue";
+import PasswordFieldComponent from "./components/Crud/Form/Fields/PasswordFieldComponent.vue";
 
 const app = createApp({});
 
@@ -14,5 +15,6 @@ app.component('DeleteModel', DeleteModelComponent)
 app.component('TextField', TextFieldComponent)
 app.component('FileField', FileFieldComponent)
 app.component('NumericField', NumericFieldComponent)
+app.component('PasswordFieldComponent', PasswordFieldComponent)
 
 app.mount('#app');

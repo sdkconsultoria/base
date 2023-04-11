@@ -21,6 +21,11 @@
     "homepage": "https://github.com/sdkconsultoria/base#readme",
     "dependencies": {
         "@heroicons/vue": "^2.0.17",
+        "@tiptap/pm": "^2.0.2",
+        "@tiptap/starter-kit": "^2.0.2",
+        "@tiptap/vue-3": "^2.0.2",
+        "@tiptap/extension-text-align": "^2.0.2",
+        "@tiptap/extension-underline": "^2.0.2",
         "vue": "^3.2.47",
         "vue-loader": "^17.0.1"
     }

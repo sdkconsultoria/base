@@ -6,6 +6,7 @@ import TextFieldComponent from "./components/Crud/Form/Fields/TextFieldComponent
 import NumericFieldComponent from "./components/Crud/Form/Fields/NumericFieldComponent.vue";
 import FileFieldComponent from "./components/Crud/Form/Fields/FileFieldComponent.vue";
 import PasswordFieldComponent from "./components/Crud/Form/Fields/PasswordFieldComponent.vue";
+import SelectedFieldComponent from "./components/Crud/Form/Fields/SelectedFieldComponent.vue";
 
 const app = createApp({});
 
@@ -16,5 +17,6 @@ app.component('TextField', TextFieldComponent)
 app.component('FileField', FileFieldComponent)
 app.component('NumericField', NumericFieldComponent)
 app.component('PasswordFieldComponent', PasswordFieldComponent)
+app.component('SelectedField', SelectedFieldComponent)
 
 app.mount('#app');

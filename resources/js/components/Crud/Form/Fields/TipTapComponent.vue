@@ -34,6 +34,8 @@
                 :class="{ 'is-active': editor.isActive({ textAlign: 'right' }) }">
                 <Bars3BottomRightIcon style="height: 15px;" />
             </button>
+            <input type="color" @input="editor.chain().focus().setColor($event.target.value).run()"
+                :value="editor.getAttributes('textStyle').color">
         </div>
     </div>
 </template>
@@ -51,6 +53,7 @@ import Strike from '@tiptap/extension-strike'
 import TextAlign from '@tiptap/extension-text-align'
 import { Bars2Icon, Bars3BottomLeftIcon, Bars3BottomRightIcon } from '@heroicons/vue/24/solid'
 import { Color } from '@tiptap/extension-color'
+import TextStyle from '@tiptap/extension-text-style'
 
 
 export default {
@@ -127,7 +130,8 @@ export default {
                 TextAlign.configure({
                     types: ['paragraph'],
                 }),
-                Color
+                Color,
+                TextStyle
             ],
             content: this.modelValue,
             onUpdate: () => {

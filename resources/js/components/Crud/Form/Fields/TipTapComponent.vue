@@ -49,7 +49,8 @@ import Italic from '@tiptap/extension-italic'
 import Underline from '@tiptap/extension-underline'
 import Strike from '@tiptap/extension-strike'
 import TextAlign from '@tiptap/extension-text-align'
-import { Bars2Icon, Bars3BottomLeftIcon, Bars3CenterLeftIcon, Bars3BottomRightIcon } from '@heroicons/vue/24/solid'
+import { Bars2Icon, Bars3BottomLeftIcon, Bars3BottomRightIcon } from '@heroicons/vue/24/solid'
+import { Color } from '@tiptap/extension-color'
 
 
 export default {
@@ -126,6 +127,7 @@ export default {
                 TextAlign.configure({
                     types: ['paragraph'],
                 }),
+                Color
             ],
             content: this.modelValue,
             onUpdate: () => {

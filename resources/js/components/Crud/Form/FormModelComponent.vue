@@ -16,6 +16,7 @@
           :tooltip="field.tooltip"
           :extra="field.extra"
           :value="field.value"
+          :loadOptionsFromUrl="field.loadOptionsFromUrl"
           :errors="errors"
           :submited="submited"
         >

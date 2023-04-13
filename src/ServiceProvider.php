@@ -93,12 +93,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     private function registerMenu()
     {
         $service_menu = app(MenuService::class);
-        $service_menu->addElement([
-            'name' => 'Dashboard',
-            'icon' => \Base::icon('home', ['class' => 'h-6 w-6']),
-            'url' => 'dashboard',
-        ]);
-        $service_menu->addElement(\App\Models\User::makeMenu('users'));
     }
 
     private function enableQueryLogs()

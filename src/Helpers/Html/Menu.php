@@ -96,12 +96,26 @@ class Menu extends BaseHtml implements iHtml
         $html = '';
 
         foreach ($this->items as $item) {
+            $this->validateRoles($item);
             if ($item['visible'] ?? true) {
                 $html .= $this->writteItem($item)[0];
             }
         }
 
         return $html;
+    }
+
+    protected function validateRoles(&$item)
+    {
+        if ($item['roles']) {
+            $item['visible'] = false;
+            foreach ($item['roles'] as $role) {
+                $item['visible'] = $item['visible'] || auth()->user()->hasRole($role);
+                if ( $item['visible']) {
+                    break;
+                }
+            }
+        }
     }
 
     protected function writteItem(array $item, $level = 0)

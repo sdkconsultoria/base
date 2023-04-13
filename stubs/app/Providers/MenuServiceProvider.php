@@ -24,5 +24,11 @@ class MenuServiceProvider extends ServiceProvider
     public function boot()
     {
         $service_menu = app(MenuService::class);
+        $service_menu->addElement(\App\Models\User::makeMenu('users'));
+        $service_menu->addElement([
+            'name' => 'Dashboard',
+            'icon' => \Base::icon('home', ['class' => 'h-6 w-6']),
+            'url' => 'dashboard',
+        ]);
     }
 }

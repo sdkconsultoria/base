@@ -11,8 +11,9 @@ class MenuService
         return $this->elements;
     }
 
-    public function addElement(array $element)
+    public function addElement(array $element, array $roles = [])
     {
+        $element['roles'] = $roles;
         $this->elements[] = $element;
     }
 

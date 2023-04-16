@@ -23,7 +23,8 @@ export function postToApi(url, data) {
         method: "POST",
         "headers": {
             "Accept": "application/json",
-            'X-CSRF-TOKEN': csrf()
+            'X-CSRF-TOKEN': csrf(),
+            'Content-Type': 'application/json'
         },
         body:  JSON.stringify(data)
     })

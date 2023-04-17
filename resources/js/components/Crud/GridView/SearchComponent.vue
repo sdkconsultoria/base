@@ -33,6 +33,7 @@
           :name="filter.field"
           type="text"
           class="input input-bordered"
+          :id="'search-'+filter.field"
           :value="query_params.get(filter.field)"
         />
       </div>

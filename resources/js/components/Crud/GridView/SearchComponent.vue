@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex mb-1">
-        <a type="button" :href="create_route" class="btn btn-primary mr-1"> {{translations.create}} </a>
+        <a v-if="create_route" type="button" :href="create_route" class="btn btn-primary mr-1"> {{translations.create}} </a>
 
         <button
         @click="is_open_form = !is_open_form"

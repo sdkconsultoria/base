@@ -20,7 +20,7 @@
             v-for="field in fields"
             :key="field"
             >
-            {{ model[field] }}
+            {{ getValue(model, field) }}
             </td>
             <td><ActionColumn :model_id="model.id"/></td>
         </tr>
@@ -51,6 +51,18 @@ export default {
     OrderComponent,
     SearchComponent,
     ActionColumn,
+  },
+
+  methods: {
+    getValue(model, field) {
+        let array = field.split('.');
+
+        if (array.length > 1) {
+            return model[array[0]][array[1]];
+        } else {
+            return model[field];
+        }
+    }
   },
   setup(props) {
     const data = ref({});

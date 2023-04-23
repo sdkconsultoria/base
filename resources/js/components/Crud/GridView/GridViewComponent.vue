@@ -22,7 +22,7 @@
             >
             {{ getValue(model, field) }}
             </td>
-            <td><ActionColumn :model_id="model.id"/></td>
+            <td><ActionColumn :template_actions="template_actions" :model_id="model.id"/></td>
         </tr>
         </tbody>
     </table>
@@ -45,6 +45,7 @@ export default {
     routes: JSON,
     filters: JSON,
     create_route: String,
+    template_actions: JSON,
   },
   components: {
     PaginationComponent,

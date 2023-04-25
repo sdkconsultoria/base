@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-between">
-    <p>
+  <div class="flex justify-between flex-wrap">
+    <p class="sm:w-full">
         {{ $parent.translations.pagination.showing }}
         <span class="font-medium">{{ data.from }}</span>
         -
@@ -9,7 +9,7 @@
         <span class="font-medium">{{ data.total }}</span>
         {{ $parent.translations.pagination.results }}
     </p>
-    <div class="btn-group">
+    <div class="btn-group sm:w-full">
         <button
             class="btn"
             :class="{'btn-disabled': !data.prev_page_url}"

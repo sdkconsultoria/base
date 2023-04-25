@@ -17,14 +17,17 @@
         >
           {{ $parent.translations.pagination.previous }}
         </button>
-        <button
-            class="btn"
-            :class="{'btn-active': data.current_page == index+1}"
-            v-for="(page, index) in data.last_page" :key=index
-            @click="reloadDataFromApi(data.first_page_url.replace('page=1', `page=${index+1}`))"
-            >
-                {{index + 1}}
-        </button>
+        <template v-for="(page, index) in data.last_page" :key=index>
+            <button
+                class="btn"
+                :class="{'btn-active': data.current_page == index+1}"
+
+                v-if="showNumeber(index+1, data)"
+                @click="reloadDataFromApi(data.first_page_url.replace('page=1', `page=${index+1}`))"
+                >
+                    {{index + 1}}
+            </button>
+        </template>
         <button
           class="btn"
           :class="{'btn-disabled': !data.next_page_url}"
@@ -55,6 +58,25 @@ export default {
       this.setQueryToUrl(url);
       this.$parent.fetchData(url);
     },
+    showNumeber(index, data) {
+        if(data.current_page == index) {
+            return true;
+        }
+
+        if(index == 1) {
+            return true;
+        }
+
+        if (data.last_page == index) {
+            return true;
+        }
+
+        if (data.current_page < index+3 && data.current_page > index-3) {
+            return true;
+        }
+
+        return false;
+    }
   },
 };
 </script>

@@ -82,10 +82,15 @@ export default {
                 this.showSearchItems = false
             }
         },
-        async loadFromApi() {
+        async loadFromApi(e) {
             if (this.loadFromApiUrl) {
-                let response = await resquestToApi(this.parseUrlValue());
-                this.searchItemList = response.data;
+                if (e.keyCode === 13) {
+                    this.selectSearchItem(this.filteredList[0]);
+                    this.showSearchItems = false;
+                } else{
+                    let response = await resquestToApi(this.parseUrlValue());
+                    this.searchItemList = response.data;
+                }
             }
         },
         parseUrlValue() {

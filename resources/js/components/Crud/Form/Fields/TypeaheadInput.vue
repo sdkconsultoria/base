@@ -37,7 +37,11 @@ export default {
             type: Array,
             default: ['w-full', 'input', 'input-bordered']
         },
-        loadFromApiUrl: String
+        loadFromApiUrl: String,
+        currentValue: {
+            type: String,
+            default: ''
+        },
     },
     data() {
         return {
@@ -107,6 +111,10 @@ export default {
             })
             this.selectedItem = selected[0]?.name
             this.search = selected[0]?.name
+        }
+
+        if (this.currentValue) {
+            this.search = this.currentValue;
         }
     }
 };

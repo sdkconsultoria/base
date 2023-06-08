@@ -5,17 +5,22 @@
             <table class="table w-full mt-3 mb-3">
                 <thead>
                     <tr>
+                        <th v-if="column_action_order == 'start'" width="100px"></th>
+
                         <OrderComponent v-for="field in fields" :key="field" :field="field" :current_order="current_order"
                             :label="translations[field]" />
-                        <th width="100px"></th>
+                        <th v-if="column_action_order == 'end'" width="100px"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="model in data.data" :key="model.id">
+                        <td v-if="column_action_order == 'start'">
+                            <ActionColumn :template_actions="template_actions" :model_id="model.id" />
+                        </td>
                         <td v-for="field in fields" :key="field">
                             {{ getValue(model, field) }}
                         </td>
-                        <td>
+                        <td v-if="column_action_order == 'end'">
                             <ActionColumn :template_actions="template_actions" :model_id="model.id" />
                         </td>
                     </tr>
@@ -76,6 +81,7 @@ export default {
     },
     setup(props) {
         const data = ref({});
+        const column_action_order = import.meta.env.VITE_COLUMN_ACTION_ORDER ?? 'end';
         const loading = ref(true);
         const error = ref(null);
         const current_order = ref({
@@ -120,6 +126,7 @@ export default {
             error,
             current_order,
             fetchData,
+            column_action_order
         };
     },
 };

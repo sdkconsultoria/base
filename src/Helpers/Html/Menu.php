@@ -83,6 +83,10 @@ class Menu extends BaseHtml implements iHtml
             return $route;
         }
 
+        if ($item['default_search'] ?? false) {
+            return route($route, ['order'=>$item['default_search']]);
+        }
+
         return route($route);
     }
 

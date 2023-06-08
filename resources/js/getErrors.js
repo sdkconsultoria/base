@@ -8,6 +8,13 @@ export function getAllErrorsAsArray(errors) {
     return error_list;
 }
 
+export function getAllErrorsAsArrayFromObject(errors) {
+    let error_list = [];
+
+    eachObject(error_list, errors);
+
+    return error_list;
+}
 
 function eachObject(error_list, errors) {
     Object.values(errors).forEach(attribute => {

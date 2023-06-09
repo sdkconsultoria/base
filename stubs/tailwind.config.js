@@ -50,6 +50,9 @@ module.exports = {
         './resources/**/*.js',
         './resources/**/*.vue',
     ],
+    daisyui: {
+        themes: ['light', 'dark', 'emerald', 'halloween']
+    },
     plugins: [
         require('postcss-import'),
         require('tailwindcss'),

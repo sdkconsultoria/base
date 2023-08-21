@@ -7,6 +7,7 @@ import NumericFieldComponent from "./components/Crud/Form/Fields/NumericFieldCom
 import FileFieldComponent from "./components/Crud/Form/Fields/FileFieldComponent.vue";
 import PasswordFieldComponent from "./components/Crud/Form/Fields/PasswordFieldComponent.vue";
 import SelectedFieldComponent from "./components/Crud/Form/Fields/SelectedFieldComponent.vue";
+import CustomLink from "./components/Crud/GridView/CustomLink.vue";
 
 
 let element = document.getElementById('app')
@@ -22,6 +23,7 @@ if (element !== null) {
     app.component('NumericField', NumericFieldComponent)
     app.component('PasswordFieldComponent', PasswordFieldComponent)
     app.component('SelectedField', SelectedFieldComponent)
+    app.component('CustomLink', CustomLink)
 
     app.mount('#app');
 }

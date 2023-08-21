@@ -1,6 +1,8 @@
 <template>
     <div>
-        <SearchComponent :create_route="create_route" :translations="translations" :searchisopen="searchisopen" />
+        <SearchComponent :create_route="create_route" :translations="translations" :searchisopen="searchisopen" >
+            <slot></slot>
+        </SearchComponent>
         <div class="overflow-x-auto">
             <table class="table w-full mt-3 mb-3">
                 <thead>

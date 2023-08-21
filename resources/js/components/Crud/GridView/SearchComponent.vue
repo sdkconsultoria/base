@@ -12,6 +12,8 @@
         <ChevronRightIcon v-if="!is_open_form" class="h-5 ml-3" />
         <ChevronUpIcon v-if="is_open_form" class="h-5 ml-3" />
         </button>
+
+        <slot></slot>
     </div>
     <form
       @submit.prevent="onSubmit"

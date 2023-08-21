@@ -1,6 +1,6 @@
 <template>
     <div>
-        <SearchComponent :create_route="create_route" :translations="translations" />
+        <SearchComponent :create_route="create_route" :translations="translations" :searchisopen="searchisopen" />
         <div class="overflow-x-auto">
             <table class="table w-full mt-3 mb-3">
                 <thead>
@@ -49,6 +49,7 @@ export default {
         filters: JSON,
         create_route: String,
         template_actions: JSON,
+        searchisopen: Boolean,
     },
     components: {
         PaginationComponent,

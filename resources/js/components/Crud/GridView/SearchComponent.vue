@@ -28,10 +28,31 @@
         :key="filter.field"
         class="form-group pr-1"
       >
-        <input
+
+        <input v-if="filter.type == undefined"
           :placeholder="$parent.translations[filter.field]"
           :name="filter.field"
           type="text"
+          class="input input-bordered"
+          :id="'search-'+filter.field"
+          :value="query_params.get(filter.field)"
+        />
+
+        <select
+            v-if="filter.type == 'select'"
+            class="select select-bordered w-full"
+            :name="filter.field"
+            :id="'search-'+filter.field"
+            :value="query_params.get(filter.field)"
+            >
+            <option disabled selected>Selecciona una opción</option>
+            <option v-for="option in filter.options" :key="option.value" :value="option.value">{{option.label}}</option>
+        </select>
+
+        <input v-if="filter.type == 'date'"
+          :placeholder="$parent.translations[filter.field]"
+          :name="filter.field"
+          type="datetime-local"
           class="input input-bordered"
           :id="'search-'+filter.field"
           :value="query_params.get(filter.field)"
@@ -92,6 +113,7 @@ export default {
     search: Array,
     translations: Object,
     create_route: String,
+    searchisopen: Boolean,
   },
   components: {
     DocumentMagnifyingGlassIcon,
@@ -123,6 +145,9 @@ export default {
           this.is_open_form = true;
           return;
         }
+      }
+      if(this.searchisopen){
+        this.is_open_form = true;
       }
     },
     clearApi() {

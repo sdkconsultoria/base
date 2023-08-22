@@ -48,7 +48,7 @@
             :value="query_params.get(filter.field)"
             >
             <option disabled selected>Selecciona una opción</option>
-            <option v-for="option in filter.options" :key="option.value" :value="option.value">{{option.label}}</option>
+            <option v-for="(option, value) in filter.options" :key="value" :value="value">{{option}}</option>
         </select>
 
         <input v-if="filter.type == 'date'"

@@ -8,6 +8,7 @@ import FileFieldComponent from "./components/Crud/Form/Fields/FileFieldComponent
 import PasswordFieldComponent from "./components/Crud/Form/Fields/PasswordFieldComponent.vue";
 import SelectedFieldComponent from "./components/Crud/Form/Fields/SelectedFieldComponent.vue";
 import CustomLink from "./components/Crud/GridView/CustomLink.vue";
+import Swal from "@node/sweetalert2";
 
 
 let element = document.getElementById('app')
@@ -27,3 +28,23 @@ if (element !== null) {
 
     app.mount('#app');
 }
+
+
+document.querySelectorAll('.question').forEach(item => {
+    item.addEventListener('click', async event => {
+        if (event.target.dataset.question == undefined) return true;
+        event.preventDefault();
+        Swal.fire({
+            title: event.target.dataset.question,
+            icon: "question",
+            confirmButtonText: 'Si, Continuar',
+            cancelButtonText: 'Cancelar',
+            showCancelButton: true,
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                window.location.href = event.target.href;
+            }
+        });
+
+    });
+});

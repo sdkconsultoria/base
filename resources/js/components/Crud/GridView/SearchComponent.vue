@@ -28,21 +28,21 @@
       <div
         v-for="filter in this.$parent.filters"
         :key="filter.field"
-        class="form-group pr-1"
+        class="form-group pr-1 mt-1"
       >
 
         <input v-if="filter.type == undefined"
           :placeholder="$parent.translations[filter.field]"
           :name="filter.field"
           type="text"
-          class="input input-bordered"
+          class="input input-bordered mt-1"
           :id="'search-'+filter.field"
           :value="query_params.get(filter.field)"
         />
 
         <select
             v-if="filter.type == 'select'"
-            class="select select-bordered w-full"
+            class="select select-bordered w-full mt-1"
             :name="filter.field"
             :id="'search-'+filter.field"
             :value="query_params.get(filter.field)"
@@ -55,7 +55,7 @@
           :placeholder="$parent.translations[filter.field]"
           :name="filter.field"
           type="datetime-local"
-          class="input input-bordered"
+          class="input input-bordered mt-1"
           :id="'search-'+filter.field"
           :value="query_params.get(filter.field)"
         />

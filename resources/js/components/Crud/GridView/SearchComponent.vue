@@ -59,6 +59,16 @@
           :id="'search-'+filter.field"
           :value="query_params.get(filter.field)"
         />
+
+        <input v-if="filter.type == 'date-only'"
+          :placeholder="$parent.translations[filter.field]"
+          :name="filter.field"
+          type="date"
+          class="input input-bordered mt-1"
+          :id="'search-'+filter.field"
+          :value="query_params.get(filter.field)"
+        />
+
       </div>
       <div class="w-full flex flex-row justify-end mt-2">
         <button

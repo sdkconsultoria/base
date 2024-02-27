@@ -124,11 +124,12 @@ class Menu extends BaseHtml implements iHtml
 
     protected function writteItem(array $item, $level = 0)
     {
+        $id = $item['id']??'';
         $urls = $this->getUrls($item);
         $items = $this->getItems($item, $level + 1);
         $is_active = $this->isActive($level, $urls, $items[1]);
         $html = '
-        <div '.($items ? 'x-data="{ open: '.($is_active[1] ? 'true' : 'false').' }"' : '').'>
+        <div id="'.$id.'" '.($items ? 'x-data="{ open: '.($is_active[1] ? 'true' : 'false').' }"' : '').'>
             <a  '.($items ? 'x-on:click="open = !open"' : '').' class="'.$is_active[0].'" href="'.$this->getRoute($item).'">
                 '.($item['icon'] ?? '').'
                 <span class="mx-3">'.$item['name'].'</span>
